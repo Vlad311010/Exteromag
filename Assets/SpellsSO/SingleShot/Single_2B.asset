@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24083a47762275c47b220664ca5652e8, type: 3}
+  m_Name: Single_2B
+  m_EditorClassIdentifier: 
+  casterPosition: {x: 0, y: 0}
+  castPoint: {x: 0, y: 0}
+  target: {fileID: 0}
+  owner: {fileID: 0}
+  projectile: {fileID: 5543515162880620750, guid: ca9da2e589c08cc4cb5acb9423662a72, type: 3}
+  onCastParticles: {fileID: 0}
+  particles: {fileID: 0}
+  OnHitParticles: {fileID: 0}
+  spellIcon: {fileID: 0}
+  spellIconColor: {r: 1, g: 1, b: 1, a: 1}
+  castCost: 0
+  cooldown: 0.2
+  speed: 25
+  acceleration: 500
+  decceleration: 20
+  deccelerationStart: 0.5
+  useDecceleration: 0
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 257
+  castOnTarget: 0
+  castOnSelf: 0
+  attributes: 04000000
+  explosionAttribute:
+    radius: 0
+    velocityImpact: 0
+    obstacleLayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    interactionLayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+  instantAttribute:
+    distanceLimit: 0
+  bounceAttribute:
+    bounceLimit: 2
+    bounceLayer:
+      serializedVersion: 2
+      m_Bits: 0
+  rotateAroundTargetAttribute:
+    speed: 0
+    distanceFromAnchor: 0
+  penetrateAttribute:
+    penetrateLimit: 1
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 1
+  manaDrainAttribute:
+    manaDrain: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+  spawnAttributes: 00000000
+  defaultSpawnAttribute:
+    distanceFromCaster: 1
+  randomOffsetAttribute:
+    angle: 60
+    range: 0.5
+  shotgunAttribute:
+    angle: 15
+    range: 1
+    projectilesCount: 10
