@@ -53,7 +53,7 @@ public class CharacterShootProjectile : MonoBehaviour
     private void ShootProjectile(GameObject projectile, float power)
     {
         AimSnapshot snapshot = aim.TakeSnapshot();
-        Vector2 spawnPoint = transform.position + snapshot.castDirection * spawnPointOffset;
+        Vector2 spawnPoint = transform.position + (Vector3)snapshot.castDirection * spawnPointOffset;
         GameObject projectileInstance = Instantiate(projectile, spawnPoint, Quaternion.LookRotation(new Vector3(0, 0, 1), snapshot.castDirection));
         projectileInstance.transform.rotation = Quaternion.Euler(0, 0, projectileInstance.transform.rotation.eulerAngles.z + 90);
         projectileInstance.GetComponent<Rigidbody2D>().AddForce(snapshot.castDirection * power, ForceMode2D.Impulse);

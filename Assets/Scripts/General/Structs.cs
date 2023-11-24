@@ -7,10 +7,10 @@ namespace Structs
 {
     public struct AimSnapshot
     {
-        public Vector3 castPoint;
-        public Vector3 castDirection;
+        public Vector2 castPoint;
+        public Vector2 castDirection;
 
-        public AimSnapshot(Vector3 castPoint, Vector3 castDirection)
+        public AimSnapshot(Vector2 castPoint, Vector2 castDirection)
         {
             this.castPoint = castPoint;
             this.castDirection = castDirection;

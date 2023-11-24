@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AttackKeepDistance : MonoBehaviour//, IMoveAI
+public class KeepDistance : MonoBehaviour, IMoveAI
 {
     NavMeshAgent agent;
 
@@ -16,62 +16,64 @@ public class AttackKeepDistance : MonoBehaviour//, IMoveAI
 
     private float distanceToTarget;
     private bool movingToDesiredPosition = false;
+    private bool staying = false;
 
     private Coroutine stayingCoroutine = null;
 
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponentInParent<AICore>().agent;
     }
 
-    private void Update()
+    public void AIUpdate()
     {
         distanceToTarget = Vector2.Distance(transform.position, target.position);
+        staying = AIGeneral.AgentIsAtDestinationPoint(agent, 0.5f);
 
         if (distanceToTarget >= distance + goToTargetThreshold)
         {
-            agent.isStopped = false;
             agent.destination = target.position;
             movingToDesiredPosition = false;
-            //stayingCoroutine = null;
         }
         else if (distanceToTarget >= distance + followThreshold && !movingToDesiredPosition)
         {
-            agent.isStopped = false;
             movingToDesiredPosition = true;
             agent.destination = GetDesiredPosition();
-            //stayingCoroutine = null;
         }
 
-        if (!agent.isStopped && AIGeneral.AgentIsAtDestinationPoint(agent, 0.25f))
+        if (staying && stayingCoroutine == null)
         {
-            agent.isStopped = true;
-            movingToDesiredPosition = false;
-            //if (stayingCoroutine == null)
-                //stayingCoroutine = StartCoroutine(StayTimer());
-
+            stayingCoroutine = StartCoroutine(StayTimer());
+        }
+        else if (!staying && stayingCoroutine != null)
+        {
+            StopCoroutine(stayingCoroutine);
+            stayingCoroutine = null;
         }
     }
 
     private Vector2 GetDesiredPosition()
     {
+        movingToDesiredPosition = true;
+
         Vector2 directionFromTarget = (transform.position - target.transform.position).normalized;
         // Vector2 middle = (Vector2)target.transform.position + (directionFromTarget * (distance + followThreshold)) / 2;
         Vector2 middle = (Vector2)target.transform.position + (directionFromTarget * (distance + followThreshold - desiredPositionSearchRadius));
         return middle + AIGeneral.InsideCirlce(0, desiredPositionSearchRadius);
     }
 
-    /*IEnumerator StayTimer()
+    IEnumerator StayTimer()
     {
         float time = Random.Range(desiredPositionStayTime.x, desiredPositionStayTime.y);
         yield return new WaitForSeconds(time);
         agent.destination = GetDesiredPosition();
-        agent.isStopped = false;
-        movingToDesiredPosition = true;
-    }*/
+
+    }
 
     private void OnDrawGizmosSelected()
     {
+        if (target == null) return;
+
         Vector2 directionFromTarget = (transform.position - target.transform.position).normalized;
         // Vector2 middle =  (Vector2)target.transform.position + (directionFromTarget * (distance + followThreshold)) / 2;
         Vector2 middle = (Vector2)target.transform.position + (directionFromTarget * (distance + followThreshold - desiredPositionSearchRadius));

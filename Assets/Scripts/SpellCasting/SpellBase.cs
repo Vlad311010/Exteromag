@@ -1,12 +1,14 @@
 using UnityEngine;
 using Interfaces;
 using Structs;
+using System.Collections;
 
 public class SpellBase : MonoBehaviour
 {
     [SerializeField] public SpellScriptableObject spell { get; private set; }
     private ISpellAttribute[] attributes;
-
+    private float lifeTime = 100f;
+    
 
     public void Init(SpellScriptableObject spell)
     {
@@ -23,8 +25,8 @@ public class SpellBase : MonoBehaviour
         SpawnProjectileParticles();
         // play sound
 
-
         AttributesOnCastEvent();
+        StartCoroutine(DespawnCoroutine(lifeTime));
     }
 
     private void SpawnCastParticles()
@@ -57,7 +59,7 @@ public class SpellBase : MonoBehaviour
         // instanciate particle
         // destroy object
         // spell impact
-
+        
         AttributesOnHitEvent(collisionData);
     }
 
@@ -108,5 +110,11 @@ public class SpellBase : MonoBehaviour
     public void Despawn()
     {
         Destroy(this.gameObject);
+    }
+
+    IEnumerator DespawnCoroutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Despawn();
     }
 }

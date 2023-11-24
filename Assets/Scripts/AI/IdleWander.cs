@@ -13,6 +13,7 @@ public class IdleWander : MonoBehaviour, IMoveAI
     [SerializeField] bool rootedToOriginalPosition;
 
     private Vector2 originalPosition;
+    private bool staying = false;
 
     void Start()
     {
@@ -23,7 +24,7 @@ public class IdleWander : MonoBehaviour, IMoveAI
 
     public void AIUpdate()
     {
-        if (!agent.isStopped && AIGeneral.AgentIsAtDestinationPoint(agent, 0.25f))
+        if (!staying && AIGeneral.AgentIsAtDestinationPoint(agent, 0.25f))
         {
             StartCoroutine(Wait());
         }
@@ -36,9 +37,9 @@ public class IdleWander : MonoBehaviour, IMoveAI
 
     IEnumerator Wait()
     {
-        agent.isStopped = true;
+        staying = true;
         yield return new WaitForSeconds(Random.Range(wanderBreak.x, wanderBreak.y));
-        agent.isStopped = false;
+        staying = false;
         SetWanderPosition();
 
 
