@@ -39,6 +39,7 @@ namespace Interfaces
 
     public interface IMoveAI
     {
+        void AIReset();
         void AIUpdate();
     }
 

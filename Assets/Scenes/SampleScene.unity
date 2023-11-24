@@ -1810,8 +1810,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 7.5
-  m_Acceleration: 8
+  m_Speed: 9
+  m_Acceleration: 25
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -1848,7 +1848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1605042035}
-  moveAIActive: 0
+  moveAIActive: 1
   attackAIActive: 1
 --- !u!1 &1626011005
 GameObject:
@@ -2050,9 +2050,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 493318440}
   distance: 2
-  followThreshold: 11
+  followThreshold: 5
   goToTargetThreshold: 14
-  desiredPositionSearchRadius: 3.68
+  desiredPositionSearchRadius: 3
   desiredPositionStayTime: {x: 0.1, y: 0.5}
 --- !u!114 &1762819874
 MonoBehaviour:
@@ -2067,13 +2067,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 3.64
-  attackBreak: {x: 1, y: 1}
+  attackBreak: {x: 2, y: 2}
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  targetOvershoot: 0
-  attackSpeed: 0
-  attackAcceleration: 0
+  targetOvershoot: 4
+  attackSpeed: 300
+  attackAcceleration: 200
   target: {fileID: 493318440}
 --- !u!1 &1832591944
 GameObject:

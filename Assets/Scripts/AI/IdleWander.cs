@@ -22,6 +22,8 @@ public class IdleWander : MonoBehaviour, IMoveAI
         StartCoroutine(Wait());
     }
 
+    public void AIReset() { }
+
     public void AIUpdate()
     {
         if (!staying && AIGeneral.AgentIsAtDestinationPoint(agent, 0.25f))

@@ -8,8 +8,8 @@ public class AICore : MonoBehaviour, IDestroyable
     [SerializeField] IMoveAI moveAI;
     [SerializeField] IAttackAI attackAI;
 
-    public bool moveAIActive = true;
-    public bool attackAIActive = true;
+    [SerializeField] bool moveAIActive = true;
+    [SerializeField] bool attackAIActive = true;
 
     void Awake()
     {
@@ -30,15 +30,14 @@ public class AICore : MonoBehaviour, IDestroyable
             attackAI.AIUpdate();
     }
 
-    public void SpawnProjectile(GameObject projectile, Vector2 direction, float speed, float acceleration, float deccelaeration, bool useDecceleratiion, float deccelerationStart = 0f)
-    {
-        // Instantiate(projectile);
-    }
 
-    /*public Coroutine CallCoroutine(IEnumerator coroutine)
+    public void moveAISetActive(bool active)
     {
-        return StartCoroutine(coroutine);
-    }*/
+        if (active)
+            moveAI.AIReset();
+
+        moveAIActive = active;
+    }
 
     public void DestroyObject()
     {

@@ -72,14 +72,17 @@ public class DashAttack : MonoBehaviour, IAttackAI
         rigidbody.AddForce(direction * attackSpeed, ForceMode2D.Impulse);
         attackState = true;
         cooldown = true;
+        GetComponentInParent<AICore>().moveAISetActive(false);
     }
 
     IEnumerator CoolDown()
     {
+        GetComponentInParent<AICore>().moveAISetActive(true);
         float timer = Random.Range(attackBreak.x, attackBreak.y);
         yield return new WaitForSeconds(timer);
         cooldown = false;
         cooldownCoroutine = null;
+        
     }
 
     private void OnDrawGizmosSelected()

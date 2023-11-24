@@ -25,6 +25,18 @@ public class KeepDistance : MonoBehaviour, IMoveAI
         agent = GetComponentInParent<AICore>().agent;
     }
 
+    public void AIReset()
+    {
+        agent.destination = transform.position;
+        movingToDesiredPosition = false;
+
+        if (stayingCoroutine != null)
+        {
+            StopCoroutine(stayingCoroutine);
+            stayingCoroutine = null;
+        }
+    }
+
     public void AIUpdate()
     {
         distanceToTarget = Vector2.Distance(transform.position, target.position);
