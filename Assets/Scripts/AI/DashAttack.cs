@@ -54,10 +54,10 @@ public class DashAttack : MonoBehaviour, IAttackAI
             Attack();
         }
 
-        // if (cooldownCoroutine == null && attackState && Vector2.Distance(transform.position, afterAttackPos) < 0.5f)
         if (cooldownCoroutine == null && attackState && Vector2.Distance(transform.position, target.position) > attackRange + 1f)
         {
             rigidbody.velocity = Vector2.zero;
+            collider.enabled = true;
             attackState = false;
             cooldown = true;
             cooldownCoroutine = StartCoroutine(CoolDown());

@@ -66,6 +66,8 @@ MonoBehaviour:
       m_Bits: 256
   damageAttribute:
     damage: 5
+  kickbackAttribute:
+    force: 50
   spawnAttributes: 00000000
   defaultSpawnAttribute:
     distanceFromCaster: 1

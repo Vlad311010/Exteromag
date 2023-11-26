@@ -49,6 +49,7 @@ public class SpellScriptableObject : ScriptableObject
     public PenetrateAttributeData penetrateAttribute;
     public ManaDrainAttributeData manaDrainAttribute;
     public DamageAttributeData damageAttribute;
+    public KickbackAttributeData kickbackAttribute;
 
     // Spawn attributes data (namig conventions matters)
     public List<SpellSpawnAttribute> spawnAttributes;
@@ -109,6 +110,12 @@ public class ManaDrainAttributeData
 public class DamageAttributeData
 {
     public int damage;
+}
+
+[Serializable]
+public class KickbackAttributeData
+{
+    public float force;
 }
 
 // spawn attributes

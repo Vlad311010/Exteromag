@@ -22,6 +22,13 @@ public static class AIGeneral
         return direction * Random.Range(innerRadius, outerRadius);
     }
 
+    public static Vector2 InsideCirlce(float innerRadius, float outerRadius, Vector2 direction, float angle)
+    {
+        angle = Random.Range(0, angle);
+        direction = Quaternion.Euler(0, 0, angle) * direction;
+        return direction * Random.Range(innerRadius, outerRadius);
+    }
+
     public static bool IsVisible(Vector2 position, Transform target, float distance, LayerMask collisionLayerMask)
     {
         Vector2 direction = ((Vector2)target.position - position).normalized;

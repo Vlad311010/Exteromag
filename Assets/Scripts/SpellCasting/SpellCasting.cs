@@ -48,6 +48,8 @@ public static class SpellCasting
             if (spellSpawnData.forceMode == Enums.ForceApplyMode.LookDirection)
             {
                 spellObject.GetComponent<ProjectileMovement>().Init(spellObject.transform.up, spell.speed, spell.acceleration, spell.decceleration, spell.useDecceleration, spell.deccelerationStart);
+                Quaternion lookDirection = Quaternion.LookRotation(new Vector3(0, 0, 1), spellSpawnData.direction);
+                spellObject.transform.rotation = lookDirection * Quaternion.Euler(0, 0, 90);
             }
             else if (spellSpawnData.forceMode == Enums.ForceApplyMode.CastPoint)
             {

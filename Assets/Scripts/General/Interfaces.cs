@@ -39,8 +39,8 @@ namespace Interfaces
 
     public interface IMoveAI
     {
-        void AIReset();
         void AIUpdate();
+        void AIReset();
     }
 
     public interface IAttackAI

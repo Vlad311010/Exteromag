@@ -1,5 +1,6 @@
 using Interfaces;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,13 +9,16 @@ public class KeepDistance : MonoBehaviour, IMoveAI
     NavMeshAgent agent;
 
     [SerializeField] Transform target;
-    [SerializeField] float distance;
-    [SerializeField] float followThreshold;
+    [SerializeField] float innerRadius;
+    [SerializeField] float desiredPositionRadius;
     [SerializeField] float goToTargetThreshold;
-    [SerializeField] float desiredPositionSearchRadius;
+    // [SerializeField] float desiredPositionSearchRadius;
+    [SerializeField] float desiredPositionSearchAngle;
     [SerializeField] Vector2 desiredPositionStayTime;
 
+
     private float distanceToTarget;
+    private Vector2 directionFromTarget;
     private bool movingToDesiredPosition = false;
     private bool staying = false;
 
@@ -40,18 +44,25 @@ public class KeepDistance : MonoBehaviour, IMoveAI
     public void AIUpdate()
     {
         distanceToTarget = Vector2.Distance(transform.position, target.position);
+        directionFromTarget = (transform.position - target.transform.position).normalized;
         staying = AIGeneral.AgentIsAtDestinationPoint(agent, 0.5f);
 
-        if (distanceToTarget >= distance + goToTargetThreshold)
+        if (distanceToTarget >= goToTargetThreshold)
         {
             agent.destination = target.position;
             movingToDesiredPosition = false;
         }
-        else if (distanceToTarget >= distance + followThreshold && !movingToDesiredPosition)
+        else if (distanceToTarget < goToTargetThreshold && !movingToDesiredPosition)
         {
             movingToDesiredPosition = true;
             agent.destination = GetDesiredPosition();
         }
+        else if (distanceToTarget < innerRadius)
+        {
+            agent.destination = target.position + (Vector3)directionFromTarget * goToTargetThreshold;
+            movingToDesiredPosition = false;
+        }
+
 
         if (staying && stayingCoroutine == null)
         {
@@ -68,10 +79,26 @@ public class KeepDistance : MonoBehaviour, IMoveAI
     {
         movingToDesiredPosition = true;
 
-        Vector2 directionFromTarget = (transform.position - target.transform.position).normalized;
-        // Vector2 middle = (Vector2)target.transform.position + (directionFromTarget * (distance + followThreshold)) / 2;
-        Vector2 middle = (Vector2)target.transform.position + (directionFromTarget * (distance + followThreshold - desiredPositionSearchRadius));
-        return middle + AIGeneral.InsideCirlce(0, desiredPositionSearchRadius);
+        Vector3[] a = new Vector3[100];
+        for (int i = 0; i < 100; i++)
+        {
+            Vector3 pos = AIGeneral.InsideCirlce(innerRadius, desiredPositionRadius, Quaternion.Euler(0, 0, desiredPositionSearchAngle / 2) * directionFromTarget, -desiredPositionSearchAngle);
+            a[i] = pos;
+        }
+        a = a.OrderByDescending(x => RatePosition(x)).ToArray();
+
+
+        return target.position + a[0];
+    }
+
+    private float RatePosition(Vector2 position)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(position, -directionFromTarget, goToTargetThreshold);
+        if (hit && hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            return 1;
+        }
+        return 0;
     }
 
     IEnumerator StayTimer()
@@ -86,18 +113,13 @@ public class KeepDistance : MonoBehaviour, IMoveAI
     {
         if (target == null) return;
 
-        Vector2 directionFromTarget = (transform.position - target.transform.position).normalized;
-        // Vector2 middle =  (Vector2)target.transform.position + (directionFromTarget * (distance + followThreshold)) / 2;
-        Vector2 middle = (Vector2)target.transform.position + (directionFromTarget * (distance + followThreshold - desiredPositionSearchRadius));
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(middle, desiredPositionSearchRadius);
-
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(target.transform.position, distance);
+        Gizmos.DrawWireSphere(target.position, innerRadius);
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(target.transform.position, distance + followThreshold);
+        Extensions.DrawWireArc(target.position, directionFromTarget, desiredPositionSearchAngle, desiredPositionRadius);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(target.transform.position, distance + goToTargetThreshold);
+        Gizmos.DrawWireSphere(target.position, goToTargetThreshold);
+
     }
 
 

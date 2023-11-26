@@ -101,16 +101,10 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Fixed update runs in sync with Unity's physics engine
-
-        //Get Kit's current ground status from her ground script
-        // onGround = ground.GetOnGround();
         onGround = true;
 
-        //Get the Rigidbody's current velocity
         velocity = body.velocity;
 
-        //Calculate movement, depending on whether "Instant Movement" has been checked
         if (useAcceleration)
         {
             runWithAcceleration();

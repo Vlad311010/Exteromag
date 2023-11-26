@@ -5,7 +5,8 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     [SerializeField] int maxHp;
-    
+    [SerializeField] AudioClip hitSound;
+
     private int currentHp;
 
     void Start()

@@ -9,6 +9,8 @@ public class LookDirectionAlongVelocity : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+
+        
     }
 
     void FixedUpdate()
@@ -17,7 +19,7 @@ public class LookDirectionAlongVelocity : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
-        else 
+        else
         {
             Quaternion lookDirection = Quaternion.LookRotation(new Vector3(0, 0, 1), rigidbody.velocity);
             transform.rotation = Quaternion.Euler(0, 0, lookDirection.eulerAngles.z + 90);

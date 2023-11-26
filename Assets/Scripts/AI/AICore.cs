@@ -4,6 +4,9 @@ using UnityEngine.AI;
 
 public class AICore : MonoBehaviour, IDestroyable
 {
+    [SerializeField] GameObject splash;
+    [SerializeField] Color enemyColor;
+
     public NavMeshAgent agent;
     [SerializeField] IMoveAI moveAI;
     [SerializeField] IAttackAI attackAI;
@@ -41,6 +44,9 @@ public class AICore : MonoBehaviour, IDestroyable
 
     public void DestroyObject()
     {
+        Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0, 359));
+        SpriteRenderer splashSprite = Instantiate(splash, transform.position, rotation).GetComponent<SpriteRenderer>();
+        splashSprite.color = enemyColor;
         Destroy(this.gameObject);
     }
 }

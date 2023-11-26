@@ -8,7 +8,8 @@ namespace Enums
         RotateAroundTarget = 3,
         Penetrate = 4,
         ManaDrain = 5,
-        Damage = 6
+        Damage = 6,
+        Kickback = 7
     }
 
     public enum SpellSpawnAttribute
