@@ -24,6 +24,8 @@ MonoBehaviour:
   spellIconColor: {r: 1, g: 1, b: 1, a: 1}
   castCost: 0
   cooldown: 0
+  castOnTarget: 0
+  castOnSelf: 0
   speed: 25
   acceleration: 500
   decceleration: 20
@@ -31,9 +33,7 @@ MonoBehaviour:
   useDecceleration: 0
   collisionLayerMask:
     serializedVersion: 2
-    m_Bits: 257
-  castOnTarget: 0
-  castOnSelf: 0
+    m_Bits: 769
   attributes: 02000000
   explosionAttribute:
     radius: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
     bounceLimit: 2
     bounceLayer:
       serializedVersion: 2
-      m_Bits: 1
+      m_Bits: 513
   rotateAroundTargetAttribute:
     speed: 0
     distanceFromAnchor: 0
@@ -64,6 +64,10 @@ MonoBehaviour:
     layerMask:
       serializedVersion: 2
       m_Bits: 0
+  damageAttribute:
+    damage: 0
+  kickbackAttribute:
+    force: 0
   spawnAttributes: 00000000
   defaultSpawnAttribute:
     distanceFromCaster: 1

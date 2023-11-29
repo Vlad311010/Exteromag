@@ -13,10 +13,13 @@ public class ProjectileMovement : MonoBehaviour
     [Tooltip("How fast to stop after letting go")] public float maxDecceleration = 52f;
     [SerializeField][Tooltip("Friction to apply against movement on stick")] private float friction;
     
+    
     private float deccelerationStart;
 
     [Header("Options")]
     [SerializeField] bool useAcceleration = true;
+    [SerializeField] bool destroyOnStop = true;
+    
 
 
     [Header("Calculations")]
@@ -45,22 +48,29 @@ public class ProjectileMovement : MonoBehaviour
 
 
 
-    private void Update()
+    /*private void Update()
     {
         desiredVelocity = direction * Mathf.Max(maxSpeed - friction, 0f);
-    }
+    }*/
 
     private void FixedUpdate()
     {
+        desiredVelocity = direction * Mathf.Max(maxSpeed - friction, 0f);
         velocity = body.velocity;
 
         if (useAcceleration)
         {
-            runWithAcceleration();
+            runWithDecceleration();
         }
         else
         {
             runWithoutAcceleration();
+        }
+
+        if (destroyOnStop && velocity.magnitude < 0.1f)
+        {
+            GetComponent<SpellBase>().OnHit(Structs.CollisionData.Empty);
+            Destroy(gameObject);
         }
     }
 
@@ -71,7 +81,7 @@ public class ProjectileMovement : MonoBehaviour
         deccelerating = true;
     }
 
-    private void runWithAcceleration()
+    private void runWithDecceleration()
     {
         //Set our acceleration, deceleration, and turn speed stats, based on whether we're on the ground on in the air
         float decceleration = deccelerating ? maxDecceleration : maxAcceleration;

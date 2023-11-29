@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 //This script handles moving the character on the X axis, both on the ground and in the air.
@@ -11,15 +12,13 @@ public class CharacterMovement : MonoBehaviour
     [Header("Components")]
     // [SerializeField] movementLimiter moveLimit;
     private Rigidbody2D body;
+    private CharacterLimitations limitations;
 
     [Header("Movement Stats")]
     [SerializeField, Range(0f, 20f)][Tooltip("Maximum movement speed")] public float maxSpeed = 10f;
     [SerializeField, Range(0f, 100f)][Tooltip("How fast to reach max speed")] public float maxAcceleration = 52f;
     [SerializeField, Range(0f, 100f)][Tooltip("How fast to stop after letting go")] public float maxDecceleration = 52f;
     [SerializeField, Range(0f, 100f)][Tooltip("How fast to stop when changing direction")] public float maxTurnSpeed = 80f;
-    [SerializeField, Range(0f, 100f)][Tooltip("How fast to reach max speed when in mid-air")] public float maxAirAcceleration;
-    [SerializeField, Range(0f, 100f)][Tooltip("How fast to stop in mid-air when no direction is used")] public float maxAirDeceleration;
-    [SerializeField, Range(0f, 100f)][Tooltip("How fast to stop when changing direction when in mid-air")] public float maxAirTurnSpeed = 80f;
     [SerializeField][Tooltip("Friction to apply against movement on stick")] private float friction;
 
     [Header("Options")]
@@ -36,8 +35,10 @@ public class CharacterMovement : MonoBehaviour
     private float turnSpeed;
 
     [Header("Current State")]
-    public bool onGround;
     public bool pressingKey;
+    /// <summary>
+    ///  public bool movementConstraint;
+    /// </summary>
 
 
     void OnEnable()
@@ -63,6 +64,7 @@ public class CharacterMovement : MonoBehaviour
     {
         //Find the character's Rigidbody and ground detection script
         body = GetComponent<Rigidbody2D>();
+        limitations = GetComponent<CharacterLimitations>();
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -80,6 +82,8 @@ public class CharacterMovement : MonoBehaviour
 
     private void Update()
     {
+        if (limitations.movementConstraint) return;
+        // StartCoroutine(Stagger(0.15f));
 
         //Used to flip the character's sprite when she changes direction
         //Also tells us that we are currently pressing a direction button
@@ -101,7 +105,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        onGround = true;
+        if (limitations.movementConstraint) return;
 
         velocity = body.velocity;
 
@@ -119,9 +123,9 @@ public class CharacterMovement : MonoBehaviour
     {
         //Set our acceleration, deceleration, and turn speed stats, based on whether we're on the ground on in the air
 
-        acceleration = onGround ? maxAcceleration : maxAirAcceleration;
-        deceleration = onGround ? maxDecceleration : maxAirDeceleration;
-        turnSpeed = onGround ? maxTurnSpeed : maxAirTurnSpeed;
+        acceleration = maxAcceleration;
+        deceleration = maxDecceleration;
+        turnSpeed = maxTurnSpeed;
 
         if (pressingKey)
         {
@@ -160,5 +164,4 @@ public class CharacterMovement : MonoBehaviour
 
         body.velocity = velocity;
     }
-
 }

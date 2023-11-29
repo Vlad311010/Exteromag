@@ -22,6 +22,7 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
 
 
     private SpellSlotWrapper[] spells;
+    private int selectedSpell;
 
     private void Start()
     {
@@ -61,13 +62,22 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
 
     private void Update()
     {
-        if (!spells[0].IsEmpty() && spells[0].holdDown && !spells[0].isInCooldown)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            selectedSpell = 0;
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+            selectedSpell = 1;
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+            selectedSpell = 2;
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+            selectedSpell = 3;
+
+        if (!spells[selectedSpell].IsEmpty() && spells[selectedSpell].holdDown && !spells[selectedSpell].isInCooldown)
         {
-            if (mana.HaveEnaughtMp(spells[0].spell.castCost))
+            // if (mana.HaveEnaughtMp(spells[selectedSpell].spell.castCost))
             {
-                mana.Consume(spells[0].spell.castCost);
-                StartCoroutine(SpellCoolDown(0));
-                SpellCasting.Cast(transform, spells[0].spell, aim.TakeSnapshot());
+                // mana.Consume(spells[selectedSpell].spell.castCost);
+                StartCoroutine(SpellCoolDown(selectedSpell));
+                SpellCasting.Cast(transform, spells[selectedSpell].spell, aim.TakeSnapshot());
             }
         }
     }
@@ -75,9 +85,9 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
     private void OnAction(InputAction.CallbackContext obj)
     {
         if (obj.started)
-            spells[0].holdDown = true;
+            spells[selectedSpell].holdDown = true;
         else if (obj.canceled)
-            spells[0].holdDown = false;
+            spells[selectedSpell].holdDown = false;
 
     }
 
@@ -101,7 +111,6 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
 
     public void DestroyObject()
     {
-        // 
-        // throw new System.NotImplementedException();
+        Debug.Log("PLAYER DEATH");
     }
 }

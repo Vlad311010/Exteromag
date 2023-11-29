@@ -39,12 +39,14 @@ namespace Interfaces
 
     public interface IMoveAI
     {
+        public AICore core { get; set; }
         void AIUpdate();
         void AIReset();
     }
 
     public interface IAttackAI
     {
+        public AICore core { get; set; }
         void AIUpdate();
     }
 

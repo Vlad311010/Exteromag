@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class IdleWander : MonoBehaviour, IMoveAI
 {
+    public AICore core { get; set; }
     NavMeshAgent agent;
 
     [SerializeField] Vector2 wanderBreak;
@@ -14,6 +15,7 @@ public class IdleWander : MonoBehaviour, IMoveAI
 
     private Vector2 originalPosition;
     private bool staying = false;
+
 
     void Start()
     {
@@ -53,5 +55,10 @@ public class IdleWander : MonoBehaviour, IMoveAI
         return origin + AIGeneral.InsideCirlce(wanderInnerRadius, wanderOuterRadius);
     }
 
+
+    private void OnDrawGizmosSelected()
+    {
+        
+    }
 
 }

@@ -5,28 +5,23 @@ public class CharacterLimitations : MonoBehaviour
     CharacterMovement movement;
 
 
-    [SerializeField] private float carryMovementSpeed;
-    [SerializeField] private float carryJumpHeight;
-    [SerializeField] private float carryJumpTimeToApex;
-
-    private float defaultMovementSpeed;
-    private float defaultJumpHeight;
-    private float defaultJumpTimeToApex;
+    public bool movementConstraint = false;
 
     void Start()
     {
         movement = GetComponent<CharacterMovement>();
-
-        defaultMovementSpeed = movement.maxSpeed;
     }
 
-    public void ActivateCarryLimitations()
+    public void ActivateMovementContraint()
     {
-        movement.maxSpeed = carryMovementSpeed;
+        movementConstraint = true;
+        movement.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        movement.velocity = Vector2.zero;
+        // movement.desiredVelocity = Vector2.zero;
     }
 
-    public void DisableLimitations()
+    public void DisableMovementContraint()
     {
-        movement.maxSpeed = defaultMovementSpeed;
+        movementConstraint = false;
     }
 }

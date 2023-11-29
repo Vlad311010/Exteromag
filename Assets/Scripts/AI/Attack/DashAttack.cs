@@ -7,6 +7,7 @@ public class DashAttack : MonoBehaviour, IAttackAI
 {
     public float attackRange;
     public Vector2 attackBreak;
+    public Vector2 afterAttackBreak;
     public LayerMask layerMask;
     public float targetOvershoot;
     public float attackSpeed;
@@ -18,6 +19,7 @@ public class DashAttack : MonoBehaviour, IAttackAI
 
     [SerializeField] Transform target;
 
+    public AICore core { get; set; }
     NavMeshAgent agent;
     Collider2D collider;
     Rigidbody2D rigidbody;
@@ -30,7 +32,6 @@ public class DashAttack : MonoBehaviour, IAttackAI
     private bool attackState = false;
     private bool cooldown = false;
     private Vector2 direction;
-    private Vector2 afterAttackPos;
 
     private Coroutine cooldownCoroutine = null;
 
@@ -46,7 +47,7 @@ public class DashAttack : MonoBehaviour, IAttackAI
 
     public void AIUpdate()
     {
-        targetIsVisible = AIGeneral.IsVisible(transform.position, target, attackRange, layerMask);
+        targetIsVisible = AIGeneral.TargetIsVisible(transform.position, target, attackRange, core.playerObstaclesLayerMask);
         direction = (target.transform.position - transform.position).normalized;
 
         if (!attackState && !cooldown && targetIsVisible)
@@ -67,7 +68,7 @@ public class DashAttack : MonoBehaviour, IAttackAI
 
     private void Attack()
     {
-        afterAttackPos = (Vector2)target.transform.position + direction * targetOvershoot; ;
+        // afterAttackPos = (Vector2)target.transform.position + direction * targetOvershoot;
         collider.enabled = false;
         rigidbody.AddForce(direction * attackSpeed, ForceMode2D.Impulse);
         attackState = true;
@@ -77,9 +78,12 @@ public class DashAttack : MonoBehaviour, IAttackAI
 
     IEnumerator CoolDown()
     {
+        float afterAttackBreakTimer = Random.Range(afterAttackBreak.x, afterAttackBreak.y);
+        yield return new WaitForSeconds(afterAttackBreakTimer);
         GetComponentInParent<AICore>().moveAISetActive(true);
-        float timer = Random.Range(attackBreak.x, attackBreak.y);
-        yield return new WaitForSeconds(timer);
+
+        float attackCoolDownTimer = Random.Range(attackBreak.x, attackBreak.y);
+        yield return new WaitForSeconds(attackCoolDownTimer);
         cooldown = false;
         cooldownCoroutine = null;
         

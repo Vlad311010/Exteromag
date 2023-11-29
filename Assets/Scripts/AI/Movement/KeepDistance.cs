@@ -12,10 +12,10 @@ public class KeepDistance : MonoBehaviour, IMoveAI
     [SerializeField] float innerRadius;
     [SerializeField] float desiredPositionRadius;
     [SerializeField] float goToTargetThreshold;
-    // [SerializeField] float desiredPositionSearchRadius;
     [SerializeField] float desiredPositionSearchAngle;
     [SerializeField] Vector2 desiredPositionStayTime;
 
+    public AICore core { get; set; }
 
     private float distanceToTarget;
     private Vector2 directionFromTarget;

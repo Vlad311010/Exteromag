@@ -22,14 +22,14 @@ public static class SpellCasting
         {
             for (int i = 0; i < spellSpawnData.projectilesPosition.Count; i++)
             {
+                
                 SpellBase spellBase = GameObject.Instantiate(spell.projectile, spellSpawnData.projectilesPosition[i], spellSpawnData.projectilesRotation[i]).GetComponent<SpellBase>();
                 spellObjects.Add(spellBase);
             }
         }
         else
         {
-            Vector2 direction = (spellSpawnData.castPoint - spellSpawnData.origin).normalized;
-            Quaternion lookDirection = Quaternion.LookRotation(new Vector3(0, 0, 1), direction);
+            Quaternion lookDirection = Quaternion.LookRotation(new Vector3(0, 0, 1), spellSpawnData.direction);
             SpellBase spellBase = GameObject.Instantiate(spell.projectile, spellSpawnData.origin, lookDirection).GetComponent<SpellBase>();
             spellObjects.Add(spellBase);
         }
@@ -48,8 +48,6 @@ public static class SpellCasting
             if (spellSpawnData.forceMode == Enums.ForceApplyMode.LookDirection)
             {
                 spellObject.GetComponent<ProjectileMovement>().Init(spellObject.transform.up, spell.speed, spell.acceleration, spell.decceleration, spell.useDecceleration, spell.deccelerationStart);
-                Quaternion lookDirection = Quaternion.LookRotation(new Vector3(0, 0, 1), spellSpawnData.direction);
-                spellObject.transform.rotation = lookDirection * Quaternion.Euler(0, 0, 90);
             }
             else if (spellSpawnData.forceMode == Enums.ForceApplyMode.CastPoint)
             {

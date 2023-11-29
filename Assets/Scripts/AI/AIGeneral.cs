@@ -8,6 +8,35 @@ public static class AIGeneral
         return agent.remainingDistance < threshold;
     }
 
+    public static void LookAt(Transform self, Transform target)
+    {
+        Vector3 playerDir = (target.position - self.position).normalized;
+        self.rotation = Quaternion.LookRotation(Vector3.forward, playerDir);
+    }
+
+    public static void LookAt(Transform self, Transform target, float step, bool inverse=true)
+    {
+        Vector3 playerDir = (target.position - self.position).normalized;
+        Quaternion desiredRotation = Quaternion.LookRotation(Vector3.forward, playerDir);
+        if (inverse)
+            desiredRotation = Quaternion.Euler(desiredRotation.eulerAngles.x, desiredRotation.eulerAngles.y, desiredRotation.eulerAngles.z - 180);
+        self.rotation = Quaternion.RotateTowards(self.rotation, desiredRotation, step);
+    }
+
+    public static bool IsInsideVisionCon(Vector2 targetPoint, Vector2 position, Vector2 direction, float range, float radius)
+    {
+        Vector2 directionToTarger = (targetPoint - position).normalized;
+        float lookAngle = (Extensions.GetAnglesFromDir(position, direction));
+        float targetAngle = (Extensions.GetAnglesFromDir(position, directionToTarger));
+        float rangeLeft = (lookAngle + range / 2);
+        float rangeRight = (lookAngle - range / 2); 
+        float rangeMin = Mathf.Min(rangeLeft, rangeRight);
+        float rangeMax= Mathf.Max(rangeLeft, rangeRight);
+
+        // Debug.Log(lookAngle + " | " + targetAngle + " | " + rangeMin + " | " + rangeMax + " | " + (rangeMin <= targetAngle) + " | " + (targetAngle <= rangeMax));
+        return (Vector2.Distance(position, targetPoint) <= radius && rangeMin <= targetAngle && targetAngle <= rangeMax);
+    }
+
     public static Vector2 InsideCirlce(float innerRadius, float outerRadius)
     {
         float angle = Random.Range(0, 359);
@@ -29,7 +58,7 @@ public static class AIGeneral
         return direction * Random.Range(innerRadius, outerRadius);
     }
 
-    public static bool IsVisible(Vector2 position, Transform target, float distance, LayerMask collisionLayerMask)
+    public static bool TargetIsVisible(Vector2 position, Transform target, float distance, LayerMask collisionLayerMask)
     {
         Vector2 direction = ((Vector2)target.position - position).normalized;
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, collisionLayerMask);

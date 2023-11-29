@@ -14,9 +14,12 @@ public class DamageAttribute : MonoBehaviour, ISpellAttribute
 
     public void OnHitEvent(CollisionData collisionData)
     {
+        if (collisionData.IsNullValue()) return;
+
         if (collisionData.GameObject.TryGetComponent(out HealthSystem health))
         {
-            health.ConsumeHp(damage);
+            Vector2 directionToTarget = (collisionData.GameObject.transform.position - transform.position).normalized;
+            health.ConsumeHp(damage, directionToTarget);
         }
     }
 }

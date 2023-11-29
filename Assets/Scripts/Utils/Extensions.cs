@@ -8,12 +8,17 @@ public static class Extensions
         return layerMask == (layerMask | (1 << layer));
     }
 
-    public static float GetAnglesFromDir(this Vector3 position, Vector3 dir)
+    public static float GetAnglesFromDir(Vector3 position, Vector3 dir)
     {
         var forwardLimitPos = position + dir;
         var srcAngles = Mathf.Rad2Deg * Mathf.Atan2(forwardLimitPos.y - position.y, forwardLimitPos.x - position.x);
 
         return srcAngles;
+    }
+
+    public static float NormalizeAngle(float angle)
+    {
+        return angle < 0 ? 360 + angle : angle;
     }
 
     public static void DrawWireArc(Vector3 position, Vector3 dir, float anglesRange, float radius, float maxSteps = 20)

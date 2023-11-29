@@ -7,9 +7,12 @@ public class AICore : MonoBehaviour, IDestroyable
     [SerializeField] GameObject splash;
     [SerializeField] Color enemyColor;
 
+
     public NavMeshAgent agent;
+    public int threatLevel;
     [SerializeField] IMoveAI moveAI;
     [SerializeField] IAttackAI attackAI;
+    [SerializeField] public LayerMask playerObstaclesLayerMask;
 
     [SerializeField] bool moveAIActive = true;
     [SerializeField] bool attackAIActive = true;
@@ -23,6 +26,8 @@ public class AICore : MonoBehaviour, IDestroyable
 
         moveAI = GetComponentInChildren<IMoveAI>();
         attackAI = GetComponentInChildren<IAttackAI>();
+        moveAI.core = this;
+        attackAI.core = this;
     }
 
     void Update()
@@ -37,7 +42,14 @@ public class AICore : MonoBehaviour, IDestroyable
     public void moveAISetActive(bool active)
     {
         if (active)
+        {
             moveAI.AIReset();
+            agent.isStopped = false;    
+        }
+        else
+        {
+            agent.isStopped = true;
+        }
 
         moveAIActive = active;
     }
@@ -48,5 +60,10 @@ public class AICore : MonoBehaviour, IDestroyable
         SpriteRenderer splashSprite = Instantiate(splash, transform.position, rotation).GetComponent<SpriteRenderer>();
         splashSprite.color = enemyColor;
         Destroy(this.gameObject);
+    }
+
+    public void OnHit()
+    {
+
     }
 }

@@ -10,7 +10,8 @@ public class RangeAttack : MonoBehaviour, IAttackAI
     
     public float attackRange;
     public Vector2 attackBreak;
-    public LayerMask layerMask;
+    public AICore core { get; set; }
+    
 
     [SerializeField] Transform target;
     [SerializeField] GameObject projectile;
@@ -18,11 +19,11 @@ public class RangeAttack : MonoBehaviour, IAttackAI
 
     private bool targetIsVisible;
     private Coroutine attackCoroutine = null;
-    
+
 
     public void AIUpdate()
     {
-        targetIsVisible = AIGeneral.IsVisible(transform.position, target, attackRange, layerMask);
+        targetIsVisible = AIGeneral.TargetIsVisible(transform.position, target, attackRange, core.playerObstaclesLayerMask);
         if (attackCoroutine == null)
         {
             attackCoroutine = StartCoroutine(AttackCoroutine());

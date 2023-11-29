@@ -50,7 +50,7 @@ MonoBehaviour:
     bounceLimit: 0
     bounceLayer:
       serializedVersion: 2
-      m_Bits: 65
+      m_Bits: 577
   rotateAroundTargetAttribute:
     speed: 0
     distanceFromAnchor: 0
@@ -66,6 +66,8 @@ MonoBehaviour:
       m_Bits: 256
   damageAttribute:
     damage: 5
+  kickbackAttribute:
+    force: 0
   spawnAttributes: 00000000
   defaultSpawnAttribute:
     distanceFromCaster: 1
