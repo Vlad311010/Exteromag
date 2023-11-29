@@ -31,7 +31,6 @@ public class SpellScriptableObject : ScriptableObject
     // movement
     [Header("Movement Parameters")]
     public float speed;
-    public float acceleration;
     public float decceleration;
     public float deccelerationStart;
     public bool useDecceleration;

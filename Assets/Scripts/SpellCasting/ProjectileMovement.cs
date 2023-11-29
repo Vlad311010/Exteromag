@@ -35,11 +35,11 @@ public class ProjectileMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
     }
 
-    public void Init(Vector2 direction, float speed, float acceleration, float deccelaeration, bool useDecceleratiion, float deccelerationStart = 0f)
+    public void Init(Vector2 direction, float speed, float deccelaeration, bool useDecceleratiion, float deccelerationStart = 0f)
     {
         this.direction = direction;
         maxSpeed = speed;
-        maxAcceleration = acceleration;
+        // maxAcceleration = acceleration;
         maxDecceleration = deccelaeration;
         this.deccelerationStart = deccelerationStart;
         if (useDecceleratiion)
@@ -58,7 +58,7 @@ public class ProjectileMovement : MonoBehaviour
         desiredVelocity = direction * Mathf.Max(maxSpeed - friction, 0f);
         velocity = body.velocity;
 
-        if (useAcceleration)
+        if (deccelerating)
         {
             runWithDecceleration();
         }
@@ -84,9 +84,9 @@ public class ProjectileMovement : MonoBehaviour
     private void runWithDecceleration()
     {
         //Set our acceleration, deceleration, and turn speed stats, based on whether we're on the ground on in the air
-        float decceleration = deccelerating ? maxDecceleration : maxAcceleration;
-
-        maxSpeedChange = decceleration * Time.deltaTime;
+        float decceleration = maxDecceleration;
+        // maxSpeedChange = decceleration * Time.deltaTime;
+        maxSpeedChange = decceleration * Time.fixedDeltaTime;
 
         //Move our velocity towards the desired velocity, at the rate of the number calculated above
         velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);
