@@ -9,7 +9,8 @@ namespace Enums
         Penetrate = 4,
         ManaDrain = 5,
         Damage = 6,
-        Kickback = 7
+        Kickback = 7,
+        Reflect = 8
     }
 
     public enum SpellSpawnAttribute

@@ -16,7 +16,7 @@ public class DamageAttribute : MonoBehaviour, ISpellAttribute
     {
         if (collisionData.IsNullValue()) return;
 
-        if (collisionData.GameObject.TryGetComponent(out HealthSystem health))
+        if (collisionData.GameObject.TryGetComponent(out IHealthSystem health))
         {
             Vector2 directionToTarget = (collisionData.GameObject.transform.position - transform.position).normalized;
             health.ConsumeHp(damage, directionToTarget);

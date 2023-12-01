@@ -19,6 +19,8 @@ public class MeleeAttack : MonoBehaviour, IAttackAI
     [SerializeField] float tickPerAttack;
     [SerializeField] LayerMask attackLayerMask;
     [SerializeField] GameObject attackTrail;
+    public bool stopAfterAttack = false;
+    public float stopAfterAttackTime;
 
     private NavMeshAgent agent;
     Vector2 directionToTarget;
@@ -37,10 +39,26 @@ public class MeleeAttack : MonoBehaviour, IAttackAI
         targetInAttackRange = AIGeneral.IsInsideVisionCon(target.position, core.transform.position, core.transform.up, attackRange, attackRadius);
         // Debug.Log(lookAngle);
         if (targetInAttackRange && !attackIsInCooldown)
-            StartCoroutine(Attack());
+        {
+            Attack();
+            // StartCoroutine(Attack());
+        }
     }
 
-    IEnumerator Attack()
+    void  Attack()
+    {
+        attackIsInCooldown = true;
+        Instantiate(attackTrail, transform.position + core.transform.up * attackRadius / 2, core.transform.rotation); // attack effect
+        foreach (Collider2D collider in ObjectsToDamage())
+        {
+            directionToTarget = (collider.transform.position - transform.position).normalized;
+            collider.GetComponent<IHealthSystem>().ConsumeHp(damage, directionToTarget);
+        }
+        StartCoroutine(Cooldown());
+        StartCoroutine(TurnOffMovement());
+    }
+
+    /*IEnumerator Attack()
     {
         attackIsInCooldown = true;
         List<HealthSystem> alreadyDamaged = new List<HealthSystem>();
@@ -60,15 +78,14 @@ public class MeleeAttack : MonoBehaviour, IAttackAI
             }
         }
         StartCoroutine(Cooldown());
-    }
+    }*/
 
-    private HealthSystem[] ObjectsToDamage()
+    private Collider2D[] ObjectsToDamage()
     {
         Collider2D[] possibleHits = Physics2D.OverlapCircleAll(transform.position, attackRadius, attackLayerMask);
-        HealthSystem[] hits = possibleHits
+        Collider2D[] hits = possibleHits
             .Where(hit => AIGeneral.IsInsideVisionCon(hit.transform.position, transform.position, core.transform.up, attackRange, attackRadius))
-            .Where(hit => hit.TryGetComponent(out HealthSystem _))
-            .Select(hit => hit.GetComponent<HealthSystem>())
+            .Where(hit => hit.TryGetComponent(out IHealthSystem _))
             .ToArray();
 
         return hits;
@@ -79,6 +96,13 @@ public class MeleeAttack : MonoBehaviour, IAttackAI
     {
         yield return new WaitForSeconds(attackCooldownTime);
         attackIsInCooldown = false;
+    }
+
+    IEnumerator TurnOffMovement()
+    {
+        core.moveAISetActive(false);
+        yield return new WaitForSeconds(stopAfterAttackTime);
+        core.moveAISetActive(true);
     }
 
     private void OnDrawGizmosSelected()

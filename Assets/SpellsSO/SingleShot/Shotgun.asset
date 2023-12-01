@@ -26,9 +26,8 @@ MonoBehaviour:
   cooldown: 0.1
   castOnTarget: 0
   castOnSelf: 0
-  speed: 25
-  acceleration: 500
-  decceleration: 20
+  speed: 20
+  decceleration: 0.5
   deccelerationStart: 0.05
   useDecceleration: 1
   collisionLayerMask:
@@ -75,6 +74,7 @@ MonoBehaviour:
     angle: 60
     range: 0.5
   shotgunAttribute:
-    angle: 20
+    angle: 30
     range: 1
     projectilesCount: 10
+    evenDistribution: 0

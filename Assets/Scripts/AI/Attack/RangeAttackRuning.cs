@@ -1,23 +1,27 @@
 using Interfaces;
 using Structs;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class RangeAttack : MonoBehaviour, IAttackAI
+public class RangeAttackRuning : MonoBehaviour, IAttackAI
 {
     public AICore core { get; set; }
 
     [Header("Parameters")]
     public SpellScriptableObject spell;
-    public float attackRadius;
+    public float attackRange;
     public Vector2 attackBreak;
+    public Vector2Int castsPerAttack;
+    public Vector2 castsBreak;
     [SerializeField] Transform target;
 
 
     [Header("Calculated")]
     private bool targetIsVisible;
-    private float attackBreakTimer;
     private Coroutine attackCoroutine = null;
-
+    private float attackBreakTimer;
 
     private void Start()
     {
@@ -31,7 +35,7 @@ public class RangeAttack : MonoBehaviour, IAttackAI
 
     public void AIUpdate()
     {
-        targetIsVisible = AIGeneral.TargetIsVisible(transform.position, target, attackRadius, core.playerLayerMask | core.obstaclesLayerMask);
+        targetIsVisible = AIGeneral.TargetIsVisible(transform.position, target, attackRange, core.playerLayerMask | core.obstaclesLayerMask);
         if (targetIsVisible)
         {
             attackBreakTimer -= Time.deltaTime;
@@ -41,18 +45,25 @@ public class RangeAttack : MonoBehaviour, IAttackAI
             ResetAttackBreakTimer();
         }
 
-        if (targetIsVisible && attackBreakTimer < 0f)
+        if (targetIsVisible && attackBreakTimer < 0f && attackCoroutine == null)
         {
-            Attack();
+            attackCoroutine = StartCoroutine(AttackCoroutine());
         }
     }
 
-    private void Attack()
+
+    IEnumerator AttackCoroutine()
     {
-        Cast();
+        int casts = Random.Range(castsPerAttack.x, castsPerAttack.y);
+        for (int i = 0; i < casts; i++)
+        {
+            Cast();
+            float timer = Random.Range(castsBreak.x, castsBreak.y);
+            yield return new WaitForSeconds(timer);
+        }
+        attackCoroutine = null;
         ResetAttackBreakTimer();
     }
-
 
     private void Cast()
     {
@@ -63,11 +74,9 @@ public class RangeAttack : MonoBehaviour, IAttackAI
 
     void OnDrawGizmosSelected()
     {
-        if (target == null) return; 
-
         Gizmos.color = targetIsVisible ? Color.green : Color.red;
         Gizmos.DrawLine(transform.position, target.position);
         Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(transform.position, attackRadius);
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

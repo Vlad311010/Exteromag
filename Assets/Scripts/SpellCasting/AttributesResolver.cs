@@ -16,6 +16,8 @@ public static class AttributesResolver
 
     public static void ResolveSpellAttributes(GameObject spellProjectile, SpellScriptableObject spell)
     {
+        if (spell.attributes.Count == 0) return;
+
         for (int i = 0; i < spell.attributes.Count; i++)
         {
             ResolveSpellAttribute(spellProjectile, spell, spell.attributes[i]);

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24083a47762275c47b220664ca5652e8, type: 3}
-  m_Name: Single_1 3
+  m_Name: Shield
   m_EditorClassIdentifier: 
   casterPosition: {x: 0, y: 0}
   castPoint: {x: 0, y: 0}
   target: {fileID: 0}
   owner: {fileID: 0}
-  projectile: {fileID: 5543515162880620750, guid: ca9da2e589c08cc4cb5acb9423662a72, type: 3}
+  projectile: {fileID: 7786694226625426548, guid: d285869feb8185c4b80c3dbfdcc6ba34, type: 3}
   onCastParticles: {fileID: 0}
   particles: {fileID: 0}
   OnHitParticles: {fileID: 0}
@@ -26,15 +26,14 @@ MonoBehaviour:
   cooldown: 0.2
   castOnTarget: 0
   castOnSelf: 0
-  speed: 25
-  acceleration: 500
-  decceleration: 20
+  speed: 0
+  decceleration: 0
   deccelerationStart: 0.5
   useDecceleration: 0
   collisionLayerMask:
     serializedVersion: 2
     m_Bits: 769
-  attributes: 0200000006000000
+  attributes: 08000000
   explosionAttribute:
     radius: 0
     velocityImpact: 0
@@ -68,13 +67,22 @@ MonoBehaviour:
     damage: 5
   kickbackAttribute:
     force: 50
-  spawnAttributes: 00000000
+  reflectAttribute:
+    reflectCount: 2
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 128
+    layerMaskToAdd:
+      serializedVersion: 2
+      m_Bits: 256
+    reflectToCaster: 1
+  spawnAttributes: 0000000002000000
   defaultSpawnAttribute:
-    distanceFromCaster: 1
+    originOffset: 1.5
   randomOffsetAttribute:
-    angle: 60
-    range: 0.5
+    angle: 0
   shotgunAttribute:
     angle: 15
     range: 1
     projectilesCount: 10
+    evenDistribution: 0

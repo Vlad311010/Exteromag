@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ProjectileMovement : MonoBehaviour
@@ -9,25 +8,29 @@ public class ProjectileMovement : MonoBehaviour
 
     [Header("Movement Stats")]
     [Tooltip("Maximum movement speed")] public float maxSpeed = 10f;
-    [Tooltip("How fast to reach max speed")] public float maxAcceleration = 52f;
     [Tooltip("How fast to stop after letting go")] public float maxDecceleration = 52f;
     [SerializeField][Tooltip("Friction to apply against movement on stick")] private float friction;
     
     
-    private float deccelerationStart;
 
     [Header("Options")]
-    [SerializeField] bool useAcceleration = true;
-    [SerializeField] bool destroyOnStop = true;
-    
+    [SerializeField] bool destroyOnStop = false;
 
+
+    [Header("Parameters")]
+    public Vector2 direction;
+    private bool useDecceleration;
+    private float deccelerationStartTimer;
 
     [Header("Calculations")]
-    public Vector2 direction;
     private Vector2 desiredVelocity;
     public Vector2 velocity;
-    private float maxSpeedChange;
     private bool deccelerating;
+    private Coroutine deccelerationCoroutine;
+
+    [Header("Freeze feature")]
+    private bool freezed = false; 
+    private Vector2 freezedVelocity; 
 
     private void Awake()
     {
@@ -39,11 +42,11 @@ public class ProjectileMovement : MonoBehaviour
     {
         this.direction = direction;
         maxSpeed = speed;
-        // maxAcceleration = acceleration;
         maxDecceleration = deccelaeration;
-        this.deccelerationStart = deccelerationStart;
-        if (useDecceleratiion)
-            StartCoroutine(DeccelerationTimer());
+        this.deccelerationStartTimer = deccelerationStart;
+        this.useDecceleration = useDecceleratiion;
+        if (this.useDecceleration)
+            deccelerationCoroutine = StartCoroutine(DeccelerationTimer());
     }
 
 
@@ -55,6 +58,8 @@ public class ProjectileMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (freezed) return;
+
         desiredVelocity = direction * Mathf.Max(maxSpeed - friction, 0f);
         velocity = body.velocity;
 
@@ -76,25 +81,26 @@ public class ProjectileMovement : MonoBehaviour
 
     private IEnumerator DeccelerationTimer()
     {
-        yield return new WaitForSeconds(deccelerationStart);
-        direction = Vector2.zero;
-        deccelerating = true;
+
+        // yield return new WaitForSeconds(deccelerationStartTimer);
+        if (deccelerationStartTimer > 0)
+        {
+            deccelerationStartTimer -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+            deccelerationCoroutine = StartCoroutine(DeccelerationTimer());
+        }
+        else
+        {
+            direction = Vector2.zero;
+            deccelerating = true;
+        }
     }
 
     private void runWithDecceleration()
     {
-        //Set our acceleration, deceleration, and turn speed stats, based on whether we're on the ground on in the air
-        float decceleration = maxDecceleration;
-        // maxSpeedChange = decceleration * Time.deltaTime;
-        maxSpeedChange = decceleration * Time.fixedDeltaTime;
-
-        //Move our velocity towards the desired velocity, at the rate of the number calculated above
-        velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);
-        velocity.y = Mathf.MoveTowards(velocity.y, desiredVelocity.y, maxSpeedChange);
-
-        //Update the Rigidbody with this new velocity
-        body.velocity = velocity;
-
+        float x = Mathf.Clamp(velocity.x - velocity.normalized.x * maxDecceleration, Mathf.Sign(velocity.x) < 0 ? -maxSpeed : 0, Mathf.Sign(velocity.x) < 0 ? 0 : maxSpeed);
+        float y = Mathf.Clamp(velocity.y - velocity.normalized.y * maxDecceleration, Mathf.Sign(velocity.y) < 0 ? -maxSpeed : 0, Mathf.Sign(velocity.y) < 0 ? 0 : maxSpeed);
+        body.velocity = new Vector2(x, y);
     }
 
     private void runWithoutAcceleration()
@@ -102,5 +108,25 @@ public class ProjectileMovement : MonoBehaviour
         velocity = desiredVelocity;
 
         body.velocity = velocity;
+    }
+
+    public void Freeze()
+    {
+        freezedVelocity = body.velocity;
+        body.velocity = Vector2.zero;
+        freezed = true;
+        if (deccelerationCoroutine != null)
+        {
+            StopCoroutine(deccelerationCoroutine);
+        }
+    }
+
+    public void Unfreeze()
+    {
+        freezed = false;
+        body.velocity = freezedVelocity;
+        if (deccelerationStartTimer > 0 && useDecceleration)
+            deccelerationCoroutine = StartCoroutine(DeccelerationTimer());
+        
     }
 }

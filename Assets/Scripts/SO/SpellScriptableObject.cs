@@ -49,6 +49,7 @@ public class SpellScriptableObject : ScriptableObject
     public ManaDrainAttributeData manaDrainAttribute;
     public DamageAttributeData damageAttribute;
     public KickbackAttributeData kickbackAttribute;
+    public ReflectAttributeData reflectAttribute;
 
     // Spawn attributes data (namig conventions matters)
     public List<SpellSpawnAttribute> spawnAttributes;
@@ -117,19 +118,27 @@ public class KickbackAttributeData
     public float force;
 }
 
+[Serializable]
+public class ReflectAttributeData
+{
+    public int reflectCount;
+    public LayerMask layerMask;
+    public LayerMask layerMaskToAdd;
+    public bool reflectToCaster;
+}
+
 // spawn attributes
 
 [Serializable]
 public class DefaultSpawnAttributeData
 {
-    public float distanceFromCaster;
+    public float originOffset;
 }
 
 [Serializable]
 public class RandomOffsetAttributeData
 {
     public float angle;
-    public float range;
 }
 
 
@@ -139,5 +148,6 @@ public class ShotgunAttributeData
     public float angle;
     public float range;
     public int projectilesCount;
+    public bool evenDistribution;
 }
 

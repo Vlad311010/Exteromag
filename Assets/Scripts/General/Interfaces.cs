@@ -32,6 +32,11 @@ namespace Interfaces
         public SpellSpawnData SetProjectileSpawnParameters(SpellSpawnData spawnData);
     }
 
+    public interface IHealthSystem
+    {
+        public void ConsumeHp(int amount, Vector2 staggerDirectiom);
+    }
+
     public interface IDestroyable
     {
         void DestroyObject();

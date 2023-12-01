@@ -24,11 +24,12 @@ public class RushTarget : MonoBehaviour, IMoveAI
         agent = GetComponentInParent<NavMeshAgent>();
     }
 
+
     public void AIUpdate()
     {
         distanceToTarget = Vector2.Distance(transform.position, target.position);
         staying = AIGeneral.AgentIsAtDestinationPoint(agent, 0.5f);
-        targetWasNoticed = targetWasNoticed || AIGeneral.TargetIsVisible(transform.position, target, visionRadius, core.playerObstaclesLayerMask);
+        targetWasNoticed = targetWasNoticed || AIGeneral.TargetIsVisible(transform.position, target, visionRadius, core.playerLayerMask | core.obstaclesLayerMask);
 
         if (targetWasNoticed && distanceToTarget <= visionRadius)
         {

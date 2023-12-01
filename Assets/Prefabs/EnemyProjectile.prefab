@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.37837982, a: 1}
+  m_Color: {r: 1, g: 0.12644881, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,7 +101,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -151,6 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3a7f6043a710c42bf52a4310936114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &3326791384766470014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,9 +167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 0
-  maxAcceleration: 0
   maxDecceleration: 0
   friction: 0
-  useAcceleration: 1
+  destroyOnStop: 1
   direction: {x: 0, y: 0}
   velocity: {x: 0, y: 0}

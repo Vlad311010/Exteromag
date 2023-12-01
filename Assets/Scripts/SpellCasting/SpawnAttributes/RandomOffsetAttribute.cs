@@ -4,20 +4,19 @@ using Structs;
 public class RandomOffsetAttribute : ISpellSpawnAttribute
 {
     private float angle;
-    private float range;
 
     public void GetAttributeParameters(SpellScriptableObject spell)
     {
        angle = spell.randomOffsetAttribute.angle;
-       range = spell.randomOffsetAttribute.range;
     }
 
     public SpellSpawnData SetProjectileSpawnParameters(SpellSpawnData spawnData)
     {
-        float rotationAngle = UnityEngine.Random.Range(-angle, angle);
-        UnityEngine.Vector2 direction = (spawnData.origin - spawnData.casterPosition).normalized;
-        UnityEngine.Vector2 spawnOffset = UnityEngine.Quaternion.Euler(0, 0, rotationAngle) * direction * range;
-        spawnData.origin = spawnData.origin + spawnOffset;
+        float rotationAngle = UnityEngine.Random.Range(-angle/2, angle/2);
+        UnityEngine.Vector2 direction = (spawnData.castPoint - spawnData.casterPosition).normalized;
+        UnityEngine.Vector2 rotationVector = UnityEngine.Quaternion.Euler(0, 0, rotationAngle) * direction;
+        UnityEngine.Quaternion lookDirection = UnityEngine.Quaternion.LookRotation(new UnityEngine.Vector3(0, 0, 1), rotationVector.normalized);
+        spawnData.AddProjectileData(spawnData.origin, lookDirection);
         return spawnData;
     }
 }

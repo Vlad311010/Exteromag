@@ -7,8 +7,9 @@ using UnityEngine.AI;
 
 public class Protect : MonoBehaviour, IMoveAI
 {
-    public Transform protectionTarget;
+    [SerializeField] Transform shieldGO;
 
+    public Transform protectionTarget;
     [SerializeField] Transform target;
     [SerializeField] float innerRadius;
     [SerializeField] float outerRadius;
@@ -20,9 +21,7 @@ public class Protect : MonoBehaviour, IMoveAI
     public AICore core { get; set; }
     private NavMeshAgent agent;
 
-    // private float distanceToTarget;
     private Vector2 directionFromProtectedToTarget;
-    // private bool staying = false;
     private bool seeTarget = false;
 
     void Start()
@@ -33,21 +32,30 @@ public class Protect : MonoBehaviour, IMoveAI
     public void AIUpdate()
     {
         if (protectionTarget == null) SerchProtectionTarget();
-        if (protectionTarget == null) return; // mb Change ai behavior
+        
+        if (protectionTarget == null || shieldGO == null)
+        {
+            AIGeneral.LookAt(core.transform, target);
+            agent.destination = target.position;
+            return;
+        }
+        
 
-        // distanceToTarget = Vector2.Distance(transform.position, target.position);
         directionFromProtectedToTarget = (target.transform.position - protectionTarget.position).normalized;
-        // staying = AIGeneral.AgentIsAtDestinationPoint(agent, 0.5f);
-        seeTarget = AIGeneral.TargetIsVisible(transform.position, target, visionRadius, core.playerObstaclesLayerMask);
+        seeTarget = AIGeneral.TargetIsVisible(transform.position, target, visionRadius, core.playerLayerMask | core.obstaclesLayerMask);
 
+        AIGeneral.LookAt(core.transform, protectionTarget, rotationSpeed, inverse: true);
         if (seeTarget)
         {
-            AIGeneral.LookAt(core.transform, protectionTarget, rotationSpeed, inverse:true);
-            agent.destination = GetDesiredPosition();
+            agent.destination = GetDesiredPositionProtecting();
+        }
+        else
+        {
+            agent.destination = protectionTarget.position + Vector3.right * innerRadius;
         }
     }
 
-    private Vector2 GetDesiredPosition()
+    private Vector2 GetDesiredPositionProtecting()
     {
         float distance = Random.Range(innerRadius, outerRadius);
         Vector3 pos = Quaternion.Euler(0, 0, offset) * directionFromProtectedToTarget * distance;

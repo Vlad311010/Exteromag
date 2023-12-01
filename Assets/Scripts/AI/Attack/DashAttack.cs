@@ -25,9 +25,6 @@ public class DashAttack : MonoBehaviour, IAttackAI
     Rigidbody2D rigidbody;
 
 
-    private float defaultSpeed;
-    private float defaultAcceleration;
-
     private bool targetIsVisible = false;
     private bool attackState = false;
     private bool cooldown = false;
@@ -41,13 +38,11 @@ public class DashAttack : MonoBehaviour, IAttackAI
         collider = GetComponentInParent<Collider2D>();
         rigidbody = GetComponentInParent<Rigidbody2D>();
 
-        defaultSpeed = agent.speed;
-        defaultAcceleration = agent.acceleration;
     }
 
     public void AIUpdate()
     {
-        targetIsVisible = AIGeneral.TargetIsVisible(transform.position, target, attackRange, core.playerObstaclesLayerMask);
+        targetIsVisible = AIGeneral.TargetIsVisible(transform.position, target, attackRange, core.playerLayerMask | core.obstaclesLayerMask);
         direction = (target.transform.position - transform.position).normalized;
 
         if (!attackState && !cooldown && targetIsVisible)

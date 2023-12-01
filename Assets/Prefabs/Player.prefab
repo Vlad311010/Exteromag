@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 5186339253655853084}
   - component: {fileID: 5061949154812894976}
   - component: {fileID: 5061949154812895007}
-  - component: {fileID: 5061949154812894978}
+  - component: {fileID: 2326219930658411541}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -353,7 +353,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellsSO:
-  - {fileID: 11400000, guid: c8b8b5b0161e59f41aec8870ece833e5, type: 2}
+  - {fileID: 11400000, guid: 9311cc8dede2d864481de1eec8d08650, type: 2}
+  - {fileID: 11400000, guid: 7be8dbcb4daef514d9cd0d15b9d8ab0c, type: 2}
+  - {fileID: 11400000, guid: 13ea98d3eb5525d4abbf074d70d970df, type: 2}
+  - {fileID: 11400000, guid: 9311cc8dede2d864481de1eec8d08650, type: 2}
 --- !u!114 &5061949154812895007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,7 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxMp: 200
   restoreAmount: 1
---- !u!114 &5061949154812894978
+--- !u!114 &2326219930658411541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -377,13 +380,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5061949154812894998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 720adf98e956fbf4d9565cd7804abd61, type: 3}
+  m_Script: {fileID: 11500000, guid: 26cfe71bcefba7345a4234dababd9909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 20
+  maxHp: 100
+  hitMaterial: {fileID: 2100000, guid: 5153d70b6a62544418a6820cd87ef6cc, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  hitHighlightTime: 0.2
   hitSound: {fileID: 0}
-  staggerable: 0
-  staggerTime: 0
+  staggerable: 1
+  staggerTime: 0.2
 --- !u!1 &5061949155017079616
 GameObject:
   m_ObjectHideFlags: 0

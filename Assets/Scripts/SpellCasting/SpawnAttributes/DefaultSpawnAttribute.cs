@@ -6,7 +6,7 @@ public class DefaultSpawnAttribute : ISpellSpawnAttribute
     private float distanceFromCaster;
     public void GetAttributeParameters(SpellScriptableObject spell)
     {
-        distanceFromCaster = spell.defaultSpawnAttribute.distanceFromCaster;
+        distanceFromCaster = spell.defaultSpawnAttribute.originOffset;
     }
 
     public SpellSpawnData SetProjectileSpawnParameters(SpellSpawnData spellSpawnData)

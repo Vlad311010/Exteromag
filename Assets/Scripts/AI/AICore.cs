@@ -1,4 +1,5 @@
 using Interfaces;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,15 +8,19 @@ public class AICore : MonoBehaviour, IDestroyable
     [SerializeField] GameObject splash;
     [SerializeField] Color enemyColor;
 
-
     public NavMeshAgent agent;
     public int threatLevel;
     [SerializeField] IMoveAI moveAI;
     [SerializeField] IAttackAI attackAI;
-    [SerializeField] public LayerMask playerObstaclesLayerMask;
+    [SerializeField] public LayerMask playerLayerMask;
+    [SerializeField] public LayerMask obstaclesLayerMask;
 
     [SerializeField] bool moveAIActive = true;
     [SerializeField] bool attackAIActive = true;
+
+
+    
+
 
     void Awake()
     {
@@ -64,6 +69,6 @@ public class AICore : MonoBehaviour, IDestroyable
 
     public void OnHit()
     {
-
     }
+    
 }

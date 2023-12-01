@@ -8,12 +8,15 @@ public class SpellBase : MonoBehaviour
     [SerializeField] public SpellScriptableObject spell { get; private set; }
     private ISpellAttribute[] attributes;
     private float lifeTime = 100f;
+
+    public LayerMask collisionLayerMask;
     
 
     public void Init(SpellScriptableObject spell)
     {
         this.spell = spell;
         attributes = GetAttributesList();
+        collisionLayerMask = spell.collisionLayerMask;
         OnCast();
     }
     
@@ -99,7 +102,7 @@ public class SpellBase : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (spell.collisionLayerMask == (spell.collisionLayerMask | (1 << collision.gameObject.layer)))
+        if (collisionLayerMask == (collisionLayerMask | (1 << collision.gameObject.layer)))
         {
             OnHit(new CollisionData(collision.gameObject, collision.rigidbody, collision.contacts));
             CalculateHit(collision);

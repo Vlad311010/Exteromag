@@ -21,7 +21,7 @@ public class BounceAttribute : MonoBehaviour, ISpellAttribute
 
         bounceLimit--;
 
-        if (bounceLimit < 0 || bounceLayer.CheckLayer(collisionData.GameObject.layer))
+        if (bounceLimit < 0 || !bounceLayer.CheckLayer(collisionData.GameObject.layer))
         {
             GetComponent<SpellBase>().Despawn();
         }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public static class AIGeneral
 {
@@ -56,6 +57,18 @@ public static class AIGeneral
         angle = Random.Range(0, angle);
         direction = Quaternion.Euler(0, 0, angle) * direction;
         return direction * Random.Range(innerRadius, outerRadius);
+    }
+
+    public static Vector2 GetPositionByRaycast(Vector2 position, float distance, float angle, float hitOffset, LayerMask collisionLayerMask)
+    {
+        Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.up;
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, collisionLayerMask);
+        if (hit)
+        {
+            return position + direction * hit.distance - direction * hitOffset;
+        }
+        else
+            return position + direction * distance;
     }
 
     public static bool TargetIsVisible(Vector2 position, Transform target, float distance, LayerMask collisionLayerMask)
