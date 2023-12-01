@@ -1,6 +1,7 @@
 using Interfaces;
 using Structs;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PenetrateAttribute : MonoBehaviour, ISpellAttribute
 {
@@ -19,17 +20,20 @@ public class PenetrateAttribute : MonoBehaviour, ISpellAttribute
     public void OnHitEvent(CollisionData collisionData)
     {
         if (collisionData.IsNullValue()) return;
+        
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         penetrateLimit--;
-        // if (penetrateLimit < 0 || layerMask != (layerMask | (1 << collisionData.GameObject.layer)))
-        if (penetrateLimit < 0 || !layerMask.CheckLayer(collisionData.GameObject.layer))
-        {
+        if (penetrateLimit < 0 || !layerMask.CheckLayer(collision.gameObject.layer))
             GetComponent<SpellBase>().Despawn();
-        }
-        else
-        {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collisionData.GameObject.GetComponent<Collider2D>(), true);
-            // GetComponent<ProjectileMovement>().direction = collisionData.Contacts[0].relativeVelocity.normalized;
-        }
+
+        GetComponent<Collider2D>().isTrigger = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        GetComponent<Collider2D>().isTrigger = false;
     }
 }

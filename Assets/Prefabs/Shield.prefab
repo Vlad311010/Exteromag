@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 557216337480231054}
   - component: {fileID: 557216337480231055}
   - component: {fileID: 557216337480231053}
-  - component: {fileID: 557216337480231052}
   - component: {fileID: 3221899102833543129}
-  m_Layer: 8
+  - component: {fileID: 1741136005}
+  m_Layer: 9
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,20 +125,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0087221, y: 0.021803664}
   m_Size: {x: 0.9704079, y: 0.1637104}
   m_Direction: 1
---- !u!114 &557216337480231052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557216337480231026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 720adf98e956fbf4d9565cd7804abd61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 20
-  hitSound: {fileID: 0}
 --- !u!114 &3221899102833543129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,3 +137,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5b086df69f4b04eac825e5280c81cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1741136005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557216337480231026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88aaa29c1dbd4c24a93d7b7d4b622fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 100
+  hitMaterial: {fileID: 2100000, guid: 5153d70b6a62544418a6820cd87ef6cc, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  hitHighlightTime: 0.17
+  hitSound: {fileID: 0}

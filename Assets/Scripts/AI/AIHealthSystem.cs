@@ -49,14 +49,16 @@ public class AIHealthSystem : MonoBehaviour, IHealthSystem
     {
         foreach (SpriteRenderer sprite in sprites)
         {
-            sprite.material = hitMaterial;
+            if (sprite != null)
+                sprite.material = hitMaterial;
         }
 
         yield return new WaitForSeconds(hitHighlightTime);
 
         foreach (SpriteRenderer sprite in sprites)
         {
-            sprite.material = defaultMaterial;
+            if (sprite != null)
+                sprite.material = defaultMaterial;
         }
     }
 
