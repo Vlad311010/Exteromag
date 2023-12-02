@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4746680590392702627}
   - component: {fileID: 441828404576179565}
+  - component: {fileID: -9185643802013434196}
   m_Layer: 0
   m_Name: FireDamageZone
   m_TagString: Untagged
@@ -52,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: 4354c5222f3a2654d84a901d163104ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.9622642, g: 0.003631114, b: 0.003631114, a: 0.35686275}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -84,3 +85,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-9185643802013434196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4979545266152996942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20f57d2b339f8164cacfd0cbb13ed7a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeMaterial: {fileID: 2100000, guid: 4354c5222f3a2654d84a901d163104ee, type: 2}
+  unactiveMaterial: {fileID: 2100000, guid: bb3f9901712d7c447afeb99186ef5c65, type: 2}
+  activationTime: 2
+  tickTime: 0.1
+  ticks: 30
+  damagePerTick: 1

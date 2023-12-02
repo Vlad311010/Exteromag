@@ -33,7 +33,7 @@ MonoBehaviour:
   collisionLayerMask:
     serializedVersion: 2
     m_Bits: 769
-  attributes: 0200000006000000
+  attributes: 0600000004000000
   explosionAttribute:
     radius: 0
     velocityImpact: 0
@@ -49,15 +49,15 @@ MonoBehaviour:
     bounceLimit: 0
     bounceLayer:
       serializedVersion: 2
-      m_Bits: 769
+      m_Bits: 1
   rotateAroundTargetAttribute:
     speed: 0
     distanceFromAnchor: 0
   penetrateAttribute:
-    penetrateLimit: 0
+    penetrateLimit: 1
     layerMask:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 769
   manaDrainAttribute:
     manaDrain: 10
     layerMask:
@@ -67,11 +67,20 @@ MonoBehaviour:
     damage: 5
   kickbackAttribute:
     force: 50
+  reflectAttribute:
+    reflectCount: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    layerMaskToAdd:
+      serializedVersion: 2
+      m_Bits: 0
+    reflectToCaster: 0
   spawnAttributes: 0000000002000000
   defaultSpawnAttribute:
-    originOffset: 0.5
+    originOffset: 1
   randomOffsetAttribute:
-    angle: 10
+    angle: 0
   shotgunAttribute:
     angle: 15
     range: 1

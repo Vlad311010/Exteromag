@@ -1,20 +1,37 @@
 using Interfaces;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class DamageZone : MonoBehaviour
 {
-    public int ticks;
-    public float tickTime;
-    public int damagePerTick;
-    public List<IHealthSystem> objectsInDamageZone = new List<IHealthSystem>();
+    [SerializeField] Material activeMaterial;
+    [SerializeField] Material unactiveMaterial;
+
+    [SerializeField] float activationTime;
+    [SerializeField] float tickTime;
+    [SerializeField] int ticks;
+    [SerializeField] int damagePerTick;
+    
+    private List<IHealthSystem> objectsInDamageZone = new List<IHealthSystem>();
 
 
     void Start()
     {
+        GetComponent<SpriteRenderer>().material = unactiveMaterial;
+        StartCoroutine(ActivationTimer());
+    }
+
+    IEnumerator ActivationTimer()
+    {
+        yield return new WaitForSeconds(activationTime);
+        GetComponent<SpriteRenderer>().material = activeMaterial;
         StartCoroutine(DealDamage());
+    }
+
+    private void Deactivate()
+    {
+        Destroy(this.gameObject);
     }
 
     IEnumerator DealDamage()
@@ -27,8 +44,10 @@ public class DamageZone : MonoBehaviour
                 hs.ConsumeHp(damagePerTick, Vector2.zero);
             }
         }
-        // destroy obj
+        Deactivate();
     }
+
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

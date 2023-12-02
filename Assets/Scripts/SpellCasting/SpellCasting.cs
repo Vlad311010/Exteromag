@@ -32,12 +32,6 @@ public static class SpellCasting
             throw new System.Exception("EXX");
         }
 
-        /*else
-        {
-            Quaternion lookDirection = Quaternion.LookRotation(new Vector3(0, 0, 1), spellSpawnData.direction);
-            SpellBase spellBase = GameObject.Instantiate(spell.projectile, spellSpawnData.origin, lookDirection).GetComponent<SpellBase>();
-            spellObjects.Add(spellBase);
-        }*/
 
         foreach (SpellBase spellObject in spellObjects)
         {
