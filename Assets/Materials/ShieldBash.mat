@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FireDamagZone
-  m_Shader: {fileID: -6465566751694194690, guid: 333287bcea7125645a81535004b81e51, type: 3}
+  m_Name: ShieldBash
+  m_Shader: {fileID: -6465566751694194690, guid: c458f449c19ab5546bd755ca06e8af6e, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -38,15 +38,39 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BlendHight: 1
+    - _CircleLifeTime: 1
     - _EdgeDensity: 5
-    - _InnerFieldDensity: 70
-    - _InnerRadius: 0.9
-    - _InnerRotationSpeed: -1
+    - _InnerFieldDensity: 100
+    - _InnerRadius: 0.8
+    - _InnerRotationSpeed: 0.1
+    - _LifeTime: 1
     - _OuterRadius: 1
-    - _RotationSpeed: 0.5
-    - _VoronieDensity: 4
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _RotationSpeed: 0.1
+    - _SectionRotation: 90
+    - _Speed: 0
+    - _StartingOffset: 0.5
+    - _Thickness: 0.07
     m_Colors:
-    - _EdgeColor: {r: 2.6629138, g: 0.097593695, b: 0, a: 1}
-    - _InnerColor: {r: 3.372549, g: 0.09411765, b: 0, a: 1}
+    - _Color: {r: 22.363522, g: 6.088498, b: 0, a: 1}
+    - _ColorDown: {r: 18.164822, g: 4.1845665, b: 0, a: 1}
+    - _ColorUp: {r: 11.520511, g: 0.32759747, b: 0, a: 1}
+    - _EdgeColor: {r: 3.245283, g: 0.1040938, b: 0.1040938, a: 1}
+    - _InnerColor: {r: 0.1862745, g: 0.01372549, b: 0.01372549, a: 1}
     - _InnerFieldSpeed: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+--- !u!114 &2029853614597488482
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5

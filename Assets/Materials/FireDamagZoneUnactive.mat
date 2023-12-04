@@ -38,7 +38,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EdgeDensity: 1.64
+    - _EdgeDensity: 2.5
     - _InnerFieldDensity: 100
     - _InnerRadius: 0.9
     - _InnerRotationSpeed: 0
@@ -46,7 +46,7 @@ Material:
     - _RotationSpeed: 0.5
     - _VoronieDensity: 4
     m_Colors:
-    - _EdgeColor: {r: 4.350998, g: 1.6167643, b: 1.6167643, a: 1}
+    - _EdgeColor: {r: 6.7821474, g: 0.5374527, b: 0.5374527, a: 1}
     - _InnerColor: {r: 1, g: 1, b: 1, a: 1}
     - _InnerFieldSpeed: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

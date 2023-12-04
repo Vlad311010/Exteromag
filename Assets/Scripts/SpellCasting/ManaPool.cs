@@ -1,21 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ManaPool : MonoBehaviour
 {
+    [SerializeField] private int mpRestorePerKill;
     [SerializeField] private int maxMp;
-    [SerializeField] private int restoreAmount = 1;
-    [SerializeField] public float restorationTime { get; private set; }
-    
     private int currentMp;
-    
-    
+
+
     private void Start()
     {
         currentMp = maxMp;
         Consume(0);
+        GameEvents.current.onEnemyDeath += GetMpFromEnemy;
     }
 
     public bool HaveEnaughtMp(int toConsume)
@@ -32,13 +28,13 @@ public class ManaPool : MonoBehaviour
         // StartCoroutine(Restore());
     }
 
-    IEnumerator Restore()
+    public void GetMpFromEnemy()
     {
-        yield return new WaitForSeconds(restorationTime);
-        Consume(-restoreAmount);
-        // currentMp = Mathf.Clamp(currentMp + restoreAmount, 0, maxMp);
-        if (currentMp < maxMp)
-            StartCoroutine(Restore());
+        Consume(-mpRestorePerKill);
+    }
 
+    private void OnDestroy()
+    {
+        GameEvents.current.onEnemyDeath -= GetMpFromEnemy;
     }
 }

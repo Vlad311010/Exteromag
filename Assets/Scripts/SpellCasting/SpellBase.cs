@@ -9,7 +9,7 @@ public class SpellBase : MonoBehaviour
     private ISpellAttribute[] attributes;
     private float lifeTime = 100f;
 
-    public LayerMask collisionLayerMask;
+    [HideInInspector] public LayerMask collisionLayerMask;
     
 
     public void Init(SpellScriptableObject spell)
@@ -81,19 +81,6 @@ public class SpellBase : MonoBehaviour
         }
     }
 
-    void CalculateHit(Collision2D collision)
-    {
-
-        /*if (collision.gameObject.TryGetComponent<IDestroyable>(out IDestroyable destroyable))
-        {
-            if (destroyable.type == IDestroyable.DestroyalbleType.ByHit)
-                destroyable.TakeHit(1);
-            else if (destroyable.type == IDestroyable.DestroyalbleType.ByDamage)
-                destroyable.TakeHit(spell.damage);
-        }*/
-
-    }
-
     private ISpellAttribute[] GetAttributesList()
     {
         ISpellAttribute[] attributes = transform.GetComponents<ISpellAttribute>();
@@ -105,10 +92,19 @@ public class SpellBase : MonoBehaviour
         if (collisionLayerMask == (collisionLayerMask | (1 << collision.gameObject.layer)))
         {
             OnHit(new CollisionData(collision.gameObject, collision.rigidbody, collision.contacts));
-            CalculateHit(collision);
         }
-
     }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        ContactPoint2D contactPoint = new ContactPoint2D(); // TODO: can lead to problems. should populate contactPoint with proper data;
+        if (collisionLayerMask == (collisionLayerMask | (1 << collider.gameObject.layer)))
+        {
+            OnHit(new CollisionData(collider.gameObject, collider.attachedRigidbody, new ContactPoint2D[] { contactPoint }));
+        }
+    }
+
+
 
     public void Despawn()
     {

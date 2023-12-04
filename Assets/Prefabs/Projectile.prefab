@@ -236,6 +236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3a7f6043a710c42bf52a4310936114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &-6911014277635705120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,10 +252,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 0
-  maxAcceleration: 0
   maxDecceleration: 0
   friction: 0
-  useAcceleration: 1
   destroyOnStop: 0
   direction: {x: 0, y: 0}
   velocity: {x: 0, y: 0}

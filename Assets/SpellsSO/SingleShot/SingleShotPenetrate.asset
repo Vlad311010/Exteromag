@@ -22,7 +22,7 @@ MonoBehaviour:
   OnHitParticles: {fileID: 0}
   spellIcon: {fileID: 0}
   spellIconColor: {r: 1, g: 1, b: 1, a: 1}
-  castCost: 5
+  castCost: 30
   cooldown: 0.2
   castOnTarget: 0
   castOnSelf: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
     penetrateLimit: 1
     layerMask:
       serializedVersion: 2
-      m_Bits: 769
+      m_Bits: 513
   manaDrainAttribute:
     manaDrain: 10
     layerMask:

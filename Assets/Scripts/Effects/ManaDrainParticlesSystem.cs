@@ -18,6 +18,7 @@ public class ManaDrainParticlesSystem : MonoBehaviour
 
     private void Start()
     {
+        target = GameObject.FindWithTag("Player")?.transform;
         ps = GetComponent<ParticleSystem>();
         StartCoroutine(ChangeParticlesVelocity());
     }
@@ -34,8 +35,6 @@ public class ManaDrainParticlesSystem : MonoBehaviour
         ps.GetParticles(particles, 10);
         for (int i = 0; i < particles.Length; i++)
         {
-            
-
             Vector3 direction = target.position - particles[i].position;
             Vector3 desiredVelocity = direction * maxSpeed;
             float distance = Vector2.Distance(target.position, particles[i].position);

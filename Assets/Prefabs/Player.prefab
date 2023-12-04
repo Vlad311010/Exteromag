@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 2326219930658411541}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -356,7 +356,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9311cc8dede2d864481de1eec8d08650, type: 2}
   - {fileID: 11400000, guid: 7be8dbcb4daef514d9cd0d15b9d8ab0c, type: 2}
   - {fileID: 11400000, guid: 13ea98d3eb5525d4abbf074d70d970df, type: 2}
-  - {fileID: 11400000, guid: 9311cc8dede2d864481de1eec8d08650, type: 2}
+  - {fileID: 11400000, guid: 5a76a392bc3255f4f963fa8a081ba634, type: 2}
 --- !u!114 &5061949154812895007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,8 +369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdcdb862e0e921d408a99d6c158f7908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMp: 200
-  restoreAmount: 1
+  mpRestorePerKill: 30
+  maxMp: 300
 --- !u!114 &2326219930658411541
 MonoBehaviour:
   m_ObjectHideFlags: 0

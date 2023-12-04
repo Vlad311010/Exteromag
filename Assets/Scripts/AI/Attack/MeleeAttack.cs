@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class MeleeAttack : MonoBehaviour, IAttackAI
 {
@@ -18,7 +19,8 @@ public class MeleeAttack : MonoBehaviour, IAttackAI
     [SerializeField] float attackTick;
     [SerializeField] float tickPerAttack;
     [SerializeField] LayerMask attackLayerMask;
-    [SerializeField] GameObject attackTrail;
+    // [SerializeField] GameObject attackTrail;
+    [SerializeField] VisualEffect attackEffect;
     public bool stopAfterAttack = false;
     public float stopAfterAttackTime;
 
@@ -48,7 +50,8 @@ public class MeleeAttack : MonoBehaviour, IAttackAI
     void  Attack()
     {
         attackIsInCooldown = true;
-        Instantiate(attackTrail, transform.position + core.transform.up * attackRadius / 2, core.transform.rotation); // attack effect
+        // Instantiate(attackTrail, transform.position + core.transform.up * attackRadius / 2, core.transform.rotation); // attack effect
+        attackEffect.Play();
         foreach (Collider2D collider in ObjectsToDamage())
         {
             directionToTarget = (collider.transform.position - transform.position).normalized;

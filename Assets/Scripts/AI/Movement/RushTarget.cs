@@ -43,7 +43,7 @@ public class RushTarget : MonoBehaviour, IMoveAI
 
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, visionRadius);

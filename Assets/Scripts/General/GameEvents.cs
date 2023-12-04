@@ -35,4 +35,23 @@ public class GameEvents : MonoBehaviour
             onHealthChange(current, max);
         }
     }
+
+    public event Action onEnemyDeath;
+    public void EnemyDied()
+    {
+        if (onEnemyDeath != null)
+        {
+            onEnemyDeath();
+        }
+    }
+
+    public event Action<float, int> onSpellCooldownValueChange;
+    public void SpellCooldownValueChange(float percentage, int slotIdx)
+    {
+        if (onSpellCooldownValueChange != null)
+        {
+            onSpellCooldownValueChange(percentage, slotIdx);
+        }
+    }
+
 }

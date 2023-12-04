@@ -21,20 +21,20 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
 
 
 
-    private SpellSlotWrapper[] spells;
+    // private SpellSlotWrapper[] spells;
+    private SpellContainer[] spells;
     private int selectedSpell;
 
     private void Start()
     {
         aim = GetComponentInChildren<CharacterAim>();
         mana = GetComponent<ManaPool>();
-        // cast = GetComponent<SpellCasting>();
         camera = Camera.main;
 
-        spells = new SpellSlotWrapper[spellsSO.Length];
+        spells = new SpellContainer[spellsSO.Length];
         for (int i = 0; i < spellsSO.Length; i++)
         {
-            spells[i] = new SpellSlotWrapper(spellsSO[i]);
+            spells[i] = new SpellContainer(spellsSO[i], i);
         }
     }
 
@@ -73,10 +73,10 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
 
         if (!spells[selectedSpell].IsEmpty() && spells[selectedSpell].holdDown && !spells[selectedSpell].isInCooldown)
         {
-            // if (mana.HaveEnaughtMp(spells[selectedSpell].spell.castCost))
+            if (mana.HaveEnaughtMp(spells[selectedSpell].spell.castCost))
             {
-                // mana.Consume(spells[selectedSpell].spell.castCost);
-                StartCoroutine(SpellCoolDown(selectedSpell));
+                mana.Consume(spells[selectedSpell].spell.castCost);
+                StartCoroutine(spells[selectedSpell].SpellCooldown());
                 SpellCasting.Cast(transform, spells[selectedSpell].spell, aim.TakeSnapshot());
             }
         }
@@ -95,14 +95,6 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
     {
 
     }
-
-    private IEnumerator SpellCoolDown(int slotIdx)
-    {
-        spells[slotIdx].isInCooldown = true;
-        yield return new WaitForSeconds(spells[slotIdx].spell.cooldown);
-        spells[slotIdx].isInCooldown = false;
-    }
-
 
     private void OnRestart(InputAction.CallbackContext obj)
     {
