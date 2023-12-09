@@ -46,12 +46,47 @@ public class GameEvents : MonoBehaviour
     }
 
     public event Action<float, int> onSpellCooldownValueChange;
-    public void SpellCooldownValueChange(float percentage, int slotIdx)
+    public void SpellCooldownValueChange(float percent, int slotIdx)
     {
         if (onSpellCooldownValueChange != null)
         {
-            onSpellCooldownValueChange(percentage, slotIdx);
+            onSpellCooldownValueChange(percent, slotIdx);
         }
     }
 
+    public event Action<bool, int> onSpellCastButtonHold;
+    public void SpellCastButtonHold(bool holding, int slotIdx)
+    {
+        if (onSpellCastButtonHold != null)
+        {
+            onSpellCastButtonHold(holding, slotIdx);
+        }
+    }
+
+    public event Action<Protect> onProtectorsDeath;
+    public void ProtectorDied(Protect protector)
+    {
+        if (onProtectorsDeath != null)
+        {
+            onProtectorsDeath(protector);
+        }
+    }
+
+    public event Action onPlayersDeath;
+    public void PlayerDied()
+    {
+        if (onPlayersDeath!= null)
+        {
+            onPlayersDeath();
+        }
+    }
+
+    public event Action<int> onEnemiesCountChange;
+    public void EnemiesCountChange(int enemiesCount)
+    {
+        if (onEnemiesCountChange != null)
+        {
+            onEnemiesCountChange(enemiesCount);
+        }
+    }
 }

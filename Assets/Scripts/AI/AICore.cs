@@ -9,6 +9,7 @@ public class AICore : MonoBehaviour, IDestroyable
 
     public NavMeshAgent agent;
     public int threatLevel;
+    public Transform target;
     [SerializeField] IMoveAI moveAI;
     [SerializeField] IAttackAI attackAI;
     [SerializeField] public LayerMask playerLayerMask;
@@ -17,8 +18,8 @@ public class AICore : MonoBehaviour, IDestroyable
     [SerializeField] bool moveAIActive = true;
     [SerializeField] bool attackAIActive = true;
 
-
-    
+    [HideInInspector] public bool canAttack = true;
+    public bool damageOnCollision = false;
 
 
     void Awake()
@@ -29,6 +30,13 @@ public class AICore : MonoBehaviour, IDestroyable
         agent.updateRotation = false;
 
 
+        UpdateAIComponents();
+
+        SetTarget();
+    }
+
+    public void UpdateAIComponents()
+    {
         moveAI = GetComponentInChildren<IMoveAI>();
         attackAI = GetComponentInChildren<IAttackAI>();
         moveAI.core = this;
@@ -62,12 +70,31 @@ public class AICore : MonoBehaviour, IDestroyable
     public void DestroyObject()
     {
         effects.OnDeath();
-        GameEvents.current.EnemyDied();
+        // GameEvents.current.EnemyDied();
         Destroy(this.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.current.EnemyDied();
+    }
+
+    public void SetTarget()
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public void OnHit()
     {
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (damageOnCollision && collider.TryGetComponent(out IHealthSystem healthSystem))
+        {
+            healthSystem.ConsumeHp(1, Vector2.zero);
+        }
+    }
+
+
 }

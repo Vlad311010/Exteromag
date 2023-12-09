@@ -2,8 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Interfaces;
-using Structs;
-using System.Collections;
 
 public class CharacterInteraction : MonoBehaviour, IDestroyable
 {
@@ -15,19 +13,20 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
 
     [Header("References")]
     private CharacterAim aim;
+    private CharacterEffects effects; 
+    private CharacterLimitations limitations; 
     private ManaPool mana;
-    // private SpellCasting cast;
     Camera camera;
 
 
-
-    // private SpellSlotWrapper[] spells;
     private SpellContainer[] spells;
     private int selectedSpell;
 
     private void Start()
     {
         aim = GetComponentInChildren<CharacterAim>();
+        effects = GetComponentInChildren<CharacterEffects>();
+        limitations = GetComponentInChildren<CharacterLimitations>();
         mana = GetComponent<ManaPool>();
         camera = Camera.main;
 
@@ -42,6 +41,9 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
     {
         control = new DefaultControls();
         control.Enable();
+        
+        if (aim != null)
+            aim.enabled = true;
 
         control.gameplay.Action.started += OnAction;
         control.gameplay.Action.canceled += OnAction;
@@ -53,6 +55,9 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
     void OnDisable()
     {
         control.Disable();
+        
+        if (aim != null)
+            aim.enabled = false;
 
         control.gameplay.Action.started -= OnAction;
         control.gameplay.Action.canceled -= OnAction;
@@ -73,6 +78,9 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
 
         if (!spells[selectedSpell].IsEmpty() && spells[selectedSpell].holdDown && !spells[selectedSpell].isInCooldown)
         {
+            if (spells[selectedSpell].spell.preventConstantCasting)
+                spells[selectedSpell].holdDown = false;
+
             if (mana.HaveEnaughtMp(spells[selectedSpell].spell.castCost))
             {
                 mana.Consume(spells[selectedSpell].spell.castCost);
@@ -85,9 +93,18 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
     private void OnAction(InputAction.CallbackContext obj)
     {
         if (obj.started)
+        {
+            GetComponentInChildren<Animator>().SetBool("Casting", true);
             spells[selectedSpell].holdDown = true;
+            GameEvents.current.SpellCastButtonHold(true, selectedSpell);
+            
+        }
         else if (obj.canceled)
+        {
+            GetComponentInChildren<Animator>().SetBool("Casting", false);
             spells[selectedSpell].holdDown = false;
+            GameEvents.current.SpellCastButtonHold(false, selectedSpell);
+        }
 
     }
 
@@ -103,6 +120,13 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
 
     public void DestroyObject()
     {
+        foreach (var spriteRenderer in GetComponentsInChildren<SpriteRenderer>())
+        {
+            spriteRenderer.enabled = false;
+        }
+        limitations.DisableActions();
+        effects.CreateSplashEffect();
+        GameEvents.current.PlayerDied();
         Debug.Log("PLAYER DEATH");
     }
 }

@@ -28,16 +28,6 @@ public class SpellContainer
 
     public IEnumerator SpellCooldown()
     {
-        /*cooldownTimer -= Time.deltaTime;
-        GameEvents.current.SpellCooldownValueChange(GetCooldownPercent(), slotIdx);
-        yield return new WaitForEndOfFrame();
-        
-        if (cooldownTimer >= 0)
-            slotUser.StartCoroutine(SpellCooldown());
-        else
-            isInCooldown = false;
-        */
-
         isInCooldown = true;
         cooldownTimer = spell.cooldown;
         while (cooldownTimer >= 0)
@@ -47,7 +37,6 @@ public class SpellContainer
             yield return new WaitForEndOfFrame();
         }
         isInCooldown = false;
-
     }
 
     private float GetCooldownPercent()

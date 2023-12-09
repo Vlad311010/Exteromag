@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   casterPosition: {x: 0, y: 0}
   castPoint: {x: 0, y: 0}
-  target: {fileID: 0}
   owner: {fileID: 0}
   projectile: {fileID: 4815055715623672144, guid: 5ffcc7b85deae0c4d9b99fd8707faf18, type: 3}
   onCastParticles: {fileID: 0}
@@ -22,11 +21,11 @@ MonoBehaviour:
   OnHitParticles: {fileID: 0}
   spellIcon: {fileID: 0}
   spellIconColor: {r: 1, g: 1, b: 1, a: 1}
-  castCost: 5
+  castCost: 0
   cooldown: 0.2
-  castOnTarget: 0
-  castOnSelf: 0
-  speed: 25
+  parentWithCaster: 0
+  preventConstantCasting: 0
+  speed: 29
   decceleration: 20
   deccelerationStart: 0.5
   useDecceleration: 0
@@ -64,14 +63,29 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
   damageAttribute:
-    damage: 5
+    damage: 1
   kickbackAttribute:
     force: 0
+  reflectAttribute:
+    reflectCount: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    layerMaskToAdd:
+      serializedVersion: 2
+      m_Bits: 0
+    reflectToCaster: 0
+  limitedLifeTimeAttribute:
+    lifetime: 0
+  channelingAttribute:
+    slotIdx: 0
+    channelingConst: 0
+    channelingTick: 0
   spawnAttributes: 0000000002000000
   defaultSpawnAttribute:
     originOffset: 0.5
   randomOffsetAttribute:
-    angle: 23.29
+    angle: 15
   shotgunAttribute:
     angle: 15
     range: 1

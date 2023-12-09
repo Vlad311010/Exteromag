@@ -10,7 +10,6 @@ public class RangeAttack : MonoBehaviour, IAttackAI
     public SpellScriptableObject spell;
     public float attackRadius;
     public Vector2 attackBreak;
-    [SerializeField] Transform target;
 
 
     [Header("Calculated")]
@@ -31,17 +30,19 @@ public class RangeAttack : MonoBehaviour, IAttackAI
 
     public void AIUpdate()
     {
-        targetIsVisible = AIGeneral.TargetIsVisible(transform.position, target, attackRadius, core.playerLayerMask | core.obstaclesLayerMask);
+        targetIsVisible = AIGeneral.TargetIsVisible(transform.position, core.target, attackRadius, core.playerLayerMask | core.obstaclesLayerMask);
         if (targetIsVisible)
         {
             attackBreakTimer -= Time.deltaTime;
+            AIGeneral.LookAt(core.transform, core.target.transform);
         }
         else
         {
             ResetAttackBreakTimer();
         }
 
-        if (targetIsVisible && attackBreakTimer < 0f)
+        core.canAttack = attackBreakTimer < 0f;
+        if (targetIsVisible && core.canAttack)
         {
             Attack();
         }
@@ -56,17 +57,17 @@ public class RangeAttack : MonoBehaviour, IAttackAI
 
     private void Cast()
     {
-        Vector2 castDirection = (target.transform.position - transform.position).normalized;
-        AimSnapshot aimSnapshot = new AimSnapshot(target.transform.position, castDirection);
+        Vector2 castDirection = (core.target.transform.position - transform.position).normalized;
+        AimSnapshot aimSnapshot = new AimSnapshot(core.target.transform.position, castDirection);
         SpellCasting.Cast(transform, spell, aimSnapshot);
     }
 
     void OnDrawGizmosSelected()
     {
-        if (target == null) return; 
+        if (core == null) return; 
 
         Gizmos.color = targetIsVisible ? Color.green : Color.red;
-        Gizmos.DrawLine(transform.position, target.position);
+        Gizmos.DrawLine(transform.position, core.target.position);
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(transform.position, attackRadius);
     }

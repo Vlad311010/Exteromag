@@ -22,8 +22,11 @@ public static class SpellCasting
         {
             for (int i = 0; i < spellSpawnData.projectilesPosition.Count; i++)
             {
-                
-                SpellBase spellBase = GameObject.Instantiate(spell.projectile, spellSpawnData.projectilesPosition[i], spellSpawnData.projectilesRotation[i]).GetComponent<SpellBase>();
+                SpellBase spellBase;
+                if (spell.parentWithCaster)
+                    spellBase = GameObject.Instantiate(spell.projectile, spellSpawnData.projectilesPosition[i], spellSpawnData.projectilesRotation[i], transform).GetComponent<SpellBase>();
+                else 
+                    spellBase = GameObject.Instantiate(spell.projectile, spellSpawnData.projectilesPosition[i], spellSpawnData.projectilesRotation[i]).GetComponent<SpellBase>();
                 spellObjects.Add(spellBase);
             }
         }

@@ -34,6 +34,7 @@ public class ReflectAttribute : MonoBehaviour, ISpellAttribute
             {
                 direction = ((Vector2)collider.transform.position - casterPosition).normalized;
             }
+            collider.gameObject.layer = LayerMask.NameToLayer("Projectile");
             collider.GetComponent<ProjectileMovement>().direction = direction;
             collider.GetComponent<SpellBase>().collisionLayerMask |= layerMaskToAdd; // add new layers
             

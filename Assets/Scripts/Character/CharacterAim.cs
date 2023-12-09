@@ -28,6 +28,7 @@ public class CharacterAim : MonoBehaviour, IAim
         // castPoint = transform.parent.position + castDirection * castDistance;
 
         transform.position = castPoint;
+        transform.rotation = Quaternion.identity;
     }
 
     public AimSnapshot TakeSnapshot()

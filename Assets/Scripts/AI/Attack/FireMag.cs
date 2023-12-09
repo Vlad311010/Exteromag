@@ -16,7 +16,6 @@ public class FireMag : MonoBehaviour, IAttackAI
     public float attackRadius;
     public Vector2 attackBreak;
     public int damageZonesPerAttack;
-    [SerializeField] Transform target;
 
 
     [Header("Calculated")]
@@ -34,10 +33,11 @@ public class FireMag : MonoBehaviour, IAttackAI
 
     public void AIUpdate()
     {
-        float distanceToTarget = Vector2.Distance(transform.position, target.position);
+        float distanceToTarget = Vector2.Distance(transform.position, core.target.position);
 
         attackBreakTimer -= Time.deltaTime;
-        if (attackBreakTimer < 0 &&  distanceToTarget < attackRadius)
+        core.canAttack = attackBreakTimer < 0;
+        if (core.canAttack &&  distanceToTarget < attackRadius)
         {
             ResetAttackBreakTimer();
             Attack();
@@ -46,25 +46,25 @@ public class FireMag : MonoBehaviour, IAttackAI
 
     private void Attack()
     {
-        Instantiate(damageZone, target.position, Quaternion.identity).transform.localScale = new Vector3(damageZoneRadius*2, damageZoneRadius * 2, 1);
+        Instantiate(damageZone, core.target.position, Quaternion.identity).transform.localScale = new Vector3(damageZoneRadius*2, damageZoneRadius * 2, 1);
         for (int i = 0; i < damageZonesPerAttack-1; i++)
         {
             float angle = Random.Range(0, 360);
             float distance = Random.Range(subZonesSpawnRadius.x, subZonesSpawnRadius.y);
-            Vector2 subZonePos = AIGeneral.GetPositionByRaycast(target.position, distance, angle, subZoneRadius, core.obstaclesLayerMask);
+            Vector2 subZonePos = AIGeneral.GetPositionByRaycast(core.target.position, distance, angle, subZoneRadius, core.obstaclesLayerMask);
             Instantiate(damageZone, subZonePos, Quaternion.identity).transform.localScale = new Vector3(subZoneRadius * 2, subZoneRadius * 2, 1);
         }
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (target == null) return;
+        if (core?.target == null) return;
 
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(transform.position, attackRadius);
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(target.position, subZonesSpawnRadius.y);
+        Gizmos.DrawWireSphere(core.target.position, subZonesSpawnRadius.y);
         Gizmos.color = new Color(1, 0, 0, 0.3f);
-        Gizmos.DrawSphere(target.position, damageZoneRadius);
+        Gizmos.DrawSphere(core.target.position, damageZoneRadius);
     }
 }

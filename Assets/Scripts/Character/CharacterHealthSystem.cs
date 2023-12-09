@@ -6,6 +6,7 @@ using Interfaces;
 public class CharacterHealthSystem : MonoBehaviour, IHealthSystem
 {
     Rigidbody2D rigidbody;
+    CharacterEffects effects;
     CharacterLimitations limitations;
 
     [Header("Parameters")]
@@ -27,6 +28,7 @@ public class CharacterHealthSystem : MonoBehaviour, IHealthSystem
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        effects = GetComponent<CharacterEffects>();
         limitations = GetComponent<CharacterLimitations>();
         sprites = GetComponentsInChildren<SpriteRenderer>();
         currentHp = maxHp;
@@ -59,6 +61,7 @@ public class CharacterHealthSystem : MonoBehaviour, IHealthSystem
 
     private void OnHit()
     {
+        effects.CameraShake(0.4f);
         if (hitHighlightCoroutine != null)
         {
             StopCoroutine(hitHighlightCoroutine);

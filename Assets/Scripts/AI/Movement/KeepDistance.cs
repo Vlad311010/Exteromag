@@ -8,7 +8,6 @@ public class KeepDistance : MonoBehaviour, IMoveAI
 {
     NavMeshAgent agent;
 
-    [SerializeField] Transform target;
     [SerializeField] float innerRadius;
     [SerializeField] float desiredPositionRadius;
     [SerializeField] float goToTargetThreshold;
@@ -43,13 +42,13 @@ public class KeepDistance : MonoBehaviour, IMoveAI
 
     public void AIUpdate()
     {
-        distanceToTarget = Vector2.Distance(transform.position, target.position);
-        directionFromTarget = (transform.position - target.transform.position).normalized;
+        distanceToTarget = Vector2.Distance(transform.position, core.target.position);
+        directionFromTarget = (transform.position - core.target.transform.position).normalized;
         staying = AIGeneral.AgentIsAtDestinationPoint(agent, 0.5f);
 
         if (distanceToTarget >= goToTargetThreshold)
         {
-            agent.destination = target.position;
+            agent.destination = core.target.position;
             movingToDesiredPosition = false;
         }
         else if (distanceToTarget < goToTargetThreshold && !movingToDesiredPosition)
@@ -59,7 +58,7 @@ public class KeepDistance : MonoBehaviour, IMoveAI
         }
         else if (distanceToTarget < innerRadius)
         {
-            agent.destination = target.position + (Vector3)directionFromTarget * goToTargetThreshold;
+            agent.destination = core.target.position + (Vector3)directionFromTarget * goToTargetThreshold;
             movingToDesiredPosition = false;
         }
 
@@ -88,7 +87,7 @@ public class KeepDistance : MonoBehaviour, IMoveAI
         a = a.OrderByDescending(x => RatePosition(x)).ToArray();
 
 
-        return target.position + a[0];
+        return core.target.position + a[0];
     }
 
     private float RatePosition(Vector2 position)
@@ -111,14 +110,14 @@ public class KeepDistance : MonoBehaviour, IMoveAI
 
     private void OnDrawGizmosSelected()
     {
-        if (target == null) return;
+        if (core.target == null) return;
 
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(target.position, innerRadius);
+        Gizmos.DrawWireSphere(core.target.position, innerRadius);
         Gizmos.color = Color.yellow;
-        Extensions.DrawWireArc(target.position, directionFromTarget, desiredPositionSearchAngle, desiredPositionRadius);
+        Extensions.DrawWireArc(core.target.position, directionFromTarget, desiredPositionSearchAngle, desiredPositionRadius);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(target.position, goToTargetThreshold);
+        Gizmos.DrawWireSphere(core.target.position, goToTargetThreshold);
 
     }
 

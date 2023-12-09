@@ -77,5 +77,12 @@ public static class AIGeneral
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, collisionLayerMask);
         return hit && hit.transform == target;
     }
+
+    public static bool PointIsReachable(NavMeshAgent agent, Vector3 point, out NavMeshPath path)
+    {
+        path = new NavMeshPath();
+        return agent.CalculatePath(point, path) && path.status == NavMeshPathStatus.PathComplete;
+
+    }
 }
 

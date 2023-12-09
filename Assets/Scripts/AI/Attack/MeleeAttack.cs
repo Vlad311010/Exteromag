@@ -11,7 +11,6 @@ public class MeleeAttack : MonoBehaviour, IAttackAI
 {
     public AICore core { get; set; }
 
-    [SerializeField] Transform target;
     [SerializeField] int damage;
     [SerializeField] float attackRadius;
     [SerializeField] float attackRange;
@@ -27,7 +26,6 @@ public class MeleeAttack : MonoBehaviour, IAttackAI
     private NavMeshAgent agent;
     Vector2 directionToTarget;
     private bool targetInAttackRange;
-    private bool attackIsInCooldown;
 
     void Start()
     {
@@ -36,21 +34,17 @@ public class MeleeAttack : MonoBehaviour, IAttackAI
 
     public void AIUpdate()
     {
-        // directionToTarget = (target.position - transform.position).normalized;
-        // lookAngle = Extensions.NormalizeAngle(Extensions.GetAnglesFromDir(transform.position, directionToTarget)-90);
-        targetInAttackRange = AIGeneral.IsInsideVisionCon(target.position, core.transform.position, core.transform.up, attackRange, attackRadius);
-        // Debug.Log(lookAngle);
-        if (targetInAttackRange && !attackIsInCooldown)
+        
+        targetInAttackRange = AIGeneral.IsInsideVisionCon(core.target.position, core.transform.position, core.transform.up, attackRange, attackRadius);
+        if (targetInAttackRange && core.canAttack)
         {
             Attack();
-            // StartCoroutine(Attack());
         }
     }
 
     void  Attack()
     {
-        attackIsInCooldown = true;
-        // Instantiate(attackTrail, transform.position + core.transform.up * attackRadius / 2, core.transform.rotation); // attack effect
+        core.canAttack = false;
         attackEffect.Play();
         foreach (Collider2D collider in ObjectsToDamage())
         {
@@ -60,29 +54,6 @@ public class MeleeAttack : MonoBehaviour, IAttackAI
         StartCoroutine(Cooldown());
         StartCoroutine(TurnOffMovement());
     }
-
-    /*IEnumerator Attack()
-    {
-        attackIsInCooldown = true;
-        List<HealthSystem> alreadyDamaged = new List<HealthSystem>();
-        Instantiate(attackTrail, transform.position + core.transform.up * attackRadius/2, core.transform.rotation);
-        for (int i = 0; i < tickPerAttack; i++)
-        {
-            yield return new WaitForSeconds(attackTick);
-            
-            foreach (HealthSystem hs in ObjectsToDamage())
-            {
-                if (!alreadyDamaged.Contains(hs))
-                {
-                    directionToTarget = (hs.transform.position - transform.position).normalized;
-                    hs.ConsumeHp(damage, directionToTarget);
-                    alreadyDamaged.Add(hs);
-                }
-            }
-        }
-        StartCoroutine(Cooldown());
-    }*/
-
     private Collider2D[] ObjectsToDamage()
     {
         Collider2D[] possibleHits = Physics2D.OverlapCircleAll(transform.position, attackRadius, attackLayerMask);
@@ -98,7 +69,7 @@ public class MeleeAttack : MonoBehaviour, IAttackAI
     IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(attackCooldownTime);
-        attackIsInCooldown = false;
+        core.canAttack = true;
     }
 
     IEnumerator TurnOffMovement()

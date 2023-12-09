@@ -1,6 +1,7 @@
 using UnityEngine;
 using Interfaces;
 using Structs;
+using System;
 
 public class RotateAroundTargetAttribute : MonoBehaviour, ISpellAttribute
 {
@@ -13,11 +14,10 @@ public class RotateAroundTargetAttribute : MonoBehaviour, ISpellAttribute
 
     public void GetAttributeParameters(SpellScriptableObject spell)
     {
+        throw new NotImplementedException("Casting on target isn't implemented");
         speed = spell.rotateAroundTargetAttribute.speed;
         distanceFromAnchor = spell.rotateAroundTargetAttribute.distanceFromAnchor;
-        anchor = spell.target;
-        
-        
+        // anchor = spell.target;
     }
 
     public void OnCastEvent() 

@@ -31,12 +31,12 @@ public class ScriptableSpellEditor : Editor
         serializedObject.Update();
         EditorGUI.BeginChangeCheck();
 
-        SerializedProperty castsOnTarget = serializedObject.FindProperty("castOnTarget");
+        // SerializedProperty castsOnTarget = serializedObject.FindProperty("castOnTarget");
 
 
         DrawPropertiesExcluding(serializedObject, excludedAttributes.Concat(excludedSpawnAttributes).Concat(excludedFields).ToArray());
 
-        EditorGUILayout.BeginHorizontal();
+        /* EditorGUILayout.BeginHorizontal();
         {
             EditorGUILayout.PropertyField(castsOnTarget);
         }
@@ -45,7 +45,7 @@ public class ScriptableSpellEditor : Editor
         if (castsOnTarget.boolValue)
         {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("targetSnapDistance"));
-        }
+        }*/
 
         // spell attributes
         EditorGUILayout.PropertyField(serializedObject.FindProperty("attributes")); // draw attributes list

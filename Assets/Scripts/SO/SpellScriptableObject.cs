@@ -9,7 +9,7 @@ public class SpellScriptableObject : ScriptableObject
 {
     [HideInInspector] public Vector2 casterPosition;
     [HideInInspector] public Vector2 castPoint;
-    [HideInInspector] public Transform target;
+    // [HideInInspector] public Transform target;
     [HideInInspector] public Transform owner;
 
     [Header("References")]
@@ -25,8 +25,8 @@ public class SpellScriptableObject : ScriptableObject
     [Header("Cast Parameters")]
     public int castCost;
     public float cooldown;
-    public bool castOnTarget;
-    public bool castOnSelf;
+    public bool parentWithCaster = false;
+    public bool preventConstantCasting = false;
 
     // movement
     [Header("Movement Parameters")]
@@ -50,6 +50,8 @@ public class SpellScriptableObject : ScriptableObject
     public DamageAttributeData damageAttribute;
     public KickbackAttributeData kickbackAttribute;
     public ReflectAttributeData reflectAttribute;
+    public LimitedLifeTimeAttributeData limitedLifeTimeAttribute;
+    public ChannelingAttributeData channelingAttribute;
 
     // Spawn attributes data (namig conventions matters)
     public List<SpellSpawnAttribute> spawnAttributes;
@@ -125,6 +127,20 @@ public class ReflectAttributeData
     public LayerMask layerMask;
     public LayerMask layerMaskToAdd;
     public bool reflectToCaster;
+}
+
+[Serializable]
+public class LimitedLifeTimeAttributeData
+{
+    public float lifetime;
+}
+
+[Serializable]
+public class ChannelingAttributeData
+{
+    public int slotIdx;
+    public int channelingConst;
+    public float channelingTick;
 }
 
 // spawn attributes

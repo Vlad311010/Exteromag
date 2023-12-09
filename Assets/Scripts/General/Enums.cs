@@ -10,7 +10,9 @@ namespace Enums
         ManaDrain = 5,
         Damage = 6,
         Kickback = 7,
-        Reflect = 8
+        Reflect = 8,
+        LimitedLifeTime = 9,
+        Channeling = 10
     }
 
     public enum SpellSpawnAttribute

@@ -1,11 +1,14 @@
 using Interfaces;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class IdleWander : MonoBehaviour, IMoveAI
 {
     public AICore core { get; set; }
+    public Transform target { get; set; }
+
     NavMeshAgent agent;
 
     [SerializeField] Vector2 wanderBreak;
@@ -45,14 +48,18 @@ public class IdleWander : MonoBehaviour, IMoveAI
         yield return new WaitForSeconds(Random.Range(wanderBreak.x, wanderBreak.y));
         staying = false;
         SetWanderPosition();
-
-
     }
 
     private Vector2 NewDestination()
     {
         Vector2 origin = rootedToOriginalPosition ? originalPosition : agent.transform.position;
-        return origin + AIGeneral.InsideCirlce(wanderInnerRadius, wanderOuterRadius);
+        Vector2 destination = origin + AIGeneral.InsideCirlce(wanderInnerRadius, wanderOuterRadius);
+        if (!AIGeneral.PointIsReachable(agent, destination, out NavMeshPath path) && path.corners.Length > 0)
+        {
+            destination = path.corners.Last();
+        }
+
+        return destination;
     }
 
 

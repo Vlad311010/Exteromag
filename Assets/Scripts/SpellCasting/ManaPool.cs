@@ -27,7 +27,6 @@ public class ManaPool : MonoBehaviour
         GameEvents.current.ManaChange(currentMp, maxMp);
         // StartCoroutine(Restore());
     }
-
     public void GetMpFromEnemy()
     {
         Consume(-mpRestorePerKill);
