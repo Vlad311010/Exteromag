@@ -8,7 +8,7 @@ public class RushTarget : MonoBehaviour, IMoveAI
 {
     NavMeshAgent agent;
 
-    [SerializeField] float visionRadius;
+    // [SerializeField] float visionRadius;
 
     public AICore core { get; set; }
 
@@ -23,10 +23,11 @@ public class RushTarget : MonoBehaviour, IMoveAI
 
     public void AIUpdate()
     {
-        distanceToTarget = Vector2.Distance(transform.position, core.target.position);
-        targetWasNoticed = targetWasNoticed || AIGeneral.TargetIsVisible(transform.position, core.target, visionRadius, core.playerLayerMask | core.obstaclesLayerMask);
+        // distanceToTarget = Vector2.Distance(transform.position, core.target.position);
+        // targetWasNoticed = targetWasNoticed || AIGeneral.TargetIsVisible(transform.position, core.target, visionRadius, core.playerLayerMask | core.obstaclesLayerMask);
 
-        if (targetWasNoticed && distanceToTarget <= visionRadius)
+        // if (targetWasNoticed && distanceToTarget <= visionRadius)
+        // if (distanceToTarget <= visionRadius)
         {
             if (core.canAttack)
                 agent.destination = core.target.position;
@@ -47,6 +48,6 @@ public class RushTarget : MonoBehaviour, IMoveAI
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, visionRadius);
+        // Gizmos.DrawWireSphere(transform.position, visionRadius);
     }
 }

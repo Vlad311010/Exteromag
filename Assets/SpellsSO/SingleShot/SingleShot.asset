@@ -21,8 +21,8 @@ MonoBehaviour:
   OnHitParticles: {fileID: 0}
   spellIcon: {fileID: 0}
   spellIconColor: {r: 1, g: 1, b: 1, a: 1}
-  castCost: 5
-  cooldown: 0.3
+  castCost: 3
+  cooldown: 0.18
   parentWithCaster: 0
   preventConstantCasting: 0
   speed: 25
@@ -63,7 +63,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
   damageAttribute:
-    damage: 5
+    damage: 4
   kickbackAttribute:
     force: 50
   reflectAttribute:

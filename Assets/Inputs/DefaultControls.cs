@@ -46,7 +46,7 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Action"",
+                    ""name"": ""Cast0"",
                     ""type"": ""Button"",
                     ""id"": ""2495002c-75a0-4232-a5d4-316f4d62846a"",
                     ""expectedControlType"": ""Button"",
@@ -55,9 +55,18 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""ActionAlt"",
+                    ""name"": ""Cast1"",
                     ""type"": ""Button"",
                     ""id"": ""fd5a43e4-41c8-4a61-848d-893759288b08"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cast2"",
+                    ""type"": ""Button"",
+                    ""id"": ""e9cc01cb-78ee-4968-8824-5f6663b6530b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -156,7 +165,7 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action"",
+                    ""action"": ""Cast0"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -167,7 +176,7 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ActionAlt"",
+                    ""action"": ""Cast1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -192,6 +201,45 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
                     ""action"": ""RestartLevel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08bbdcf7-9d03-4ef7-bdd7-cf86530480f4"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cast2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""menu"",
+            ""id"": ""1788a6b2-7548-494b-9ff4-6e3c780219ae"",
+            ""actions"": [
+                {
+                    ""name"": ""Esc"",
+                    ""type"": ""Button"",
+                    ""id"": ""592a1d29-18e4-4558-bf4f-e2315620465d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ba0aca0a-c14b-46cd-ba7e-057cafb168f0"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Esc"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -202,10 +250,14 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
         m_gameplay = asset.FindActionMap("gameplay", throwIfNotFound: true);
         m_gameplay_Movement = m_gameplay.FindAction("Movement", throwIfNotFound: true);
         m_gameplay_Dash = m_gameplay.FindAction("Dash", throwIfNotFound: true);
-        m_gameplay_Action = m_gameplay.FindAction("Action", throwIfNotFound: true);
-        m_gameplay_ActionAlt = m_gameplay.FindAction("ActionAlt", throwIfNotFound: true);
+        m_gameplay_Cast0 = m_gameplay.FindAction("Cast0", throwIfNotFound: true);
+        m_gameplay_Cast1 = m_gameplay.FindAction("Cast1", throwIfNotFound: true);
+        m_gameplay_Cast2 = m_gameplay.FindAction("Cast2", throwIfNotFound: true);
         m_gameplay_Interact = m_gameplay.FindAction("Interact", throwIfNotFound: true);
         m_gameplay_RestartLevel = m_gameplay.FindAction("RestartLevel", throwIfNotFound: true);
+        // menu
+        m_menu = asset.FindActionMap("menu", throwIfNotFound: true);
+        m_menu_Esc = m_menu.FindAction("Esc", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -269,8 +321,9 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_gameplay_Movement;
     private readonly InputAction m_gameplay_Dash;
-    private readonly InputAction m_gameplay_Action;
-    private readonly InputAction m_gameplay_ActionAlt;
+    private readonly InputAction m_gameplay_Cast0;
+    private readonly InputAction m_gameplay_Cast1;
+    private readonly InputAction m_gameplay_Cast2;
     private readonly InputAction m_gameplay_Interact;
     private readonly InputAction m_gameplay_RestartLevel;
     public struct GameplayActions
@@ -279,8 +332,9 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
         public GameplayActions(@DefaultControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_gameplay_Movement;
         public InputAction @Dash => m_Wrapper.m_gameplay_Dash;
-        public InputAction @Action => m_Wrapper.m_gameplay_Action;
-        public InputAction @ActionAlt => m_Wrapper.m_gameplay_ActionAlt;
+        public InputAction @Cast0 => m_Wrapper.m_gameplay_Cast0;
+        public InputAction @Cast1 => m_Wrapper.m_gameplay_Cast1;
+        public InputAction @Cast2 => m_Wrapper.m_gameplay_Cast2;
         public InputAction @Interact => m_Wrapper.m_gameplay_Interact;
         public InputAction @RestartLevel => m_Wrapper.m_gameplay_RestartLevel;
         public InputActionMap Get() { return m_Wrapper.m_gameplay; }
@@ -298,12 +352,15 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
-            @Action.started += instance.OnAction;
-            @Action.performed += instance.OnAction;
-            @Action.canceled += instance.OnAction;
-            @ActionAlt.started += instance.OnActionAlt;
-            @ActionAlt.performed += instance.OnActionAlt;
-            @ActionAlt.canceled += instance.OnActionAlt;
+            @Cast0.started += instance.OnCast0;
+            @Cast0.performed += instance.OnCast0;
+            @Cast0.canceled += instance.OnCast0;
+            @Cast1.started += instance.OnCast1;
+            @Cast1.performed += instance.OnCast1;
+            @Cast1.canceled += instance.OnCast1;
+            @Cast2.started += instance.OnCast2;
+            @Cast2.performed += instance.OnCast2;
+            @Cast2.canceled += instance.OnCast2;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
@@ -320,12 +377,15 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
-            @Action.started -= instance.OnAction;
-            @Action.performed -= instance.OnAction;
-            @Action.canceled -= instance.OnAction;
-            @ActionAlt.started -= instance.OnActionAlt;
-            @ActionAlt.performed -= instance.OnActionAlt;
-            @ActionAlt.canceled -= instance.OnActionAlt;
+            @Cast0.started -= instance.OnCast0;
+            @Cast0.performed -= instance.OnCast0;
+            @Cast0.canceled -= instance.OnCast0;
+            @Cast1.started -= instance.OnCast1;
+            @Cast1.performed -= instance.OnCast1;
+            @Cast1.canceled -= instance.OnCast1;
+            @Cast2.started -= instance.OnCast2;
+            @Cast2.performed -= instance.OnCast2;
+            @Cast2.canceled -= instance.OnCast2;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
@@ -349,13 +409,64 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
         }
     }
     public GameplayActions @gameplay => new GameplayActions(this);
+
+    // menu
+    private readonly InputActionMap m_menu;
+    private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
+    private readonly InputAction m_menu_Esc;
+    public struct MenuActions
+    {
+        private @DefaultControls m_Wrapper;
+        public MenuActions(@DefaultControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Esc => m_Wrapper.m_menu_Esc;
+        public InputActionMap Get() { return m_Wrapper.m_menu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void AddCallbacks(IMenuActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
+            @Esc.started += instance.OnEsc;
+            @Esc.performed += instance.OnEsc;
+            @Esc.canceled += instance.OnEsc;
+        }
+
+        private void UnregisterCallbacks(IMenuActions instance)
+        {
+            @Esc.started -= instance.OnEsc;
+            @Esc.performed -= instance.OnEsc;
+            @Esc.canceled -= instance.OnEsc;
+        }
+
+        public void RemoveCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MenuActions @menu => new MenuActions(this);
     public interface IGameplayActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-        void OnAction(InputAction.CallbackContext context);
-        void OnActionAlt(InputAction.CallbackContext context);
+        void OnCast0(InputAction.CallbackContext context);
+        void OnCast1(InputAction.CallbackContext context);
+        void OnCast2(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnRestartLevel(InputAction.CallbackContext context);
+    }
+    public interface IMenuActions
+    {
+        void OnEsc(InputAction.CallbackContext context);
     }
 }

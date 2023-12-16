@@ -51,10 +51,10 @@ public class RangeAttackRuning : MonoBehaviour, IAttackAI
         {
             attackBreakTimer -= Time.deltaTime;
         }
-        else
+        /*else
         {
             ResetAttackBreakTimer();
-        }
+        }*/
 
         core.canAttack = attackBreakTimer < 0f;
         if (targetIsVisible && core.canAttack && attackCoroutine == null)
@@ -86,7 +86,7 @@ public class RangeAttackRuning : MonoBehaviour, IAttackAI
 
     void OnDrawGizmosSelected()
     {
-        if (core.target == null) return;
+        if (core == null) return;
 
         Gizmos.color = targetIsVisible ? Color.green : Color.red;
         Gizmos.DrawLine(transform.position, core.target.position);

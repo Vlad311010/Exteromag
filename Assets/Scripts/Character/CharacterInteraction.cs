@@ -5,11 +5,11 @@ using Interfaces;
 
 public class CharacterInteraction : MonoBehaviour, IDestroyable
 {
-    [Header("Inputs")]
-    public DefaultControls control;
+    public DefaultControls control { get; private set; }
 
     [Header("Parameters")]
-    [SerializeField] private SpellScriptableObject[] spellsSO;
+    // [SerializeField] private SpellScriptableObject[] spellsSO;
+    [SerializeField] private SpellSetSO[] spellsSets;
 
     [Header("References")]
     private CharacterAim aim;
@@ -19,7 +19,7 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
     Camera camera;
 
 
-    private SpellContainer[] spells;
+    private SpellContainer[] containedSpells;
     private int selectedSpell;
 
     private void Start()
@@ -30,10 +30,10 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
         mana = GetComponent<ManaPool>();
         camera = Camera.main;
 
-        spells = new SpellContainer[spellsSO.Length];
-        for (int i = 0; i < spellsSO.Length; i++)
+        containedSpells = new SpellContainer[spellsSets.Length];
+        for (int i = 0; i < spellsSets.Length; i++)
         {
-            spells[i] = new SpellContainer(spellsSO[i], i);
+            containedSpells[i] = new SpellContainer(spellsSets[i], i);
         }
     }
 
@@ -41,12 +41,19 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
     {
         control = new DefaultControls();
         control.Enable();
-        
+
+
         if (aim != null)
             aim.enabled = true;
 
-        control.gameplay.Action.started += OnAction;
-        control.gameplay.Action.canceled += OnAction;
+        control.gameplay.Cast0.started += OnCast0;
+        control.gameplay.Cast0.canceled += OnCast0;
+        control.gameplay.Cast1.started += OnCast1;
+        control.gameplay.Cast1.canceled += OnCast1;
+        control.gameplay.Cast2.started += OnCast2;
+        control.gameplay.Cast2.canceled += OnCast2;
+
+        control.menu.Esc.performed += EscapePressed;
 
         control.gameplay.RestartLevel.performed += OnRestart;
     }
@@ -59,58 +66,78 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
         if (aim != null)
             aim.enabled = false;
 
-        control.gameplay.Action.started -= OnAction;
-        control.gameplay.Action.canceled -= OnAction;
+        control.gameplay.Cast0.started -= OnCast0;
+        control.gameplay.Cast0.canceled -= OnCast0;
+        control.gameplay.Cast1.started -= OnCast1;
+        control.gameplay.Cast1.canceled -= OnCast1;
+        control.gameplay.Cast2.started -= OnCast2;
+        control.gameplay.Cast2.canceled -= OnCast2;
 
         control.gameplay.RestartLevel.performed -= OnRestart;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        /*if (Input.GetKeyDown(KeyCode.Alpha1))
             selectedSpell = 0;
         else if (Input.GetKeyDown(KeyCode.Alpha2))
             selectedSpell = 1;
         else if (Input.GetKeyDown(KeyCode.Alpha3))
             selectedSpell = 2;
         else if (Input.GetKeyDown(KeyCode.Alpha4))
-            selectedSpell = 3;
+            selectedSpell = 3;*/
 
-        if (!spells[selectedSpell].IsEmpty() && spells[selectedSpell].holdDown && !spells[selectedSpell].isInCooldown)
+        if (!containedSpells[selectedSpell].IsEmpty() && containedSpells[selectedSpell].holdDown && !containedSpells[selectedSpell].isInCooldown)
         {
-            if (spells[selectedSpell].spell.preventConstantCasting)
-                spells[selectedSpell].holdDown = false;
+            if (containedSpells[selectedSpell].spell.preventConstantCasting)
+                containedSpells[selectedSpell].holdDown = false;
 
-            if (mana.HaveEnaughtMp(spells[selectedSpell].spell.castCost))
+            if (mana.HaveEnaughtMp(containedSpells[selectedSpell].spell.castCost))
             {
-                mana.Consume(spells[selectedSpell].spell.castCost);
-                StartCoroutine(spells[selectedSpell].SpellCooldown());
-                SpellCasting.Cast(transform, spells[selectedSpell].spell, aim.TakeSnapshot());
+                mana.Consume(containedSpells[selectedSpell].spell.castCost);
+                StartCoroutine(containedSpells[selectedSpell].SpellCooldown());
+                SpellCasting.Cast(transform, containedSpells[selectedSpell].spell, aim.TakeSnapshot());
             }
         }
     }
 
-    private void OnAction(InputAction.CallbackContext obj)
+    private void ProcessCastInput(InputAction.CallbackContext obj)
     {
         if (obj.started)
         {
             GetComponentInChildren<Animator>().SetBool("Casting", true);
-            spells[selectedSpell].holdDown = true;
+            containedSpells[selectedSpell].holdDown = true;
             GameEvents.current.SpellCastButtonHold(true, selectedSpell);
-            
+
         }
         else if (obj.canceled)
         {
             GetComponentInChildren<Animator>().SetBool("Casting", false);
-            spells[selectedSpell].holdDown = false;
+            containedSpells[selectedSpell].holdDown = false;
             GameEvents.current.SpellCastButtonHold(false, selectedSpell);
         }
+    }
+
+    private void OnCast0(InputAction.CallbackContext obj)
+    {
+        GameEvents.current.SpellCastButtonHold(false, selectedSpell);
+        selectedSpell = 0;
+        ProcessCastInput(obj);
 
     }
 
-    private void OnActionAlt(InputAction.CallbackContext obj)
+    private void OnCast1(InputAction.CallbackContext obj)
     {
-
+        GameEvents.current.SpellCastButtonHold(false, selectedSpell);
+        selectedSpell = 1;
+        ProcessCastInput(obj);
+    }
+    
+    private void OnCast2(InputAction.CallbackContext obj)
+    {
+        GameEvents.current.SpellCastButtonHold(false, selectedSpell);
+        selectedSpell = 2;
+        ProcessCastInput(obj);
     }
 
     private void OnRestart(InputAction.CallbackContext obj)
@@ -129,4 +156,11 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
         GameEvents.current.PlayerDied();
         Debug.Log("PLAYER DEATH");
     }
+
+    private void EscapePressed(InputAction.CallbackContext obj)
+    {
+        if (obj.performed)
+            GameEvents.current.EscapePressed();
+    }
+
 }

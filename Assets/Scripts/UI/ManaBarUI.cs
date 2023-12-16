@@ -18,6 +18,11 @@ public class ManaBarUI : MonoBehaviour
         updatingDelayTimer = updatingDelay;
     }
 
+    private void OnDestroy()
+    {
+        GameEvents.current.onManaChange -= UpdateManaBar;
+    }
+
     private void UpdateManaBar(int current, int max)
     {
         float percent = (float)current / max;

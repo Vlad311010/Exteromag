@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 7807508428456142042}
   - component: {fileID: 3024898440402354876}
   m_Layer: 8
-  m_Name: Square
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,7 +190,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 11d16df521624474c90cb2ca770ac5c6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 623cb52615a29b24fba33dabbf0c4374, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 7367294759864079123}
   m_Layer: 8
   m_Name: Enemy_Auto
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -313,14 +313,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 4697419583937663337}
   threatLevel: 5
+  target: {fileID: 0}
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 64
   obstaclesLayerMask:
     serializedVersion: 2
     m_Bits: 1
+  visionRange: 40
+  ignoreWalls: 0
   moveAIActive: 1
   attackAIActive: 1
+  canAttack: 1
+  damageOnCollision: 0
 --- !u!114 &8427237763771702774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88aaa29c1dbd4c24a93d7b7d4b622fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 1000
+  maxHp: 15
   hitMaterial: {fileID: 2100000, guid: 5153d70b6a62544418a6820cd87ef6cc, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   hitHighlightTime: 0.17
@@ -352,7 +357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   splash: {fileID: 7916890796168821779, guid: 13d59e5ed84065343b7313dd01df612d, type: 3}
   manaParticles: {fileID: 4923245117875230332, guid: e4340cc91bc9be842a1fd8ffe6cf348a, type: 3}
-  enemyColor: {r: 0.9843138, g: 0.3647059, b: 0.3921569, a: 1}
+  enemyColor: {r: 0.9960785, g: 0.7137255, b: 0, a: 1}
 --- !u!1 &9157941464553863665
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,10 +403,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf652ab64b1e9a4499099c7466677968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  innerRadius: 7
-  desiredPositionRadius: 12
-  goToTargetThreshold: 14
+  innerRadius: 10
+  desiredPositionRadius: 22
+  goToTargetThreshold: 25
   desiredPositionSearchAngle: 120
   desiredPositionStayTime: {x: 0.5, y: 2.5}
 --- !u!114 &6917206922878638692
@@ -417,10 +421,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 11400000, guid: fe37eeb66fa5378438926c87364d5089, type: 2}
-  attackRange: 20
-  attackBreak: {x: 1, y: 6}
-  multiAttackChance: 0.3
+  attackRange: 30
+  attackBreak: {x: 0.6, y: 5}
+  multiAttackChance: 0.1
   multiAttackBreakTime: 0.15
   castsPerAttack: {x: 3, y: 3}
   castsBreak: {x: 0.2, y: 0.2}
-  target: {fileID: 0}

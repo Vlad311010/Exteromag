@@ -18,21 +18,33 @@ public struct WaveSpawnData
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] Vector2 size;
+
+
+    [SerializeField] bool setGoToZone = false;
+    [SerializeField] Vector2 goToZonePos;
+    [SerializeField] Vector2 goToZoneSize;
+
     [SerializeField] List<WaveSpawnData> waves = new List<WaveSpawnData>();
     [SerializeField] int enemiesCountToTriggerWaveSpawn;
 
     private int waveIdx = 0;
 
-    private void Start()
+    private void OnEnable()
     {
-        // GameEvents.current.onEnemiesCountChange += TriggerSpawn;
-        GameEvents.current.onEnemyDeath += TriggerSpawn;
+        // GameEvents.current.onEnemyDeath += TriggerSpawn;
+        GameEvents.current.onEnemiesCountChange += TriggerSpawn;
     }
 
-    private void TriggerSpawn()
+    private void OnDisable()
     {
-        Debug.Log(SceneController.enemiesCount);
-        if (SceneController.enemiesCount <= enemiesCountToTriggerWaveSpawn)
+        // GameEvents.current.onEnemyDeath -= TriggerSpawn;
+        GameEvents.current.onEnemiesCountChange -= TriggerSpawn;
+    }
+
+
+    private void TriggerSpawn(int enemiesCount)
+    {
+        if (enemiesCount <= enemiesCountToTriggerWaveSpawn)
         {
             SpawnWave();
         }
@@ -45,24 +57,36 @@ public class EnemySpawner : MonoBehaviour
         {
             for (int i = 0; i < enemySpawnData.count; i++)
             {
-                Instantiate(enemySpawnData.enemy, RandomSpawnPoint(), Quaternion.identity, transform);
+                AICore aiCore = Instantiate(enemySpawnData.enemy, RandomSpawnPoint(transform.position, size), Quaternion.identity, transform).GetComponent<AICore>();
+                if (setGoToZone)
+                {
+                    aiCore.SetGoToPoint(RandomSpawnPoint(goToZonePos, goToZoneSize));
+                }
+                GameEvents.current.EnemySpawned();
             }
         }
         waveIdx++;
+        if (waveIdx >= waves.Count)
+        {
+            GameEvents.current.SpawnerDestroy();
+            Destroy(this);
+        }
     }
 
-    private Vector2 RandomSpawnPoint()
+    private Vector2 RandomSpawnPoint(Vector2 zonePos, Vector2 zoneSize)
     {
-        Vector2 offset = new Vector2(Random.Range(-size.x, size.x), Random.Range(-size.y, size.y));
-        return (Vector2)transform.position + offset;  
+        Vector2 offset = new Vector2(Random.Range(-zoneSize.x/2, zoneSize.x/2), Random.Range(-zoneSize.y/2, zoneSize.y/2));
+        return zonePos+ offset;  
     }
 
     private void OnDrawGizmos()
     {
-        Color color = Color.green;
-        color.a = 0.2f;
-        Gizmos.color = color;
-
+        Extensions.GizmosSetColor(UnityEngine.Color.green, 0.2f);
         Gizmos.DrawCube(transform.position, size);
+
+        Gizmos.DrawLine(transform.position, goToZonePos);
+
+        Extensions.GizmosSetColor(UnityEngine.Color.yellow, 0.4f);
+        Gizmos.DrawCube(goToZonePos, goToZoneSize);
     }
 }

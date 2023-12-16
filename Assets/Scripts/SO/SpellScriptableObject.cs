@@ -22,6 +22,9 @@ public class SpellScriptableObject : ScriptableObject
     public Sprite spellIcon;
     public Color spellIconColor = Color.white;
 
+    [Header("Upgrades")]
+    public List<SpellScriptableObject> upgrades;
+
     [Header("Cast Parameters")]
     public int castCost;
     public float cooldown;

@@ -31,7 +31,16 @@ public class CharacterLimitations : MonoBehaviour
     {
         movement.enabled = false;
         interaction.enabled = false;
+        interaction.control.gameplay.Disable();
         GetComponent<Rigidbody2D>().simulated = false;
+    }
+
+    public void ActivateActions()
+    {
+        movement.enabled = true;
+        interaction.enabled = true;
+        interaction.control.gameplay.Enable();
+        GetComponent<Rigidbody2D>().simulated = true;
     }
 
     public void InfiniteMana(bool active)

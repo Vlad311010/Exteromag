@@ -384,6 +384,8 @@ MonoBehaviour:
   obstaclesLayerMask:
     serializedVersion: 2
     m_Bits: 1
+  visionRange: 40
+  ignoreWalls: 1
   moveAIActive: 1
   attackAIActive: 1
   canAttack: 1
@@ -400,7 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88aaa29c1dbd4c24a93d7b7d4b622fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 15
+  maxHp: 10
   hitMaterial: {fileID: 2100000, guid: 5153d70b6a62544418a6820cd87ef6cc, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   hitHighlightTime: 0.17

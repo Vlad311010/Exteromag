@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5632122213668299822}
   m_Layer: 8
   m_Name: Enemy_With_Shield
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 7631645109881300331}
   threatLevel: -1
+  target: {fileID: 0}
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -132,6 +133,8 @@ MonoBehaviour:
     m_Bits: 1
   moveAIActive: 1
   attackAIActive: 1
+  canAttack: 1
+  damageOnCollision: 0
 --- !u!114 &7069477297142860848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,7 +331,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shieldGO: {fileID: 2161640037712835978}
   protectionTarget: {fileID: 0}
-  target: {fileID: 0}
   innerRadius: 3.2
   outerRadius: 3.2
   rotationSpeed: 0.6
@@ -347,7 +349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6bf5457576cf44f9784dbd045b94ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   damage: 10
   attackRadius: 2.4
   attackRange: 90

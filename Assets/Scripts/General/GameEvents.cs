@@ -45,6 +45,16 @@ public class GameEvents : MonoBehaviour
         }
     }
 
+    public event Action onEnemySpawn;
+    public void EnemySpawned()
+    {
+        if (onEnemySpawn != null)
+        {
+            onEnemySpawn();
+        }
+    }
+
+
     public event Action<float, int> onSpellCooldownValueChange;
     public void SpellCooldownValueChange(float percent, int slotIdx)
     {
@@ -87,6 +97,33 @@ public class GameEvents : MonoBehaviour
         if (onEnemiesCountChange != null)
         {
             onEnemiesCountChange(enemiesCount);
+        }
+    }
+
+    public event Action onSpawnerDestroy;
+    public void SpawnerDestroy()
+    {
+        if (onSpawnerDestroy != null)
+        {
+            onSpawnerDestroy();
+        }
+    }
+
+    public event Action onEscapePressed;
+    public void EscapePressed()
+    {
+        if (onEscapePressed != null)
+        {
+            onEscapePressed();
+        }
+    }
+
+    public event Action onUpgradePickUp;
+    public void UpgradePickUp()
+    {
+        if (onUpgradePickUp != null)
+        {
+            onUpgradePickUp();
         }
     }
 }

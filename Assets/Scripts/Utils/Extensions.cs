@@ -1,5 +1,7 @@
 using Structs;
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class Extensions
 {
@@ -40,5 +42,33 @@ public static class Extensions
             posA = posB;
         }
         Gizmos.DrawLine(posA, initialPos);
+    }
+
+    public static string GetNextLevelName()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        string sceneToLoad = "";
+        if (currentSceneName.EndsWith('.'))
+        {
+            // last sublevel of level // load hub? main menu?.
+        }
+        else
+        {
+            int levelIdx = Int32.Parse(currentSceneName.Split("_")[1]);
+            int sublevelIdx = Int32.Parse(currentSceneName.Split("_")[2]);
+            sceneToLoad = String.Format("Level_{0}_{1}", levelIdx, sublevelIdx + 1);
+        }
+        Debug.Log(sceneToLoad);
+        return sceneToLoad;
+    }
+
+    public static void GizmosSetColor(float r, float g, float b, float a = 1f)
+    {
+        Gizmos.color = new Color(r, g, b, a);
+    }
+
+    public static void GizmosSetColor(Color color, float a = 1f)
+    {
+        Gizmos.color = new Color(color.r, color.g, color.b, a);
     }
 }

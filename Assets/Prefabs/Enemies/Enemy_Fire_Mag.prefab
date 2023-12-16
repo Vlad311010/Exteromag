@@ -68,7 +68,6 @@ MonoBehaviour:
   attackRadius: 10
   attackBreak: {x: 5, y: 5}
   damageZonesPerAttack: 4
-  target: {fileID: 0}
 --- !u!1 &5317294557930877034
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +286,7 @@ GameObject:
   - component: {fileID: 1740753851341531975}
   m_Layer: 8
   m_Name: Enemy_Fire_Mag
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -382,6 +381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 7754098580020783009}
   threatLevel: 10
+  target: {fileID: 0}
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -390,6 +390,8 @@ MonoBehaviour:
     m_Bits: 1
   moveAIActive: 1
   attackAIActive: 1
+  canAttack: 1
+  damageOnCollision: 0
 --- !u!114 &8715058743854283152
 MonoBehaviour:
   m_ObjectHideFlags: 0

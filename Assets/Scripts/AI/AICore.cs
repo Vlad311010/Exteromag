@@ -2,6 +2,7 @@ using Interfaces;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class AICore : MonoBehaviour, IDestroyable
 {
@@ -15,11 +16,15 @@ public class AICore : MonoBehaviour, IDestroyable
     [SerializeField] public LayerMask playerLayerMask;
     [SerializeField] public LayerMask obstaclesLayerMask;
 
+    [SerializeField] float visionRange = 50;
+    
+    [SerializeField] bool ignoreWalls = false;
     [SerializeField] bool moveAIActive = true;
     [SerializeField] bool attackAIActive = true;
 
     [HideInInspector] public bool canAttack = true;
     public bool damageOnCollision = false;
+    private bool playerSpoted = false;
 
 
     void Awake()
@@ -31,7 +36,6 @@ public class AICore : MonoBehaviour, IDestroyable
 
 
         UpdateAIComponents();
-
         SetTarget();
     }
 
@@ -42,9 +46,13 @@ public class AICore : MonoBehaviour, IDestroyable
         moveAI.core = this;
         attackAI.core = this;
     }
-
     void Update()
     {
+        LayerMask visionLayerMask = ignoreWalls ? playerLayerMask : playerLayerMask | obstaclesLayerMask;
+        playerSpoted = playerSpoted || AIGeneral.TargetIsVisible(transform.position, target, visionRange, visionLayerMask);
+
+        if (!playerSpoted) return;
+
         if (moveAIActive)
             moveAI.AIUpdate();
         if (attackAIActive)
@@ -70,18 +78,23 @@ public class AICore : MonoBehaviour, IDestroyable
     public void DestroyObject()
     {
         effects.OnDeath();
-        // GameEvents.current.EnemyDied();
+        GameEvents.current.EnemyDied();
         Destroy(this.gameObject);
     }
 
-    private void OnDestroy()
+    /*private void OnDestroy()
     {
         GameEvents.current.EnemyDied();
-    }
+    }*/
 
     public void SetTarget()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    public void SetGoToPoint(Vector2 goToPoint)
+    {
+        agent.destination = goToPoint;
     }
 
     public void OnHit()

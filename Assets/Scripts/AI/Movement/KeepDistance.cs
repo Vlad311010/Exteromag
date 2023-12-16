@@ -23,7 +23,7 @@ public class KeepDistance : MonoBehaviour, IMoveAI
 
     private Coroutine stayingCoroutine = null;
 
-    private void Start()
+    private void Awake()
     {
         agent = GetComponentInParent<AICore>().agent;
     }
@@ -110,7 +110,7 @@ public class KeepDistance : MonoBehaviour, IMoveAI
 
     private void OnDrawGizmosSelected()
     {
-        if (core.target == null) return;
+        if (core == null) return;
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(core.target.position, innerRadius);

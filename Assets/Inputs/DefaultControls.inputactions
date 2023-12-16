@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Action",
+                    "name": "Cast0",
                     "type": "Button",
                     "id": "2495002c-75a0-4232-a5d4-316f4d62846a",
                     "expectedControlType": "Button",
@@ -33,9 +33,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ActionAlt",
+                    "name": "Cast1",
                     "type": "Button",
                     "id": "fd5a43e4-41c8-4a61-848d-893759288b08",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Cast2",
+                    "type": "Button",
+                    "id": "e9cc01cb-78ee-4968-8824-5f6663b6530b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -134,7 +143,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Action",
+                    "action": "Cast0",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -145,7 +154,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ActionAlt",
+                    "action": "Cast1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -168,6 +177,45 @@
                     "processors": "",
                     "groups": "",
                     "action": "RestartLevel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08bbdcf7-9d03-4ef7-bdd7-cf86530480f4",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cast2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "menu",
+            "id": "1788a6b2-7548-494b-9ff4-6e3c780219ae",
+            "actions": [
+                {
+                    "name": "Esc",
+                    "type": "Button",
+                    "id": "592a1d29-18e4-4558-bf4f-e2315620465d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ba0aca0a-c14b-46cd-ba7e-057cafb168f0",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Esc",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
