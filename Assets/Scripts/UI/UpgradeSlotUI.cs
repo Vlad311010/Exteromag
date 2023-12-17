@@ -6,13 +6,16 @@ using UnityEngine.UI;
 public class UpgradeSlotUI : MonoBehaviour, IPointerEnterHandler
 {
     [SerializeField] UpgradeWindowUI upgradeWindow;
-    [SerializeField] Image[] images;
     [SerializeField] TMPro.TMP_Text description;
+    [SerializeField] Button upgradeButton;
+    [SerializeField] Image[] images;
 
     private SpellSetSO spellSet;
+    private int slotIdx;
 
-    public void Activate(SpellSetSO spellSetToUse)
+    public void Activate(SpellSetSO spellSetToUse, int slotIdx)
     {
+        upgradeButton.interactable = false;
         if (spellSetToUse == null || spellSetToUse.upgrades.Count == 0)
         {
             gameObject.SetActive(false);
@@ -20,6 +23,7 @@ public class UpgradeSlotUI : MonoBehaviour, IPointerEnterHandler
         }
 
         spellSet = spellSetToUse;
+        this.slotIdx = slotIdx;
         images = GetComponentsInChildren<Image>();
         for (int i = 0; i < images.Length; i++)
         {
@@ -31,17 +35,19 @@ public class UpgradeSlotUI : MonoBehaviour, IPointerEnterHandler
     public void ShowUpgradeDescription(int idx)
     {
         description.text = spellSet.upgrades[idx].description;  
+
     }
 
     public void SetSelectedSpellUpgrade(int upgradeIdx)
     {
-        upgradeWindow.SetSelectedSpellUpgrade(spellSet, upgradeIdx);
+        upgradeWindow.SetSelectedSpellUpgrade(slotIdx, upgradeIdx);
+        upgradeButton.interactable = true;
     }
 
-    
     public void OnPointerEnter(PointerEventData eventData)
     {
         // eventData.pointerEnter.GetComponent<Button>().
-        Debug.Log("Mouse entered the button! " + eventData.pointerEnter.name);
+        // Debug.Log("Mouse entered the button! " + eventData.pointerEnter.name);
     }
+
 }

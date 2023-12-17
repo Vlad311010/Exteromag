@@ -6,8 +6,9 @@ public class SceneController : MonoBehaviour
     [SerializeField] Vector2 exitPos;
     [SerializeField] GameObject exit;
 
-    [SerializeField] UpgradeWindowUI spellUpgradeMenu;
-    CharacterLimitations characterLimitations;
+    // [SerializeField] UpgradeWindowUI spellUpgradeMenu;
+    static CharacterLimitations characterLimitations;
+
     public int enemiesCount { get; private set; }
     public int spawnersCount { get; private set; }
 
@@ -18,8 +19,8 @@ public class SceneController : MonoBehaviour
         GameEvents.current.onEnemySpawn += OnEnemySpawn;
         GameEvents.current.onSpawnerDestroy += OnSpawnerDestroy;
         
-        GameEvents.current.onEscapePressed += OnEscapePressed;
-        GameEvents.current.onUpgradePickUp += OpenSpellUpgradeMenu;
+        // GameEvents.current.onEscapePressed += OnEscapePressed;
+        // GameEvents.current.onUpgradePickUp += OpenSpellUpgradeMenu;
 
 
         enemiesCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
@@ -59,7 +60,7 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(sceneIdx);
     }
 
-    private void OnEscapePressed()
+    /*private void OnEscapePressed()
     {
         GameObject activeWindow = GameObject.FindGameObjectWithTag("WindowUI");
         if (activeWindow == null)
@@ -71,33 +72,33 @@ public class SceneController : MonoBehaviour
         {
             CloseActiveWindow();
         }
-    }
+    }*/
 
-    private void OpenMenu()
+    /*private void OpenMenu()
     {
         Pause();
-    }
+    }*/
 
-    private void OpenSpellUpgradeMenu()
+    /*private void OpenSpellUpgradeMenu()
     {
         Pause();
         spellUpgradeMenu.gameObject.SetActive(true);
         spellUpgradeMenu.Activate();
-    }
+    }*/
 
-    private void CloseActiveWindow()
+    /*private void CloseActiveWindow()
     {
         // GameObject.FindGameObjectWithTag("WindowUI");
         Resume();
-    }
+    }*/
 
-    private void Pause()
+    public static void Pause()
     {
         Time.timeScale = 0f;
         characterLimitations.DisableActions();
     }
 
-    private void Resume()
+    public static void Resume()
     {
         Time.timeScale = 1f;
         characterLimitations.ActivateActions();

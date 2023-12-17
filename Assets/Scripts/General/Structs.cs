@@ -66,22 +66,4 @@ namespace Structs
         }
     }
 
-    public struct SpellSlotWrapper
-    {
-        public SpellScriptableObject spell;
-        public bool holdDown;
-        public bool isInCooldown { get; set; }
-
-        public SpellSlotWrapper(SpellScriptableObject spell)
-        {
-            this.spell = spell;
-            holdDown = false;
-            isInCooldown = false;
-        }
-
-        public bool IsEmpty()
-        {
-            return spell == null;
-        }
-    }
 }

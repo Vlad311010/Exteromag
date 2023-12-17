@@ -2209,9 +2209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eafc8ba4205d9fd4d82055af95d5faa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellSets:
-  - {fileID: 11400000, guid: 2c5c9b6639b71e64a8b46d0225526b1d, type: 2}
-  - {fileID: 11400000, guid: e9fe40b448829d44aa88ddc9bbe65065, type: 2}
 --- !u!1 &600886818
 GameObject:
   m_ObjectHideFlags: 0
@@ -34851,6 +34848,22 @@ PrefabInstance:
       propertyPath: cinemachine
       value: 
       objectReference: {fileID: 1974219107}
+    - target: {fileID: 5061949154812894976, guid: 0e7fab7b7e27e5b44ae587cd3163b7eb, type: 3}
+      propertyPath: spellsSets.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061949154812894976, guid: 0e7fab7b7e27e5b44ae587cd3163b7eb, type: 3}
+      propertyPath: spellsSets.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1ab96e48be0295f478efe7cf040d6640, type: 2}
+    - target: {fileID: 5061949154812894976, guid: 0e7fab7b7e27e5b44ae587cd3163b7eb, type: 3}
+      propertyPath: spellsSets.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1ab96e48be0295f478efe7cf040d6640, type: 2}
+    - target: {fileID: 5061949154812894976, guid: 0e7fab7b7e27e5b44ae587cd3163b7eb, type: 3}
+      propertyPath: spellsSets.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1ab96e48be0295f478efe7cf040d6640, type: 2}
     - target: {fileID: 5061949154812894998, guid: 0e7fab7b7e27e5b44ae587cd3163b7eb, type: 3}
       propertyPath: m_Name
       value: Player

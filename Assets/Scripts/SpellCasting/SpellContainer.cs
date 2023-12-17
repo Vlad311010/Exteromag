@@ -9,7 +9,7 @@ public class SpellContainer
     SpellScriptableObject level3;*/
 
     // data
-    public SpellScriptableObject spell;
+    public SpellSetSO spellSet;
     public int slotIdx { get; private set; }
 
     // state
@@ -17,10 +17,15 @@ public class SpellContainer
     public float cooldownTimer { get; private set; }
     public bool isInCooldown { get; private set; }
 
-    public SpellContainer(SpellScriptableObject spell, int slotIdx)
+    public SpellScriptableObject spell { get => spellSet.spell; }
+    public int castCost { get => spellSet.spell.castCost; }
+    public float cooldown { get => spellSet.spell.cooldown; }
+
+
+    public SpellContainer(SpellSetSO spellSet, int slotIdx)
     {
         this.slotIdx = slotIdx;
-        this.spell = spell;
+        this.spellSet = GameObject.Instantiate(spellSet);
 
         holdDown = false;
         cooldownTimer = 0;
@@ -29,7 +34,7 @@ public class SpellContainer
     public IEnumerator SpellCooldown()
     {
         isInCooldown = true;
-        cooldownTimer = spell.cooldown;
+        cooldownTimer = cooldown;
         while (cooldownTimer >= 0)
         {
             cooldownTimer -= Time.deltaTime;
@@ -41,11 +46,11 @@ public class SpellContainer
 
     private float GetCooldownPercent()
     {
-        return (spell.cooldown - cooldownTimer) / spell.cooldown;
+        return (cooldown - cooldownTimer) / cooldown;
     }
 
     public bool IsEmpty()
     {
-        return spell == null;
+        return spellSet == null;
     }
 }

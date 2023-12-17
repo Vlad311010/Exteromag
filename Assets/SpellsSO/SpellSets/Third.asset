@@ -10,22 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a2d35476cf583e408ff1381a586c63b, type: 3}
-  m_Name: First
+  m_Name: Third
   m_EditorClassIdentifier: 
   serializedNodes:
   - description: c
-    spell: {fileID: 11400000, guid: 9311cc8dede2d864481de1eec8d08650, type: 2}
-    childCount: 2
-    indexOfFirstChild: 1
-  - description: 
-    spell: {fileID: 11400000, guid: 5a76a392bc3255f4f963fa8a081ba634, type: 2}
-    childCount: 1
-    indexOfFirstChild: 2
-  - description: 
     spell: {fileID: 11400000, guid: 7be8dbcb4daef514d9cd0d15b9d8ab0c, type: 2}
     childCount: 0
-    indexOfFirstChild: 3
-  - description: 
-    spell: {fileID: 11400000, guid: 13ea98d3eb5525d4abbf074d70d970df, type: 2}
-    childCount: 0
-    indexOfFirstChild: 4
+    indexOfFirstChild: 1

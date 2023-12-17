@@ -18,13 +18,11 @@ public class SpellSetSO : ScriptableObject, ISerializationCallbackReceiver
         }
     }
 
-    // public SpellUpgradeNode root { get; private set; } = new SpellUpgradeNode();
-    // public List<SerializableNode> serializedNodes { get; private set; } = new List<SerializableNode>();
-
     public SpellUpgradeNode root;
     public List<SerializableNode> serializedNodes;
 
     public List<SpellUpgradeNode> upgrades { get => root.children; }
+    public SpellScriptableObject spell { get => root.spell; }
 
 
     [Serializable]
@@ -85,6 +83,11 @@ public class SpellSetSO : ScriptableObject, ISerializationCallbackReceiver
             description = serializedNode.description,
             children = children
         };
+    }
+
+    public void Traverse(int childIdx)
+    {
+        root = root.children[childIdx];
     }
 }
 

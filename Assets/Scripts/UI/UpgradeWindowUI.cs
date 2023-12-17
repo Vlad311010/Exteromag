@@ -1,32 +1,50 @@
+using System.Linq;
 using UnityEngine;
 
 public class UpgradeWindowUI : MonoBehaviour
 {
-    [SerializeField] SpellSetSO[] spellSets;
-
+    SpellSetSO[] spellSets;
     UpgradeSlotUI[] upgradeSlots;
 
-    private SpellSetSO selectedSet;
+    // private SpellSetSO selectedSet;
     private int selectedUpgrade;
-    
-    public void Activate()
+    private int slotIdx;
+    private CharacterInteraction characterInteraction;
+
+    /*public void Activate()
     {
+        characterInteraction = characterInteraction ?? GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterInteraction>();
+        spellSets = characterInteraction.containedSpells.Select(cs => cs.spellSet).ToArray();
         upgradeSlots = GetComponentsInChildren<UpgradeSlotUI>();
+
         for (int i = 0; i < upgradeSlots.Length; i++)
         {
             SpellSetSO spellSet = i < spellSets.Length ? spellSets[i] : null;
-            upgradeSlots[i].Activate(spellSet);
+            upgradeSlots[i].Activate(spellSet, i);
+        }
+    }*/
+
+    private void OnEnable()
+    {
+        characterInteraction = characterInteraction ?? GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterInteraction>();
+        spellSets = characterInteraction.containedSpells.Select(cs => cs.spellSet).ToArray();
+        upgradeSlots = GetComponentsInChildren<UpgradeSlotUI>();
+
+        for (int i = 0; i < upgradeSlots.Length; i++)
+        {
+            SpellSetSO spellSet = i < spellSets.Length ? spellSets[i] : null;
+            upgradeSlots[i].Activate(spellSet, i);
         }
     }
 
-    public void SetSelectedSpellUpgrade(SpellSetSO spellSet, int upgdateIdx)
+    public void SetSelectedSpellUpgrade(int spellSet, int upgdateIdx)
     {
-        selectedSet = spellSet;
+        slotIdx = spellSet;
         selectedUpgrade = upgdateIdx;
     }
 
     public void Upgrade()
     {
-        Debug.Log(selectedSet + " " + selectedUpgrade);
+        characterInteraction.UpgradeSpell(slotIdx, selectedUpgrade);
     }
 }

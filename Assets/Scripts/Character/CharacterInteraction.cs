@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Interfaces;
+using UnityEditor.Experimental.GraphView;
+using Structs;
 
 public class CharacterInteraction : MonoBehaviour, IDestroyable
 {
@@ -19,7 +21,7 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
     Camera camera;
 
 
-    private SpellContainer[] containedSpells;
+    public SpellContainer[] containedSpells { get; private set; }
     private int selectedSpell;
 
     private void Start()
@@ -53,7 +55,7 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
         control.gameplay.Cast2.started += OnCast2;
         control.gameplay.Cast2.canceled += OnCast2;
 
-        control.menu.Esc.performed += EscapePressed;
+        // control.menu.Esc.performed += EscapePressed;
 
         control.gameplay.RestartLevel.performed += OnRestart;
     }
@@ -89,12 +91,12 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
 
         if (!containedSpells[selectedSpell].IsEmpty() && containedSpells[selectedSpell].holdDown && !containedSpells[selectedSpell].isInCooldown)
         {
-            if (containedSpells[selectedSpell].spell.preventConstantCasting)
+            if (containedSpells[selectedSpell].spellSet.spell.preventConstantCasting)
                 containedSpells[selectedSpell].holdDown = false;
 
-            if (mana.HaveEnaughtMp(containedSpells[selectedSpell].spell.castCost))
+            if (mana.HaveEnaughtMp(containedSpells[selectedSpell].castCost))
             {
-                mana.Consume(containedSpells[selectedSpell].spell.castCost);
+                mana.Consume(containedSpells[selectedSpell].castCost);
                 StartCoroutine(containedSpells[selectedSpell].SpellCooldown());
                 SpellCasting.Cast(transform, containedSpells[selectedSpell].spell, aim.TakeSnapshot());
             }
@@ -161,6 +163,11 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
     {
         if (obj.performed)
             GameEvents.current.EscapePressed();
+    }
+
+    public void UpgradeSpell(int spellSlot, int upgradeIdx)
+    {
+        containedSpells[spellSlot].spellSet.Traverse(upgradeIdx);
     }
 
 }
