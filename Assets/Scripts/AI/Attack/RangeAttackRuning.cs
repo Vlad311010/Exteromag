@@ -59,10 +59,20 @@ public class RangeAttackRuning : MonoBehaviour, IAttackAI
         core.canAttack = attackBreakTimer < 0f;
         if (targetIsVisible && core.canAttack && attackCoroutine == null)
         {
-            attackCoroutine = StartCoroutine(AttackCoroutine());
+            // Attack();
+            StartAttackAnimation();
         }
     }
 
+    private void StartAttackAnimation()
+    {
+        core.animator.SetBool("Casting", true);
+    }
+
+    public void Attack()
+    {
+        attackCoroutine = StartCoroutine(AttackCoroutine());
+    }
 
     IEnumerator AttackCoroutine()
     {
@@ -75,6 +85,7 @@ public class RangeAttackRuning : MonoBehaviour, IAttackAI
         }
         attackCoroutine = null;
         ResetAttackBreakTimer();
+        core.animator.SetBool("Casting", false);
     }
 
     private void Cast()

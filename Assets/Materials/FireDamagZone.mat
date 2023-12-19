@@ -39,14 +39,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _EdgeDensity: 5
-    - _InnerFieldDensity: 70
+    - _InnerFieldDensity: 120
     - _InnerRadius: 0.9
-    - _InnerRotationSpeed: -1
+    - _InnerRotationSpeed: 0
     - _OuterRadius: 1
-    - _RotationSpeed: 0.5
+    - _RotationSpeed: 0
     - _VoronieDensity: 4
     m_Colors:
     - _EdgeColor: {r: 2.6629138, g: 0.097593695, b: 0, a: 1}
     - _InnerColor: {r: 3.372549, g: 0.09411765, b: 0, a: 1}
-    - _InnerFieldSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _InnerFieldSpeed: {r: 2, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

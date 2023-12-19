@@ -15,7 +15,6 @@ public class DashAttack : MonoBehaviour, IAttackAI
     public float attackSpeed;
     public float attackAcceleration;
 
-    //TODO: make attack preparation part. (moving slightli back of target). Add target lock 
 
 
     public AICore core { get; set; }
@@ -29,7 +28,11 @@ public class DashAttack : MonoBehaviour, IAttackAI
     private Vector2 direction;
     private Vector2 dashStartPoint = Vector2.zero;
     private float currentDashDistance;
-    private List<GameObject> damagedObjects = new List<GameObject>();
+    
+    private float defaultMovementSpeed;
+    private float attackPreparationMovementSpeed = 1;
+
+    // private List<GameObject> damagedObjects = new List<GameObject>();
 
     private Coroutine cooldownCoroutine = null;
 
@@ -39,6 +42,7 @@ public class DashAttack : MonoBehaviour, IAttackAI
         collider = GetComponentInParent<Collider2D>();
         rigidbody = GetComponentInParent<Rigidbody2D>();
         currentDashDistance = targetOvershoot;
+        defaultMovementSpeed = agent.speed;
     }
 
     public void AIUpdate()
@@ -51,7 +55,7 @@ public class DashAttack : MonoBehaviour, IAttackAI
 
         if (!attackState && core.canAttack && targetIsVisible)
         {
-            Attack();
+            StartAttackAnimation();
         }
 
         // if (cooldownCoroutine == null && attackState && Vector2.Distance(transform.position, core.target.position) > attackRange + 1f)
@@ -62,14 +66,22 @@ public class DashAttack : MonoBehaviour, IAttackAI
             core.damageOnCollision = false;
             attackState = false;
             core.canAttack = false;
+            core.animator.SetBool("Dash", false);
+            agent.speed = defaultMovementSpeed;
             cooldownCoroutine = StartCoroutine(CoolDown());
         }
 
     }
 
-    private void Attack()
+    private void StartAttackAnimation()
     {
-        damagedObjects.Clear();
+        core.animator.SetBool("Dash", true);
+        agent.speed = attackPreparationMovementSpeed;
+    }
+
+    public void Attack()
+    {
+        // damagedObjects.Clear();
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, targetOvershoot, core.obstaclesLayerMask);
         currentDashDistance = hit ? hit.distance - 1f : targetOvershoot;
         dashStartPoint = transform.position;
@@ -82,7 +94,8 @@ public class DashAttack : MonoBehaviour, IAttackAI
     }
 
     IEnumerator CoolDown()
-    {
+    { 
+        
         float afterAttackBreakTimer = Random.Range(afterAttackBreak.x, afterAttackBreak.y);
         yield return new WaitForSeconds(afterAttackBreakTimer);
         GetComponentInParent<AICore>().moveAISetActive(true);
@@ -99,7 +112,9 @@ public class DashAttack : MonoBehaviour, IAttackAI
 
     private void OnDrawGizmosSelected()
     {
-        if (!EditorApplication.isPlaying) return;
+        #if UNITY_EDITOR
+            if (!EditorApplication.isPlaying) return;
+        #endif
 
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(transform.position, attackRange);

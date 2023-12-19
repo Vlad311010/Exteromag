@@ -29,6 +29,7 @@ public class SpellScriptableObject : ScriptableObject
     public int castCost;
     public float cooldown;
     public bool parentWithCaster = false;
+    public bool interuptOnSpellChange = true;
     public bool preventConstantCasting = false;
 
     // movement
@@ -55,6 +56,8 @@ public class SpellScriptableObject : ScriptableObject
     public ReflectAttributeData reflectAttribute;
     public LimitedLifeTimeAttributeData limitedLifeTimeAttribute;
     public ChannelingAttributeData channelingAttribute;
+    public DestroyTileAttributeData destroyTileAttribute;
+    public ScaleAttributeData scaleAttribute;
 
     // Spawn attributes data (namig conventions matters)
     public List<SpellSpawnAttribute> spawnAttributes;
@@ -62,6 +65,7 @@ public class SpellScriptableObject : ScriptableObject
     public DefaultSpawnAttributeData defaultSpawnAttribute;
     public RandomOffsetAttributeData randomOffsetAttribute;
     public ShotgunAttributeData shotgunAttribute;
+    public MultipleAttributeData multipleAttribute;
 
 
 }
@@ -146,6 +150,18 @@ public class ChannelingAttributeData
     public float channelingTick;
 }
 
+[Serializable]
+public class DestroyTileAttributeData
+{
+    public LayerMask layerMask;
+}
+
+[Serializable]
+public class ScaleAttributeData
+{
+    public Vector2 scale;
+}
+
 // spawn attributes
 
 [Serializable]
@@ -168,5 +184,12 @@ public class ShotgunAttributeData
     public float range;
     public int projectilesCount;
     public bool evenDistribution;
+}
+
+[Serializable]
+public class MultipleAttributeData
+{
+    public int projectilesCount;
+    public float distanceBetweenProjectiles;
 }
 

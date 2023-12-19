@@ -24,7 +24,7 @@ public class UpgradeSlotUI : MonoBehaviour, IPointerEnterHandler
 
         spellSet = spellSetToUse;
         this.slotIdx = slotIdx;
-        images = GetComponentsInChildren<Image>();
+        // images = GetComponentsInChildren<Image>();
         for (int i = 0; i < images.Length; i++)
         {
             images[i].gameObject.SetActive(i < spellSet.upgrades.Count ? true : false);

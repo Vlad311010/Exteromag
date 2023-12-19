@@ -12,8 +12,10 @@ public class DamageZone : MonoBehaviour
     [SerializeField] float tickTime;
     [SerializeField] int ticks;
     [SerializeField] int damagePerTick;
-    
-    private List<IHealthSystem> objectsInDamageZone = new List<IHealthSystem>();
+
+    [SerializeField] LayerMask layerMask;
+
+    private List<Transform> objectsInDamageZone = new List<Transform>();
 
 
     void Start()
@@ -39,9 +41,11 @@ public class DamageZone : MonoBehaviour
         for (int i = 0; i < ticks; i++)
         {
             yield return new WaitForSeconds(tickTime);
-            foreach (IHealthSystem hs in objectsInDamageZone)
+            foreach (Transform o in objectsInDamageZone)
             {
-                hs.ConsumeHp(damagePerTick, Vector2.zero);
+                Vector2 outOfCenterDirection = (o.position - transform.position).normalized;
+                outOfCenterDirection = outOfCenterDirection == Vector2.zero ? Vector2.up : outOfCenterDirection;
+                o.GetComponent<IHealthSystem>().ConsumeHp(damagePerTick, outOfCenterDirection);
             }
         }
         Deactivate();
@@ -51,17 +55,17 @@ public class DamageZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out IHealthSystem hs))
+        if (layerMask.CheckLayer(collision.gameObject.layer) && collision.TryGetComponent(out IHealthSystem hs))
         {
-            objectsInDamageZone.Add(hs);
+            objectsInDamageZone.Add(collision.transform);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out IHealthSystem hs))
+        if (layerMask.CheckLayer(collision.gameObject.layer) && collision.TryGetComponent(out IHealthSystem hs))
         {
-            objectsInDamageZone.Remove(hs);
+            objectsInDamageZone.Remove(collision.transform);
         }
     }
 }

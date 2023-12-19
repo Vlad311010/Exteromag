@@ -1,3 +1,5 @@
+using NavMeshPlus.Components;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,26 +8,29 @@ public class SceneController : MonoBehaviour
     [SerializeField] Vector2 exitPos;
     [SerializeField] GameObject exit;
 
-    // [SerializeField] UpgradeWindowUI spellUpgradeMenu;
-    static CharacterLimitations characterLimitations;
+    static private CharacterLimitations characterLimitations;
+    static private NavMeshSurface navMesh;
+    static private Coroutine navMeshBakingCoroutine = null;
+    static private SceneController self;
 
     public int enemiesCount { get; private set; }
     public int spawnersCount { get; private set; }
 
+
     void Start()
     {
+        self = this;
+        BakeNavMesh();
+
         GameEvents.current.onSceneLoad += LoadScene;
         GameEvents.current.onEnemyDeath += OnEnemyDeath;
         GameEvents.current.onEnemySpawn += OnEnemySpawn;
         GameEvents.current.onSpawnerDestroy += OnSpawnerDestroy;
         
-        // GameEvents.current.onEscapePressed += OnEscapePressed;
-        // GameEvents.current.onUpgradePickUp += OpenSpellUpgradeMenu;
-
-
         enemiesCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         spawnersCount = GameObject.FindObjectsOfType<EnemySpawner>().Length;
         characterLimitations = GameObject.FindGameObjectWithTag("Player")?.GetComponent<CharacterLimitations>();
+        navMesh = GameObject.FindGameObjectWithTag("NavMesh")?.GetComponent<NavMeshSurface>();
     }
 
     private void OnDestroy()
@@ -60,37 +65,20 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(sceneIdx);
     }
 
-    /*private void OnEscapePressed()
+    public static void BakeNavMesh()
     {
-        GameObject activeWindow = GameObject.FindGameObjectWithTag("WindowUI");
-        if (activeWindow == null)
-        {
-            Pause();
-            OpenMenu();
-        }
-        else
-        {
-            CloseActiveWindow();
-        }
-    }*/
+        if (navMeshBakingCoroutine != null)
+            self.StopCoroutine(navMeshBakingCoroutine);
 
-    /*private void OpenMenu()
-    {
-        Pause();
-    }*/
+        navMeshBakingCoroutine = self.StartCoroutine(NavMeshBakingDelay());
+    }
 
-    /*private void OpenSpellUpgradeMenu()
+    static IEnumerator NavMeshBakingDelay()
     {
-        Pause();
-        spellUpgradeMenu.gameObject.SetActive(true);
-        spellUpgradeMenu.Activate();
-    }*/
+        yield return new WaitForSecondsRealtime(0.5f);
+        navMesh.BuildNavMeshAsync();
+    }
 
-    /*private void CloseActiveWindow()
-    {
-        // GameObject.FindGameObjectWithTag("WindowUI");
-        Resume();
-    }*/
 
     public static void Pause()
     {

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4746680590392702627}
   - component: {fileID: 441828404576179565}
   - component: {fileID: -9185643802013434196}
-  m_Layer: 0
+  - component: {fileID: -8298284533068877375}
+  m_Layer: 2
   m_Name: FireDamageZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +100,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeMaterial: {fileID: 2100000, guid: 4354c5222f3a2654d84a901d163104ee, type: 2}
   unactiveMaterial: {fileID: 2100000, guid: bb3f9901712d7c447afeb99186ef5c65, type: 2}
-  activationTime: 2
+  activationTime: 1.5
   tickTime: 0.1
   ticks: 30
   damagePerTick: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!58 &-8298284533068877375
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4979545266152996942}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

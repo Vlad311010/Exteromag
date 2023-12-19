@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24083a47762275c47b220664ca5652e8, type: 3}
+  m_Name: ShieldStaticZone
+  m_EditorClassIdentifier: 
+  casterPosition: {x: 0, y: 0}
+  castPoint: {x: 0, y: 0}
+  owner: {fileID: 0}
+  projectile: {fileID: 6320629501757368600, guid: 31af548a171aa764b8667ec568a49616, type: 3}
+  onCastParticles: {fileID: 0}
+  particles: {fileID: 0}
+  OnHitParticles: {fileID: 0}
+  spellIcon: {fileID: 0}
+  spellIconColor: {r: 1, g: 1, b: 1, a: 1}
+  upgrades: []
+  castCost: 2
+  cooldown: 0.1
+  parentWithCaster: 0
+  interuptOnSpellChange: 0
+  preventConstantCasting: 1
+  speed: 0
+  decceleration: 0
+  deccelerationStart: 0.5
+  useDecceleration: 0
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 769
+  attributes: 0a0000000c000000
+  explosionAttribute:
+    radius: 0
+    velocityImpact: 0
+    obstacleLayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    interactionLayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+  instantAttribute:
+    distanceLimit: 0
+  bounceAttribute:
+    bounceLimit: 0
+    bounceLayer:
+      serializedVersion: 2
+      m_Bits: 769
+  rotateAroundTargetAttribute:
+    speed: 0
+    distanceFromAnchor: 0
+  penetrateAttribute:
+    penetrateLimit: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+  manaDrainAttribute:
+    manaDrain: 10
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 256
+  damageAttribute:
+    damage: 5
+  kickbackAttribute:
+    force: 50
+  reflectAttribute:
+    reflectCount: 3
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 1024
+    layerMaskToAdd:
+      serializedVersion: 2
+      m_Bits: 256
+    reflectToCaster: 0
+  limitedLifeTimeAttribute:
+    lifetime: 0.1
+  channelingAttribute:
+    slotIdx: 2
+    channelingConst: 1
+    channelingTick: 0.1
+  destroyTileAttribute:
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+  scaleAttribute:
+    scale: {x: 4, y: 1.3}
+  spawnAttributes: 0000000002000000
+  defaultSpawnAttribute:
+    originOffset: 1.5
+  randomOffsetAttribute:
+    angle: 0
+  shotgunAttribute:
+    angle: 15
+    range: 1
+    projectilesCount: 10
+    evenDistribution: 0

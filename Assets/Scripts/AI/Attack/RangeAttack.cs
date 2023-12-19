@@ -10,6 +10,7 @@ public class RangeAttack : MonoBehaviour, IAttackAI
     public SpellScriptableObject spell;
     public float attackRadius;
     public Vector2 attackBreak;
+    
 
 
     [Header("Calculated")]
@@ -44,12 +45,18 @@ public class RangeAttack : MonoBehaviour, IAttackAI
         core.canAttack = attackBreakTimer < 0f;
         if (targetIsVisible && core.canAttack)
         {
-            Attack();
+            StartAttackAnimation();
         }
     }
 
-    private void Attack()
+    public void StartAttackAnimation()
     {
+        core.animator.SetBool("Casting", true);
+    }
+
+    public void Attack()
+    {
+        core.animator.SetBool("Casting", false);
         Cast();
         ResetAttackBreakTimer();
     }

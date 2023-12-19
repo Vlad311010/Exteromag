@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedNodes:
   - description: c
-    spell: {fileID: 11400000, guid: 7be8dbcb4daef514d9cd0d15b9d8ab0c, type: 2}
-    childCount: 0
+    spell: {fileID: 11400000, guid: 13ea98d3eb5525d4abbf074d70d970df, type: 2}
+    childCount: 1
     indexOfFirstChild: 1
+  - description: 
+    spell: {fileID: 11400000, guid: 209ec051794df5a4ba06a4ad9a459d1d, type: 2}
+    childCount: 0
+    indexOfFirstChild: 2

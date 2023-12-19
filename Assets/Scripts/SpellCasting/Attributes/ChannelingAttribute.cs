@@ -29,7 +29,7 @@ public class ChannelingAttribute : MonoBehaviour, ISpellAttribute
     private void HoldState(bool holding, int slotIdx) 
     {
         if (this.slotIdx != slotIdx) return;
-        
+       
         channeling = holding;
     }
 

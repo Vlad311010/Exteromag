@@ -34,7 +34,7 @@ public class FireMag : MonoBehaviour, IAttackAI
     public void AIUpdate()
     {
         float distanceToTarget = Vector2.Distance(transform.position, core.target.position);
-
+        AIGeneral.LookAt(core.transform, core.target);
         attackBreakTimer -= Time.deltaTime;
         core.canAttack = attackBreakTimer < 0;
         if (core.canAttack &&  distanceToTarget < attackRadius)
@@ -44,9 +44,15 @@ public class FireMag : MonoBehaviour, IAttackAI
         }
     }
 
-    private void Attack()
+    private void StartAttackAnimation()
     {
-        Instantiate(damageZone, core.target.position, Quaternion.identity).transform.localScale = new Vector3(damageZoneRadius*2, damageZoneRadius * 2, 1);
+
+    }
+
+    public void Attack()
+    {
+        Quaternion rotatiton = Quaternion.Euler(0, 0, Random.Range(0, 360));
+        Instantiate(damageZone, core.target.position, rotatiton).transform.localScale = new Vector3(damageZoneRadius*2, damageZoneRadius * 2, 1);
         for (int i = 0; i < damageZonesPerAttack-1; i++)
         {
             float angle = Random.Range(0, 360);

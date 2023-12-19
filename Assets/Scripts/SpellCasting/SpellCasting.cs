@@ -47,16 +47,19 @@ public static class SpellCasting
             spellObject.Init(spell);
 
             //add velocity
-            if (spellSpawnData.forceMode == Enums.ForceApplyMode.LookDirection)
-            {
-                spellObject.GetComponent<ProjectileMovement>().Init(spellObject.transform.up, spell.speed, spell.decceleration, spell.useDecceleration, spell.deccelerationStart);
-            }
-            else if (spellSpawnData.forceMode == Enums.ForceApplyMode.CastPoint)
-            {
-                Vector2 direction = (spellSpawnData.castPoint - (Vector2)spellObject.transform.position).normalized;
-                spellObject.GetComponent<ProjectileMovement>().Init(direction, spell.speed, spell.decceleration, spell.useDecceleration, spell.deccelerationStart);
-            }
 
+            if (spellObject.TryGetComponent(out ProjectileMovement projectileMovement))
+            {
+                if (spellSpawnData.forceMode == Enums.ForceApplyMode.LookDirection)
+                {
+                    projectileMovement.Init(spellObject.transform.up, spell.speed, spell.decceleration, spell.useDecceleration, spell.deccelerationStart);
+                }
+                else if (spellSpawnData.forceMode == Enums.ForceApplyMode.CastPoint)
+                {
+                    Vector2 direction = (spellSpawnData.castPoint - (Vector2)spellObject.transform.position).normalized;
+                    projectileMovement.Init(direction, spell.speed, spell.decceleration, spell.useDecceleration, spell.deccelerationStart);
+                }
+            }
         }
     }
 }

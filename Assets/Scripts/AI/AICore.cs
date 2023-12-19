@@ -1,18 +1,17 @@
 using Interfaces;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class AICore : MonoBehaviour, IDestroyable
 {
     AIEffects effects;
+    public Animator animator;
 
     public NavMeshAgent agent;
     public int threatLevel;
     public Transform target;
-    [SerializeField] IMoveAI moveAI;
-    [SerializeField] IAttackAI attackAI;
+    public IMoveAI moveAI { get; private set; }
+    public IAttackAI attackAI { get; private set; }
     [SerializeField] public LayerMask playerLayerMask;
     [SerializeField] public LayerMask obstaclesLayerMask;
 
@@ -30,9 +29,11 @@ public class AICore : MonoBehaviour, IDestroyable
     void Awake()
     {
         effects = GetComponent<AIEffects>();
+        animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateUpAxis = false;
         agent.updateRotation = false;
+        
 
 
         UpdateAIComponents();

@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: First
   m_EditorClassIdentifier: 
   serializedNodes:
-  - description: c
+  - description: Base
     spell: {fileID: 11400000, guid: 9311cc8dede2d864481de1eec8d08650, type: 2}
     childCount: 2
     indexOfFirstChild: 1
-  - description: 
-    spell: {fileID: 11400000, guid: 5a76a392bc3255f4f963fa8a081ba634, type: 2}
+  - description: Bounce of walls (2) times, better accuracy
+    spell: {fileID: 11400000, guid: 1b7c0ebc9e863174eb7bdb6bbb0cc2a2, type: 2}
     childCount: 1
     indexOfFirstChild: 2
-  - description: 
-    spell: {fileID: 11400000, guid: 7be8dbcb4daef514d9cd0d15b9d8ab0c, type: 2}
+  - description: bounce
+    spell: {fileID: 11400000, guid: 2c081cb31b2e23b459688dfd03dd8592, type: 2}
     childCount: 0
     indexOfFirstChild: 3
-  - description: 
-    spell: {fileID: 11400000, guid: 13ea98d3eb5525d4abbf074d70d970df, type: 2}
+  - description: Deal more damage, faster projectiles, wors accuracy
+    spell: {fileID: 11400000, guid: ba2db51a74dd75b48831af4490aff88f, type: 2}
     childCount: 0
     indexOfFirstChild: 4

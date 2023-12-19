@@ -27,10 +27,21 @@ public class BounceAttribute : MonoBehaviour, ISpellAttribute
         }
         else
         {
+            // set move direction 
             Vector3 moventDir = transform.GetComponent<ProjectileMovement>().direction;
             Vector3 normalDir = collisionData.Contacts[0].normal;
             Vector3 reflectedVector = Vector3.Reflect(moventDir, normalDir).normalized;
             transform.GetComponent<ProjectileMovement>().direction = reflectedVector;
+
+            // set rotation 
+            Quaternion lookDirection = Quaternion.LookRotation(new Vector3(0, 0, 1), reflectedVector);
+            transform.rotation = Quaternion.Euler(0, 0, lookDirection.eulerAngles.z);
         }
+    }
+
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        OnHitEvent(new CollisionData(collision.gameObject, collision.rigidbody, collision.contacts));
     }
 }

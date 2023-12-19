@@ -23,14 +23,9 @@ public class MeleeAttack : MonoBehaviour, IAttackAI
     public bool stopAfterAttack = false;
     public float stopAfterAttackTime;
 
-    private NavMeshAgent agent;
     Vector2 directionToTarget;
     private bool targetInAttackRange;
 
-    void Start()
-    {
-        agent = GetComponentInParent<AICore>().agent;
-    }
 
     public void AIUpdate()
     {
@@ -38,11 +33,17 @@ public class MeleeAttack : MonoBehaviour, IAttackAI
         targetInAttackRange = AIGeneral.IsInsideVisionCon(core.target.position, core.transform.position, core.transform.up, attackRange, attackRadius);
         if (targetInAttackRange && core.canAttack)
         {
-            Attack();
+            // Attack();
+            StartAttackAnimation();
         }
     }
 
-    void  Attack()
+    private void StartAttackAnimation()
+    {
+        core.animator.SetBool("Bash", true);
+    }
+
+    public void Attack()
     {
         core.canAttack = false;
         attackEffect.Play();
@@ -53,6 +54,7 @@ public class MeleeAttack : MonoBehaviour, IAttackAI
         }
         StartCoroutine(Cooldown());
         StartCoroutine(TurnOffMovement());
+        core.animator.SetBool("Bash", false);
     }
     private Collider2D[] ObjectsToDamage()
     {

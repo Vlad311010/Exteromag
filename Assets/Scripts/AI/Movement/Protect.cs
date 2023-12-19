@@ -97,7 +97,7 @@ public class Protect : MonoBehaviour, IMoveAI
 
     private void OnDrawGizmosSelected()
     {
-        if (core.target == null || protectionTarget == null) return;
+        if (core == null || protectionTarget == null) return;
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(protectionTarget.position, innerRadius);

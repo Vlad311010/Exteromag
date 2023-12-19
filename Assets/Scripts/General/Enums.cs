@@ -12,7 +12,9 @@ namespace Enums
         Kickback = 7,
         Reflect = 8,
         LimitedLifeTime = 9,
-        Channeling = 10
+        Channeling = 10,
+        DestroyTile = 11,
+        Scale = 12
     }
 
     public enum SpellSpawnAttribute
@@ -20,7 +22,8 @@ namespace Enums
         DefaultSpawn = 0,
         UnderCursor = 1,
         RandomOffset = 2,
-        Shotgun = 3
+        Shotgun = 3,
+        Multiple = 4
     }
 
     public enum ForceApplyMode
