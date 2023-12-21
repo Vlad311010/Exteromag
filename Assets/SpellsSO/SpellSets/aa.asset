@@ -10,22 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a2d35476cf583e408ff1381a586c63b, type: 3}
-  m_Name: First
+  m_Name: aa
   m_EditorClassIdentifier: 
   serializedNodes:
-  - description: Base
+  - description: 
     spell: {fileID: 11400000, guid: 9311cc8dede2d864481de1eec8d08650, type: 2}
-    childCount: 2
+    childCount: 3
     indexOfFirstChild: 1
-  - description: Bounce of walls (2) times, better accuracy
+  - description: 
     spell: {fileID: 11400000, guid: 1b7c0ebc9e863174eb7bdb6bbb0cc2a2, type: 2}
     childCount: 1
-    indexOfFirstChild: 3
-  - description: bounce
+    indexOfFirstChild: 2
+  - description: 
     spell: {fileID: 11400000, guid: dfd62be816949764a9cab9aeabf27b96, type: 2}
     childCount: 0
-    indexOfFirstChild: 2
-  - description: bounce
-    spell: {fileID: 11400000, guid: 9de2baff6ad835b46bca1e6ef6da8a1d, type: 2}
+    indexOfFirstChild: 3
+  - description: 
+    spell: {fileID: 11400000, guid: ba2db51a74dd75b48831af4490aff88f, type: 2}
     childCount: 0
-    indexOfFirstChild: 1
+    indexOfFirstChild: 4
+  - description: 
+    spell: {fileID: 11400000, guid: 5a76a392bc3255f4f963fa8a081ba634, type: 2}
+    childCount: 0
+    indexOfFirstChild: 5

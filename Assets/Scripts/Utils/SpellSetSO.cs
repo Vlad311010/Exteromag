@@ -20,6 +20,7 @@ public class SpellSetSO : ScriptableObject, ISerializationCallbackReceiver
 
     public SpellUpgradeNode root;
     public List<SerializableNode> serializedNodes;
+    int deserializationIndex = 0;
 
     public List<SpellUpgradeNode> upgrades { get => root.children; }
     public SpellScriptableObject spell { get => root.spell; }
@@ -31,7 +32,6 @@ public class SpellSetSO : ScriptableObject, ISerializationCallbackReceiver
         public string description;
         public SpellScriptableObject spell;
         public int childCount;
-        public int indexOfFirstChild;
     }
 
 
@@ -46,6 +46,19 @@ public class SpellSetSO : ScriptableObject, ISerializationCallbackReceiver
         serializedNodes.Clear();
         AddNodeToSerializedNodes(root);
     }
+
+    SerializableNode SerizlizeNode(SpellUpgradeNode node)
+    {
+        SerializableNode serializedNode = new SerializableNode()
+        {
+            spell = node.spell,
+            description = node.description,
+            childCount = node.children.Count,
+
+        };
+        
+        return serializedNode;
+    }
     
     void AddNodeToSerializedNodes(SpellUpgradeNode node)
     {
@@ -54,28 +67,30 @@ public class SpellSetSO : ScriptableObject, ISerializationCallbackReceiver
             spell = node.spell,
             description = node.description,
             childCount = node.children.Count,
-            indexOfFirstChild = serializedNodes.Count + 1
         };
 
         serializedNodes.Add(serializedNode);
+
         foreach (var child in node.children)
             AddNodeToSerializedNodes(child);
     }
 
     public void OnAfterDeserialize()
     {
+        deserializationIndex = 0;
         if (serializedNodes.Count > 0)
-            root = ReadNodeFromSerializedNodes(0);
+            root = ReadNodeFromSerializedNodes();
         else
             root = new SpellUpgradeNode();
     }
 
-    SpellUpgradeNode ReadNodeFromSerializedNodes(int index)
+    SpellUpgradeNode ReadNodeFromSerializedNodes()
     {
-        var serializedNode = serializedNodes[index];
+        var serializedNode = serializedNodes[deserializationIndex];
+        deserializationIndex += 1;
         var children = new List<SpellUpgradeNode>();
         for (int i = 0; i < serializedNode.childCount; i++)
-            children.Add(ReadNodeFromSerializedNodes(serializedNode.indexOfFirstChild + i));
+            children.Add(ReadNodeFromSerializedNodes());
 
         return new SpellUpgradeNode()
         {

@@ -54,11 +54,11 @@ public class SpellSetSOEditor : Editor
         GUILayout.BeginHorizontal();
         GUILayout.Space(pixelsPerIndentLevel * indentLevel);
         GUILayout.BeginVertical();
+
         foreach (SpellUpgradeNode child in node.children)
         {
             Display(child, indentLevel);
         }
-
         GUILayout.EndVertical();
         GUILayout.EndHorizontal();
 

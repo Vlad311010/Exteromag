@@ -19,7 +19,7 @@ MonoBehaviour:
   onCastParticles: {fileID: 0}
   particles: {fileID: 0}
   OnHitParticles: {fileID: 0}
-  spellIcon: {fileID: 0}
+  spellIcon: {fileID: 21300000, guid: c1b6366927e88c04cb85fcaea34b12e1, type: 3}
   spellIconColor: {r: 1, g: 1, b: 1, a: 1}
   upgrades: []
   castCost: 60
@@ -99,3 +99,6 @@ MonoBehaviour:
     range: 1
     projectilesCount: 10
     evenDistribution: 0
+  multipleAttribute:
+    projectilesCount: 0
+    distanceBetweenProjectiles: 0

@@ -24,7 +24,7 @@ public class IdleWander : MonoBehaviour, IMoveAI
     {
         agent = GetComponentInParent<AICore>().agent;
         originalPosition = agent.transform.position;
-        StartCoroutine(Wait());
+        // StartCoroutine(Wait());
     }
 
     public void AIReset() { }

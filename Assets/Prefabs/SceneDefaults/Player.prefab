@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellsSets:
-  - {fileID: 11400000, guid: 1ab96e48be0295f478efe7cf040d6640, type: 2}
+  - {fileID: 11400000, guid: 03c7ee9805a486141a7cf9a6ae860e8f, type: 2}
   - {fileID: 11400000, guid: 4a95d4e74f3364b4ebfb12b3a97dbf35, type: 2}
   - {fileID: 11400000, guid: 2eb510297770529448bf190efb34c971, type: 2}
 --- !u!114 &5061949154812895007
