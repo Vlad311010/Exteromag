@@ -26,6 +26,12 @@ public class SpellCooldownUI : MonoBehaviour
     {
         GameEvents.current.onSpellCooldownValueChange -= UpdateUI;
     }
+
+    private void Awake()
+    {
+        aim = GameObject.FindGameObjectWithTag("Aim").transform;
+    }
+
     private void LateUpdate()
     {
         

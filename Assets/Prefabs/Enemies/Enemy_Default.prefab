@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 11400000, guid: fe37eeb66fa5378438926c87364d5089, type: 2}
-  attackRadius: 15
+  attackRadius: 23
   attackBreak: {x: 0.3, y: 3}
 --- !u!1 &6251271256189677623
 GameObject:
@@ -693,7 +693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88aaa29c1dbd4c24a93d7b7d4b622fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 246
+  maxHp: 15
   hitMaterial: {fileID: 2100000, guid: 5153d70b6a62544418a6820cd87ef6cc, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   hitHighlightTime: 0.17

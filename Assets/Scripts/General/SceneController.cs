@@ -16,11 +16,15 @@ public class SceneController : MonoBehaviour
     public int enemiesCount { get; private set; }
     public int spawnersCount { get; private set; }
 
+    /*private void Awake()
+    {
+        
+        // BakeNavMesh(true);
+    }*/
 
     void Start()
     {
         self = this;
-        BakeNavMesh();
 
         GameEvents.current.onSceneLoad += LoadScene;
         GameEvents.current.onEnemyDeath += OnEnemyDeath;
@@ -65,8 +69,14 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(sceneIdx);
     }
 
-    public static void BakeNavMesh()
+    public static void BakeNavMesh(bool immediate = false)
     {
+        if (immediate)
+        {
+            navMesh.BuildNavMeshAsync();
+            return;
+        }
+
         if (navMeshBakingCoroutine != null)
             self.StopCoroutine(navMeshBakingCoroutine);
 

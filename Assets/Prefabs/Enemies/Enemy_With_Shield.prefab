@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88aaa29c1dbd4c24a93d7b7d4b622fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 20
+  maxHp: 15
   hitMaterial: {fileID: 2100000, guid: 5153d70b6a62544418a6820cd87ef6cc, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   hitHighlightTime: 0.17
@@ -731,10 +731,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield
       objectReference: {fileID: 0}
-    - target: {fileID: 557216337480231026, guid: d2c4e80e3a9993840a44a730b1179af9, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 557216337480231027, guid: d2c4e80e3a9993840a44a730b1179af9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -778,10 +774,6 @@ PrefabInstance:
     - target: {fileID: 557216337480231027, guid: d2c4e80e3a9993840a44a730b1179af9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 557216337480231054, guid: d2c4e80e3a9993840a44a730b1179af9, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2c4e80e3a9993840a44a730b1179af9, type: 3}
