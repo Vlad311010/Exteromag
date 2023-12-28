@@ -9,12 +9,22 @@ public class GameEvents : MonoBehaviour
         current = this;
     }
 
-    public event Action<int> onSceneLoad;
+/*    public event Action<int> onSceneLoad;
     public void SceneLoad(int sceneIdx)
     {
         if (onSceneLoad != null)
         {
             onSceneLoad(sceneIdx);
+        }
+    }
+
+    */
+    public event Action<int, int> onHealthChange;
+    public void HealthChange(int current, int max)
+    {
+        if (onHealthChange != null)
+        {
+            onHealthChange(current, max);
         }
     }
 
@@ -27,12 +37,12 @@ public class GameEvents : MonoBehaviour
         }
     }
 
-    public event Action<int, int> onHealthChange;
-    public void HealthChange(int current, int max)
+    public event Action<int, int> onHealthChangePlayer;
+    public void HealthChangePlayer(int current, int max)
     {
-        if (onHealthChange != null)
+        if (onHealthChangePlayer != null)
         {
-            onHealthChange(current, max);
+            onHealthChangePlayer(current, max);
         }
     }
 
@@ -88,6 +98,42 @@ public class GameEvents : MonoBehaviour
         if (onPlayersDeath!= null)
         {
             onPlayersDeath();
+        }
+    }
+
+    public event Action onPlayerSpawn;
+    public void PlayerSpawned()
+    {
+        if (onPlayerSpawn != null)
+        {
+            onPlayerSpawn();
+        }
+    }
+
+    public event Action onRespawn;
+    public void Respawn()
+    {
+        if (onRespawn != null)
+        {
+            onRespawn();
+        }
+    }
+
+    public event Action onNextLevelLoad;
+    public void NextLevelLoad()
+    {
+        if (onNextLevelLoad != null)
+        {
+            onNextLevelLoad();
+        }
+    }
+
+    public event Action onExitTriggered;
+    public void ExitTriggered()
+    {
+        if (onExitTriggered != null)
+        {
+            onExitTriggered();
         }
     }
 

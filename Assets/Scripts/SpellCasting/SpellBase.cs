@@ -62,7 +62,7 @@ public class SpellBase : MonoBehaviour
         // instanciate particle
         // destroy object
         // spell impact
-        
+
         AttributesOnHitEvent(collisionData);
     }
 
@@ -108,6 +108,7 @@ public class SpellBase : MonoBehaviour
 
     public void Despawn()
     {
+        SpawnHitParticles();
         Destroy(this.gameObject);
     }
 

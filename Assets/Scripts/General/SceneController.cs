@@ -1,47 +1,79 @@
+using Interfaces;
 using NavMeshPlus.Components;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    [SerializeField] GameObject playerPrefab;
+    [SerializeField] Vector2 spawPos;
+
     [SerializeField] Vector2 exitPos;
     [SerializeField] GameObject exit;
 
-    static private CharacterLimitations characterLimitations;
-    static private NavMeshSurface navMesh;
-    static private Coroutine navMeshBakingCoroutine = null;
-    static private SceneController self;
 
+    public static CharacterStatsSO characterStats;
+    private static CharacterLimitations characterLimitations;
+    private static NavMeshSurface navMesh;
+    private static Coroutine navMeshBakingCoroutine = null;
+    private static SceneController self;
     public int enemiesCount { get; private set; }
     public int spawnersCount { get; private set; }
 
-    /*private void Awake()
+    private void Awake()
     {
-        
-        // BakeNavMesh(true);
-    }*/
+        SpawnPlayer();
+        characterStats = characterStats ?? ScriptableObject.CreateInstance("CharacterStatsSO") as CharacterStatsSO;
+    }
+
 
     void Start()
     {
         self = this;
 
-        GameEvents.current.onSceneLoad += LoadScene;
         GameEvents.current.onEnemyDeath += OnEnemyDeath;
         GameEvents.current.onEnemySpawn += OnEnemySpawn;
         GameEvents.current.onSpawnerDestroy += OnSpawnerDestroy;
+        GameEvents.current.onExitTriggered += SavePlayerStats;
+
         
         enemiesCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         spawnersCount = GameObject.FindObjectsOfType<EnemySpawner>().Length;
-        characterLimitations = GameObject.FindGameObjectWithTag("Player")?.GetComponent<CharacterLimitations>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        characterLimitations = player.GetComponent<CharacterLimitations>();
+
         navMesh = GameObject.FindGameObjectWithTag("NavMesh")?.GetComponent<NavMeshSurface>();
+        
+        
+    }
+
+    private void SavePlayerStats()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        characterStats.hp = player.GetComponent<IHealthSystem>().CurrentHealth;
+        characterStats.mana = player.GetComponent<ManaPool>().CurrentMp;
+        Debug.Log(characterStats.hp + " " + characterStats.mana);
     }
 
     private void OnDestroy()
     {
-        GameEvents.current.onSceneLoad -= LoadScene;
         GameEvents.current.onEnemyDeath -= OnEnemyDeath;
         GameEvents.current.onSpawnerDestroy -= OnSpawnerDestroy;
+    }
+
+    private void SpawnPlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            Instantiate(playerPrefab, spawPos, Quaternion.identity);
+        }
+        else
+        {
+            player.transform.position = spawPos;
+        }
     }
 
     private void OnEnemyDeath()
@@ -64,7 +96,7 @@ public class SceneController : MonoBehaviour
         spawnersCount--;
     }
 
-    private void LoadScene(int sceneIdx)
+    private static void LoadScene(int sceneIdx)
     {
         SceneManager.LoadScene(sceneIdx);
     }
@@ -89,6 +121,19 @@ public class SceneController : MonoBehaviour
         navMesh.BuildNavMeshAsync();
     }
 
+    public static void ReloadScene()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterRespawn>().Respawn();
+        LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    /*private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }*/
+
+
 
     public static void Pause()
     {
@@ -100,5 +145,18 @@ public class SceneController : MonoBehaviour
     {
         Time.timeScale = 1f;
         characterLimitations.ActivateActions();
+    }
+
+    private void OnDrawGizmos()
+    {
+        #if UNITY_EDITOR
+            if (EditorApplication.isPlaying) return;
+        #endif
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawCube(spawPos, Vector2.one);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(exitPos, Vector2.one);
     }
 }

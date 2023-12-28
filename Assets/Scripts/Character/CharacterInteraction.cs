@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using Interfaces;
 
 public class CharacterInteraction : MonoBehaviour, IDestroyable
@@ -12,21 +11,25 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
 
     [Header("References")]
     private CharacterAim aim;
-    private CharacterEffects effects; 
     private CharacterLimitations limitations; 
     private ManaPool mana;
+    private IHealthSystem health;
     Camera camera;
 
 
     public SpellContainer[] containedSpells { get; private set; }
     private int selectedSlotIdx;
 
-    private void Start()
+    private void Awake()
     {
         aim = GetComponentInChildren<CharacterAim>();
-        effects = GetComponentInChildren<CharacterEffects>();
         limitations = GetComponentInChildren<CharacterLimitations>();
         mana = GetComponent<ManaPool>();
+        health = GetComponent<IHealthSystem>();
+    }
+
+    private void Start()
+    {
         camera = Camera.main;
 
         containedSpells = new SpellContainer[spellsSets.Length];
@@ -34,6 +37,7 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
         {
             containedSpells[i] = new SpellContainer(spellsSets[i], i);
         }
+
     }
 
     void OnEnable()
@@ -52,8 +56,9 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
         control.gameplay.Cast2.started  += ctx => OnCast(ctx, 2);
         control.gameplay.Cast2.canceled += ctx => OnCast(ctx, 2);
 
-        control.gameplay.RestartLevel.performed += OnRestart;
+        control.gameplay.RestoreMana.performed += RestoreMana;
     }
+
 
 
     void OnDisable()
@@ -70,7 +75,7 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
         // control.gameplay.Cast2.started  -= OnCast;
         // control.gameplay.Cast2.canceled -= OnCast;
 
-        control.gameplay.RestartLevel.performed -= OnRestart;
+        // control.gameplay.RestartLevel.performed -= OnRestart;
     }
 
     private void Update()
@@ -115,26 +120,28 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
         ProcessCastInput(obj);
     }
 
-    private void OnRestart(InputAction.CallbackContext obj)
-    {
-        GameEvents.current.SceneLoad(SceneManager.GetActiveScene().buildIndex);
-    }
-
     public void DestroyObject()
     {
-        foreach (var spriteRenderer in GetComponentsInChildren<SpriteRenderer>())
-        {
-            spriteRenderer.enabled = false;
-        }
-        limitations.DisableActions();
-        effects.CreateSplashEffect();
-        GameEvents.current.PlayerDied();
-        Debug.Log("PLAYER DEATH");
+        limitations.DeactivatePlayer();
     }
+
+    public void ActivatePlayer()
+    {
+        limitations.ActivatePlayer();
+    }
+
 
     public void UpgradeSpell(int spellSlot, int upgradeIdx)
     {
         containedSpells[spellSlot].spellSet.Traverse(upgradeIdx);
     }
 
+    private void RestoreMana(InputAction.CallbackContext obj)
+    {
+        if (obj.performed)
+        {
+            mana.Consume(-mana.MaxMp / 2);
+            health.ConsumeHp(1, Vector2.zero, true);
+        }
+    }
 }

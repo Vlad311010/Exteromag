@@ -15,10 +15,10 @@ MonoBehaviour:
   casterPosition: {x: 0, y: 0}
   castPoint: {x: 0, y: 0}
   owner: {fileID: 0}
-  projectile: {fileID: 5543515162880620750, guid: ca9da2e589c08cc4cb5acb9423662a72, type: 3}
+  projectile: {fileID: 8397214281368865613, guid: ceb4f7578b85c614c8cbb4c4b3be11aa, type: 3}
   onCastParticles: {fileID: 0}
   particles: {fileID: 0}
-  OnHitParticles: {fileID: 0}
+  OnHitParticles: {fileID: 8707564758431779321, guid: 8c77551d2e838e4478128174fe490695, type: 3}
   spellIcon: {fileID: 0}
   spellIconColor: {r: 1, g: 1, b: 1, a: 1}
   upgrades: []
@@ -99,3 +99,6 @@ MonoBehaviour:
     range: 1
     projectilesCount: 10
     evenDistribution: 0
+  multipleAttribute:
+    projectilesCount: 0
+    distanceBetweenProjectiles: 0

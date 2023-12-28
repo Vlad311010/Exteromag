@@ -89,6 +89,15 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RestoreMana"",
+                    ""type"": ""Button"",
+                    ""id"": ""bff96c42-8069-43a6-b65a-3e7600a25de9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -212,6 +221,17 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
                     ""action"": ""Cast2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa35c50d-a0af-4510-bf1b-c2e968330f9a"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RestoreMana"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -223,6 +243,15 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
                     ""name"": ""Esc"",
                     ""type"": ""Button"",
                     ""id"": ""592a1d29-18e4-4558-bf4f-e2315620465d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Respawn"",
+                    ""type"": ""Button"",
+                    ""id"": ""4f3dc4e6-d4f1-4d3c-8e1f-14109249590a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -240,6 +269,17 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
                     ""action"": ""Esc"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10d75631-f95f-4a91-97a0-d5727c82f101"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Respawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -255,9 +295,11 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
         m_gameplay_Cast2 = m_gameplay.FindAction("Cast2", throwIfNotFound: true);
         m_gameplay_Interact = m_gameplay.FindAction("Interact", throwIfNotFound: true);
         m_gameplay_RestartLevel = m_gameplay.FindAction("RestartLevel", throwIfNotFound: true);
+        m_gameplay_RestoreMana = m_gameplay.FindAction("RestoreMana", throwIfNotFound: true);
         // menu
         m_menu = asset.FindActionMap("menu", throwIfNotFound: true);
         m_menu_Esc = m_menu.FindAction("Esc", throwIfNotFound: true);
+        m_menu_Respawn = m_menu.FindAction("Respawn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -326,6 +368,7 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_gameplay_Cast2;
     private readonly InputAction m_gameplay_Interact;
     private readonly InputAction m_gameplay_RestartLevel;
+    private readonly InputAction m_gameplay_RestoreMana;
     public struct GameplayActions
     {
         private @DefaultControls m_Wrapper;
@@ -337,6 +380,7 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
         public InputAction @Cast2 => m_Wrapper.m_gameplay_Cast2;
         public InputAction @Interact => m_Wrapper.m_gameplay_Interact;
         public InputAction @RestartLevel => m_Wrapper.m_gameplay_RestartLevel;
+        public InputAction @RestoreMana => m_Wrapper.m_gameplay_RestoreMana;
         public InputActionMap Get() { return m_Wrapper.m_gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -367,6 +411,9 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
             @RestartLevel.started += instance.OnRestartLevel;
             @RestartLevel.performed += instance.OnRestartLevel;
             @RestartLevel.canceled += instance.OnRestartLevel;
+            @RestoreMana.started += instance.OnRestoreMana;
+            @RestoreMana.performed += instance.OnRestoreMana;
+            @RestoreMana.canceled += instance.OnRestoreMana;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -392,6 +439,9 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
             @RestartLevel.started -= instance.OnRestartLevel;
             @RestartLevel.performed -= instance.OnRestartLevel;
             @RestartLevel.canceled -= instance.OnRestartLevel;
+            @RestoreMana.started -= instance.OnRestoreMana;
+            @RestoreMana.performed -= instance.OnRestoreMana;
+            @RestoreMana.canceled -= instance.OnRestoreMana;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -414,11 +464,13 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_menu;
     private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
     private readonly InputAction m_menu_Esc;
+    private readonly InputAction m_menu_Respawn;
     public struct MenuActions
     {
         private @DefaultControls m_Wrapper;
         public MenuActions(@DefaultControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Esc => m_Wrapper.m_menu_Esc;
+        public InputAction @Respawn => m_Wrapper.m_menu_Respawn;
         public InputActionMap Get() { return m_Wrapper.m_menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -431,6 +483,9 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
             @Esc.started += instance.OnEsc;
             @Esc.performed += instance.OnEsc;
             @Esc.canceled += instance.OnEsc;
+            @Respawn.started += instance.OnRespawn;
+            @Respawn.performed += instance.OnRespawn;
+            @Respawn.canceled += instance.OnRespawn;
         }
 
         private void UnregisterCallbacks(IMenuActions instance)
@@ -438,6 +493,9 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
             @Esc.started -= instance.OnEsc;
             @Esc.performed -= instance.OnEsc;
             @Esc.canceled -= instance.OnEsc;
+            @Respawn.started -= instance.OnRespawn;
+            @Respawn.performed -= instance.OnRespawn;
+            @Respawn.canceled -= instance.OnRespawn;
         }
 
         public void RemoveCallbacks(IMenuActions instance)
@@ -464,9 +522,11 @@ public partial class @DefaultControls: IInputActionCollection2, IDisposable
         void OnCast2(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnRestartLevel(InputAction.CallbackContext context);
+        void OnRestoreMana(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
         void OnEsc(InputAction.CallbackContext context);
+        void OnRespawn(InputAction.CallbackContext context);
     }
 }

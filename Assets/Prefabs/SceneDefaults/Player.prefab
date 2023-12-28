@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 5061949154812895000}
   - component: {fileID: 5061949154812894977}
   - component: {fileID: 5061949154812895003}
+  - component: {fileID: 5041540757691731886}
   - component: {fileID: 4451751471417976041}
   - component: {fileID: 5061949154812895004}
   - component: {fileID: 5061949154812895001}
@@ -318,6 +319,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &5041540757691731886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061949154812894998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eceea64096703ff4d8ee6cd38123f365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4451751471417976041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,6 +345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0.21568629, g: 0.85098046, b: 0.54509807, a: 1}
   splash: {fileID: 7916890796168821779, guid: 13d59e5ed84065343b7313dd01df612d, type: 3}
+  onDeathEffect: {fileID: 4061698271305492194, guid: b3f966d2c41a90242aa24de099161379, type: 3}
   cinemachine: {fileID: 0}
 --- !u!114 &5061949154812895004
 MonoBehaviour:
@@ -422,7 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26cfe71bcefba7345a4234dababd9909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 3000
+  maxHp: 3
   hitMaterial: {fileID: 2100000, guid: 5153d70b6a62544418a6820cd87ef6cc, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   hitHighlightTime: 0.2

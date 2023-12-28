@@ -6,23 +6,9 @@ public class UpgradeWindowUI : MonoBehaviour
     SpellSetSO[] spellSets;
     UpgradeSlotUI[] upgradeSlots;
 
-    // private SpellSetSO selectedSet;
     private int selectedUpgrade;
     private int slotIdx;
     private CharacterInteraction characterInteraction;
-
-    /*public void Activate()
-    {
-        characterInteraction = characterInteraction ?? GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterInteraction>();
-        spellSets = characterInteraction.containedSpells.Select(cs => cs.spellSet).ToArray();
-        upgradeSlots = GetComponentsInChildren<UpgradeSlotUI>();
-
-        for (int i = 0; i < upgradeSlots.Length; i++)
-        {
-            SpellSetSO spellSet = i < spellSets.Length ? spellSets[i] : null;
-            upgradeSlots[i].Activate(spellSet, i);
-        }
-    }*/
 
     private void OnEnable()
     {
@@ -41,6 +27,11 @@ public class UpgradeWindowUI : MonoBehaviour
     {
         slotIdx = spellSet;
         selectedUpgrade = upgdateIdx;
+        for (int i = 0; i < upgradeSlots.Length; i++)
+        {
+            upgradeSlots[i].SetActiveSprite(i == spellSet ? upgdateIdx : -1);
+        }
+        Debug.Log(spellSet + " " + upgdateIdx + " " + upgradeSlots.Length + " " + spellSets.Length);
     }
 
     public void Upgrade()

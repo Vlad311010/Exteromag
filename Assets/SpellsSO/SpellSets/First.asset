@@ -16,16 +16,12 @@ MonoBehaviour:
   - description: Base
     spell: {fileID: 11400000, guid: 9311cc8dede2d864481de1eec8d08650, type: 2}
     childCount: 2
-    indexOfFirstChild: 1
   - description: Bounce of walls (2) times, better accuracy
     spell: {fileID: 11400000, guid: 1b7c0ebc9e863174eb7bdb6bbb0cc2a2, type: 2}
     childCount: 1
-    indexOfFirstChild: 3
   - description: bounce
-    spell: {fileID: 11400000, guid: dfd62be816949764a9cab9aeabf27b96, type: 2}
+    spell: {fileID: 11400000, guid: 2c081cb31b2e23b459688dfd03dd8592, type: 2}
     childCount: 0
-    indexOfFirstChild: 2
   - description: bounce
-    spell: {fileID: 11400000, guid: 9de2baff6ad835b46bca1e6ef6da8a1d, type: 2}
+    spell: {fileID: 11400000, guid: ba2db51a74dd75b48831af4490aff88f, type: 2}
     childCount: 0
-    indexOfFirstChild: 1

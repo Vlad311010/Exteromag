@@ -66,7 +66,10 @@ public class IdleWander : MonoBehaviour, IMoveAI
 
     private void OnDrawGizmosSelected()
     {
-        
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, wanderInnerRadius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, wanderOuterRadius);
     }
 
 }

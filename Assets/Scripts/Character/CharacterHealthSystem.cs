@@ -1,10 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Interfaces;
+using UnityEngine.SceneManagement;
 
-public class CharacterHealthSystem : MonoBehaviour, IHealthSystem
+public class CharacterHealthSystem : MonoBehaviour, IHealthSystem, IResatable
 {
+    public int CurrentHealth { get => currentHp; }
+    public int MaxHealth { get => maxHp; }
+
     Rigidbody2D rigidbody;
     CharacterEffects effects;
     CharacterLimitations limitations;
@@ -31,16 +34,25 @@ public class CharacterHealthSystem : MonoBehaviour, IHealthSystem
         effects = GetComponent<CharacterEffects>();
         limitations = GetComponent<CharacterLimitations>();
         sprites = GetComponentsInChildren<SpriteRenderer>();
+
         currentHp = maxHp;
+        ConsumeHp(0, Vector2.zero, false);
+        SceneManager.sceneLoaded += UpdateUI;
     }
 
-    public void ConsumeHp(int amount, Vector2 staggerDirectiom)
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= UpdateUI;
+    }
+
+
+    public void ConsumeHp(int amount, Vector2 staggerDirectiom, bool noDamageEffect = false)
     {
         currentHp = System.Math.Clamp(currentHp - amount, 0, maxHp);
-        GameEvents.current.HealthChange(currentHp, maxHp);
+        GameEvents.current.HealthChangePlayer(currentHp, maxHp);
         if (currentHp <= 0)
             GetComponent<IDestroyable>().DestroyObject();
-        else if (amount > 0)
+        else if (!noDamageEffect && amount > 0)
         {
             OnHit();
 
@@ -82,5 +94,21 @@ public class CharacterHealthSystem : MonoBehaviour, IHealthSystem
         {
             sprite.material = defaultMaterial;
         }
+    }
+
+    public void ResetValues()
+    {
+        currentHp = SceneController.characterStats.hp;
+        GameEvents.current.HealthChangePlayer(currentHp, maxHp);
+    }
+
+    private void UpdateUI(Scene scene, LoadSceneMode mode)
+    {
+        GameEvents.current.HealthChangePlayer(currentHp, maxHp);
+    }
+
+    public override string ToString()
+    {
+        return string.Format("{0}/{1}", currentHp, maxHp);
     }
 }

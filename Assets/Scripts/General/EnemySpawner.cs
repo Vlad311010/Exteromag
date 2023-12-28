@@ -81,12 +81,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Extensions.GizmosSetColor(UnityEngine.Color.green, 0.2f);
+        Extensions.GizmosSetColor(UnityEngine.Color.green, 0.5f);
         Gizmos.DrawCube(transform.position, size);
 
         Gizmos.DrawLine(transform.position, goToZonePos);
 
-        Extensions.GizmosSetColor(UnityEngine.Color.yellow, 0.4f);
+        Extensions.GizmosSetColor(UnityEngine.Color.yellow, 0.5f);
         Gizmos.DrawCube(goToZonePos, goToZoneSize);
     }
 }

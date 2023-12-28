@@ -34,9 +34,14 @@ namespace Interfaces
 
     public interface IHealthSystem
     {
-        public void ConsumeHp(int amount, Vector2 staggerDirectiom);
+        public void ConsumeHp(int amount, Vector2 staggerDirectiom, bool noDamageEffect = false);
+        public int CurrentHealth { get; }
     }
 
+    public interface IResatable
+    {
+        public void ResetValues();
+    }
     public interface IDestroyable
     {
         void DestroyObject();

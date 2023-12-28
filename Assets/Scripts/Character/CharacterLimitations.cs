@@ -1,17 +1,19 @@
+using Interfaces;
 using UnityEngine;
 
 public class CharacterLimitations : MonoBehaviour
 {
     CharacterMovement movement;
     CharacterInteraction interaction;
-
+    CharacterEffects effects;
 
     public bool movementConstraint = false;
 
-    void Start()
+    void Awake()
     {
         movement = GetComponent<CharacterMovement>();
         interaction = GetComponent<CharacterInteraction>();
+        effects = GetComponent<CharacterEffects>();
     }
 
     public void ActivateMovementContraint()
@@ -41,6 +43,30 @@ public class CharacterLimitations : MonoBehaviour
         interaction.enabled = true;
         interaction.control.gameplay.Enable();
         GetComponent<Rigidbody2D>().simulated = true;
+    }
+
+    public void DeactivatePlayer()
+    {
+        foreach (var spriteRenderer in GetComponentsInChildren<SpriteRenderer>())
+        {
+            spriteRenderer.enabled = false;
+        }
+        DisableActions();
+        effects.OnDeathEffects();
+        GameEvents.current.PlayerDied();
+    }
+
+    public void ActivatePlayer()
+    {
+        foreach (var spriteRenderer in GetComponentsInChildren<SpriteRenderer>())
+        {
+            spriteRenderer.enabled = true;
+        }
+        ActivateActions();
+        foreach (IResatable resatable in GetComponents<IResatable>())
+        {
+            resatable.ResetValues();
+        }
     }
 
     public void InfiniteMana(bool active)

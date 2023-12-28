@@ -3,11 +3,6 @@ using UnityEngine;
 
 public class SpellContainer
 {
-    /*int level = 1;
-    SpellScriptableObject level1;
-    SpellScriptableObject level2;
-    SpellScriptableObject level3;*/
-
     // data
     public SpellSetSO spellSet;
     public int slotIdx { get; private set; }

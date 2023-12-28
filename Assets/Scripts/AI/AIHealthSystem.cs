@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AIHealthSystem : MonoBehaviour, IHealthSystem
 {
+    public int CurrentHealth { get => currentHp; }
 
     [SerializeField] int maxHp;
 
@@ -18,13 +19,14 @@ public class AIHealthSystem : MonoBehaviour, IHealthSystem
     private Coroutine hitHighlightCoroutine;
 
 
+
     void Start()
     {
         currentHp = maxHp;
         sprites = GetComponentsInChildren<SpriteRenderer>();
     }
 
-    public void ConsumeHp(int amount, Vector2 staggerDirectiom)
+    public void ConsumeHp(int amount, Vector2 staggerDirectiom, bool noDamageEffect = false)
     {
         currentHp = System.Math.Clamp(currentHp - amount, 0, maxHp);
         GameEvents.current.HealthChange(currentHp, maxHp);

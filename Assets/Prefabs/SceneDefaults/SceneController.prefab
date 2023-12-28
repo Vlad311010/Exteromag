@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5bfceb5fd18ced45ba3e909624e274b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 5061949154812894998, guid: 0e7fab7b7e27e5b44ae587cd3163b7eb, type: 3}
+  spawPos: {x: 0, y: 1}
   exitPos: {x: 0, y: 0}
   exit: {fileID: 1933856396282630419, guid: 06eaccf5af2126d4e9e491a4d001bedd, type: 3}

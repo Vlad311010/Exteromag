@@ -4,6 +4,7 @@ public class WindowUI : MonoBehaviour
 {
     
     public bool closableByEsc = true;
+    public bool pauseGame = true;
 
     private WindowUI ancestor;
 
@@ -11,8 +12,9 @@ public class WindowUI : MonoBehaviour
     {
         ancestor = activeWindow;
         ancestor?.SetActive(false);
-        SceneController.Pause();
-        // open window
+        if (pauseGame)
+            SceneController.Pause();
+        
         gameObject.SetActive(true);
         
         return this;

@@ -8,6 +8,7 @@ TagManager:
   - WindowUI
   - NavMesh
   - Aim
+  - CM
   layers:
   - Default
   - TransparentFX

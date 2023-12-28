@@ -5,6 +5,7 @@ public class WindowsController : MonoBehaviour
 {
     [SerializeField] WindowUI pauseWindow;
     [SerializeField] WindowUI spellUpgradeWindow;
+    [SerializeField] WindowUI respawnWindow;
 
     private DefaultControls control;
 
@@ -23,6 +24,7 @@ public class WindowsController : MonoBehaviour
     void Start()
     {
         GameEvents.current.onUpgradePickUp += OpenSpellUpgradeMenu;
+        GameEvents.current.onPlayersDeath += OpenRespawnWindow;
     }
 
 
@@ -44,6 +46,11 @@ public class WindowsController : MonoBehaviour
     private void OpenSpellUpgradeMenu()
     {
         activeWindow = spellUpgradeWindow.OpenWindow(activeWindow);
+    }
+
+    private void OpenRespawnWindow()
+    {
+        activeWindow = respawnWindow.OpenWindow(activeWindow);
     }
 
     public void CloseWindow(WindowUI window)

@@ -6,21 +6,24 @@ public class CharacterEffects : MonoBehaviour
 {
     [SerializeField] Color color; 
     [SerializeField] GameObject splash;
+    [SerializeField] GameObject onDeathEffect;
     [SerializeField] CinemachineVirtualCamera cinemachine;
     
     private CinemachineBasicMultiChannelPerlin cameraNoise;
 
     private void Start()
     {
+        cinemachine = GameObject.FindGameObjectWithTag("CM").GetComponent<CinemachineVirtualCamera>();
         cameraNoise = cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
 
-    public void CreateSplashEffect()
+    public void OnDeathEffects()
     {
-        Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0, 359));
-        SpriteRenderer splashSprite = Instantiate(splash, transform.position, rotation).GetComponent<SpriteRenderer>();
-        splashSprite.color = color;
+        Instantiate(onDeathEffect, transform.position, transform.rotation).GetComponent<SpriteRenderer>();
+        // Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0, 359));
+        // SpriteRenderer splashSprite = Instantiate(splash, transform.position, rotation).GetComponent<SpriteRenderer>();
+        // splashSprite.color = color;
     }
 
     public void CameraShake(float duration, float magnitude = 11, float frequency = 0.07f)

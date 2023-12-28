@@ -1,16 +1,21 @@
+using Interfaces;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class ManaPool : MonoBehaviour
+public class ManaPool : MonoBehaviour, IResatable
 {
     [SerializeField] private int mpRestorePerKill;
     [SerializeField] private int maxMp;
     private int currentMp;
 
+    public int MaxMp { get => maxMp; }
+    public int CurrentMp { get => currentMp; }
 
     private void Start()
     {
         currentMp = maxMp;
         Consume(0);
+        SceneManager.sceneLoaded += UpdateUI;
         GameEvents.current.onEnemyDeath += GetMpFromEnemy;
     }
 
@@ -27,13 +32,26 @@ public class ManaPool : MonoBehaviour
         GameEvents.current.ManaChange(currentMp, maxMp);
         // StartCoroutine(Restore());
     }
+
     public void GetMpFromEnemy()
     {
         Consume(-mpRestorePerKill);
     }
 
+    public void ResetValues()
+    {
+        currentMp = SceneController.characterStats.mana;
+        GameEvents.current.ManaChange(currentMp, maxMp);
+    }
+
+    private void UpdateUI(Scene scene, LoadSceneMode mode)
+    {
+        GameEvents.current.ManaChange(currentMp, maxMp);
+    }
+
     private void OnDestroy()
     {
         GameEvents.current.onEnemyDeath -= GetMpFromEnemy;
+        SceneManager.sceneLoaded -= UpdateUI;
     }
 }
