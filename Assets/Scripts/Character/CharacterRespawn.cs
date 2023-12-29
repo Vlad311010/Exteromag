@@ -1,3 +1,4 @@
+using Interfaces;
 using UnityEngine;
 
 public class CharacterRespawn : MonoBehaviour
@@ -14,5 +15,14 @@ public class CharacterRespawn : MonoBehaviour
     public void Respawn()
     {
         limitations.ActivatePlayer();
+        ResetStats();
+    }
+
+    public void ResetStats()
+    {
+        foreach (IResatable resatable in GetComponents<IResatable>())
+        {
+            resatable.ResetValues();
+        }
     }
 }

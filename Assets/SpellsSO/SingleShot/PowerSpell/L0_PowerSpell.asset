@@ -15,7 +15,7 @@ MonoBehaviour:
   casterPosition: {x: 0, y: 0}
   castPoint: {x: 0, y: 0}
   owner: {fileID: 0}
-  projectile: {fileID: 5543515162880620750, guid: ca9da2e589c08cc4cb5acb9423662a72, type: 3}
+  projectile: {fileID: 6975333911988204409, guid: d5360eb81feb6764180783422a59b59d, type: 3}
   onCastParticles: {fileID: 0}
   particles: {fileID: 0}
   OnHitParticles: {fileID: 0}
@@ -99,3 +99,6 @@ MonoBehaviour:
     range: 1
     projectilesCount: 10
     evenDistribution: 0
+  multipleAttribute:
+    projectilesCount: 0
+    distanceBetweenProjectiles: 0

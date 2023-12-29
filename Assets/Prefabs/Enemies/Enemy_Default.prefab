@@ -676,7 +676,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 9
   visionRange: 40
-  ignoreWalls: 1
+  ignoreWalls: 0
   moveAIActive: 1
   attackAIActive: 1
   canAttack: 1

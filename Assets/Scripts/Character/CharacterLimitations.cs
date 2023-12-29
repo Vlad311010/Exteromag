@@ -63,10 +63,6 @@ public class CharacterLimitations : MonoBehaviour
             spriteRenderer.enabled = true;
         }
         ActivateActions();
-        foreach (IResatable resatable in GetComponents<IResatable>())
-        {
-            resatable.ResetValues();
-        }
     }
 
     public void InfiniteMana(bool active)

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24083a47762275c47b220664ca5652e8, type: 3}
-  m_Name: L1_DefaultShootBounce
+  m_Name: TESTSPELL
   m_EditorClassIdentifier: 
   casterPosition: {x: 0, y: 0}
   castPoint: {x: 0, y: 0}
@@ -19,7 +19,7 @@ MonoBehaviour:
   onCastParticles: {fileID: 0}
   particles: {fileID: 0}
   OnHitParticles: {fileID: 8707564758431779321, guid: 8c77551d2e838e4478128174fe490695, type: 3}
-  spellIcon: {fileID: 21300000, guid: 890db835420a6384e818f306e5b504c6, type: 3}
+  spellIcon: {fileID: 0}
   spellIconColor: {r: 1, g: 1, b: 1, a: 1}
   upgrades: []
   castCost: 4
@@ -34,7 +34,7 @@ MonoBehaviour:
   collisionLayerMask:
     serializedVersion: 2
     m_Bits: 776
-  attributes: 0200000006000000
+  attributes: 020000000100000006000000
   explosionAttribute:
     radius: 0
     velocityImpact: 0
@@ -45,12 +45,12 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 0
   instantAttribute:
-    distanceLimit: 0
+    distanceLimit: 300
   bounceAttribute:
-    bounceLimit: 2
+    bounceLimit: 0
     bounceLayer:
       serializedVersion: 2
-      m_Bits: 520
+      m_Bits: 776
   rotateAroundTargetAttribute:
     speed: 0
     distanceFromAnchor: 0
@@ -86,14 +86,14 @@ MonoBehaviour:
   destroyTileAttribute:
     layerMask:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 8
   scaleAttribute:
     scale: {x: 0, y: 0}
   spawnAttributes: 0000000002000000
   defaultSpawnAttribute:
     originOffset: 0.5
   randomOffsetAttribute:
-    angle: 2
+    angle: 8
   shotgunAttribute:
     angle: 15
     range: 1

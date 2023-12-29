@@ -125,12 +125,6 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
         limitations.DeactivatePlayer();
     }
 
-    public void ActivatePlayer()
-    {
-        limitations.ActivatePlayer();
-    }
-
-
     public void UpgradeSpell(int spellSlot, int upgradeIdx)
     {
         containedSpells[spellSlot].spellSet.Traverse(upgradeIdx);

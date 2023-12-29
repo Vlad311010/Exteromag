@@ -395,6 +395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   splash: {fileID: 7916890796168821779, guid: 13d59e5ed84065343b7313dd01df612d, type: 3}
   manaParticles: {fileID: 4923245117875230332, guid: e4340cc91bc9be842a1fd8ffe6cf348a, type: 3}
+  onDeathEffect: {fileID: 0}
   enemyColor: {r: 0.9960785, g: 0.7137255, b: 0, a: 1}
 --- !u!1 &3565326993349982988
 GameObject:
@@ -713,7 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spell: {fileID: 11400000, guid: fe37eeb66fa5378438926c87364d5089, type: 2}
   attackRange: 30
-  attackBreak: {x: 0.6, y: 5}
+  attackBreak: {x: 0.6, y: 4.5}
   multiAttackChance: 0.1
   multiAttackBreakTime: 0.15
   castsPerAttack: {x: 3, y: 3}

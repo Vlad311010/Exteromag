@@ -91,6 +91,7 @@ public class DashAttack : MonoBehaviour, IAttackAI
         attackState = true;
         core.canAttack = false;
         GetComponentInParent<AICore>().moveAISetActive(false);
+        core.agent.enabled = false;
     }
 
     IEnumerator CoolDown()
@@ -98,6 +99,7 @@ public class DashAttack : MonoBehaviour, IAttackAI
         
         float afterAttackBreakTimer = Random.Range(afterAttackBreak.x, afterAttackBreak.y);
         yield return new WaitForSeconds(afterAttackBreakTimer);
+        core.agent.enabled = true;
         GetComponentInParent<AICore>().moveAISetActive(true);
 
         float attackCoolDownTimer = Random.Range(attackBreak.x, attackBreak.y);

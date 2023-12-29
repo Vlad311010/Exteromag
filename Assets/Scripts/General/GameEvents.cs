@@ -8,17 +8,6 @@ public class GameEvents : MonoBehaviour
     {
         current = this;
     }
-
-/*    public event Action<int> onSceneLoad;
-    public void SceneLoad(int sceneIdx)
-    {
-        if (onSceneLoad != null)
-        {
-            onSceneLoad(sceneIdx);
-        }
-    }
-
-    */
     public event Action<int, int> onHealthChange;
     public void HealthChange(int current, int max)
     {
@@ -172,4 +161,14 @@ public class GameEvents : MonoBehaviour
             onUpgradePickUp();
         }
     }
+
+    public event Action<int> onBlockerActivation;
+    public void BlockerActivation(int id)
+    {
+        if (onBlockerActivation != null)
+        {
+            onBlockerActivation(id);
+        }
+    }
+
 }
