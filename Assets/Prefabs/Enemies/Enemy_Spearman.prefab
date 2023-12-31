@@ -501,7 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   agent: {fileID: 3736478072418557291}
-  threatLevel: 3
+  threatLevel: -1
   target: {fileID: 0}
   playerLayerMask:
     serializedVersion: 2

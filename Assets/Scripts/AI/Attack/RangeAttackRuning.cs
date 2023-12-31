@@ -51,15 +51,10 @@ public class RangeAttackRuning : MonoBehaviour, IAttackAI
         {
             attackBreakTimer -= Time.deltaTime;
         }
-        /*else
-        {
-            ResetAttackBreakTimer();
-        }*/
 
         core.canAttack = attackBreakTimer < 0f;
         if (targetIsVisible && core.canAttack && attackCoroutine == null)
         {
-            // Attack();
             StartAttackAnimation();
         }
     }

@@ -411,7 +411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &269670876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,8 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9618a94f9ab571a4180f6f63b6b06b01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellsSO:
-  - {fileID: 11400000, guid: c8b8b5b0161e59f41aec8870ece833e5, type: 2}
+  spellsSets: []
 --- !u!114 &269670877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,8 +983,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dd2c1522c562141928bac58b9ffe22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRadius: 19.25
-  desiredPositionStayTime: {x: 0, y: 0}
 --- !u!1 &580417956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,6 +1184,63 @@ Transform:
   m_Father: {fileID: 1619570333}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &672572648
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7522247769194317495, guid: 520cfffad72014e43807a2611608863b, type: 3}
+      propertyPath: m_Name
+      value: Enemy_Fire_Mag
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460529695086444090, guid: 520cfffad72014e43807a2611608863b, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460529695086444090, guid: 520cfffad72014e43807a2611608863b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460529695086444090, guid: 520cfffad72014e43807a2611608863b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460529695086444090, guid: 520cfffad72014e43807a2611608863b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460529695086444090, guid: 520cfffad72014e43807a2611608863b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460529695086444090, guid: 520cfffad72014e43807a2611608863b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460529695086444090, guid: 520cfffad72014e43807a2611608863b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460529695086444090, guid: 520cfffad72014e43807a2611608863b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460529695086444090, guid: 520cfffad72014e43807a2611608863b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460529695086444090, guid: 520cfffad72014e43807a2611608863b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460529695086444090, guid: 520cfffad72014e43807a2611608863b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 520cfffad72014e43807a2611608863b, type: 3}
 --- !u!1 &708424264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,6 +1595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba9faa58ebcef04db656c625c060d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   agent: {fileID: 1169733805}
   threatLevel: -1
   target: {fileID: 0}
@@ -1550,8 +1605,12 @@ MonoBehaviour:
   obstaclesLayerMask:
     serializedVersion: 2
     m_Bits: 1
+  visionRange: 50
+  ignoreWalls: 0
   moveAIActive: 0
   attackAIActive: 0
+  canAttack: 1
+  damageOnCollision: 0
 --- !u!195 &1169733805
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1870,6 +1929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba9faa58ebcef04db656c625c060d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   agent: {fileID: 1363019343}
   threatLevel: 0
   target: {fileID: 0}
@@ -1879,8 +1939,12 @@ MonoBehaviour:
   obstaclesLayerMask:
     serializedVersion: 2
     m_Bits: 1
+  visionRange: 50
+  ignoreWalls: 0
   moveAIActive: 0
   attackAIActive: 1
+  canAttack: 1
+  damageOnCollision: 0
 --- !u!195 &1363019343
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1974,8 +2038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9618a94f9ab571a4180f6f63b6b06b01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellsSO:
-  - {fileID: 11400000, guid: c8b8b5b0161e59f41aec8870ece833e5, type: 2}
+  spellsSets: []
 --- !u!114 &1426801154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2387,6 +2450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba9faa58ebcef04db656c625c060d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   agent: {fileID: 1619570336}
   threatLevel: 0
   target: {fileID: 0}
@@ -2396,8 +2460,12 @@ MonoBehaviour:
   obstaclesLayerMask:
     serializedVersion: 2
     m_Bits: 1
+  visionRange: 50
+  ignoreWalls: 0
   moveAIActive: 1
   attackAIActive: 1
+  canAttack: 1
+  damageOnCollision: 0
 --- !u!195 &1619570336
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3063,6 +3131,7 @@ MonoBehaviour:
   outerRadius: 2
   rotationSpeed: 0.6
   visionRadius: 14
+  lookForPortectionTarget: 1
   protectionTargetSearchRadius: 20
   offset: 0
 --- !u!1001 &3031459493474236298
@@ -3075,6 +3144,10 @@ PrefabInstance:
     - target: {fileID: 5061949154812894998, guid: 0e7fab7b7e27e5b44ae587cd3163b7eb, type: 3}
       propertyPath: m_Name
       value: Player_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061949154812894998, guid: 0e7fab7b7e27e5b44ae587cd3163b7eb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5061949154812895000, guid: 0e7fab7b7e27e5b44ae587cd3163b7eb, type: 3}
       propertyPath: m_RootOrder

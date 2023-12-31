@@ -39,7 +39,7 @@ public class RangeAttack : MonoBehaviour, IAttackAI
         }
         else
         {
-            ResetAttackBreakTimer();
+            // ResetAttackBreakTimer();
         }
 
         core.canAttack = attackBreakTimer < 0f;

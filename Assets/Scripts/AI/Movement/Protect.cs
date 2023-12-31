@@ -1,6 +1,4 @@
 using Interfaces;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -15,6 +13,7 @@ public class Protect : MonoBehaviour, IMoveAI
     [SerializeField] float outerRadius;
     [SerializeField] float rotationSpeed;
     [SerializeField] float visionRadius;
+    [SerializeField] bool lookForPortectionTarget = true;
     [SerializeField] float protectionTargetSearchRadius;
     public float offset;
 
@@ -23,18 +22,20 @@ public class Protect : MonoBehaviour, IMoveAI
 
     private Vector2 directionFromProtectedToTarget;
     private Vector2 lastDirectionFromProtectedToTarget = Vector3.right;
+    private Collider2D shieldCollider;
     private bool seeTarget = false;
 
     void Start()
     {
         agent = GetComponentInParent<NavMeshAgent>();
+        shieldCollider = shieldGO.GetComponent<Collider2D>();
     }
 
     public void AIUpdate()
     {
-        if (protectionTarget == null) SearchProtectionTarget();
-        
-        if (protectionTarget == null || shieldGO == null)
+        if (protectionTarget == null && lookForPortectionTarget) SearchProtectionTarget();
+
+        if (protectionTarget == null || !shieldCollider.enabled)
         {
             AIGeneral.LookAt(core.transform, core.target);
             agent.destination = core.target.position;
