@@ -6,11 +6,15 @@ public class BounceAttribute : MonoBehaviour, ISpellAttribute
 {
     private int bounceLimit;
     private LayerMask bounceLayer;
+    
+    private const float collisionStayTime = 0.05f;
+    private float collisionStayTimer;
 
     public void GetAttributeParameters(SpellScriptableObject spell)
     {
         bounceLimit = spell.bounceAttribute.bounceLimit;
         bounceLayer = spell.bounceAttribute.bounceLayer;
+        collisionStayTimer = collisionStayTime;
     }
 
     public void OnCastEvent() { }
@@ -42,6 +46,11 @@ public class BounceAttribute : MonoBehaviour, ISpellAttribute
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        OnHitEvent(new CollisionData(collision.gameObject, collision.rigidbody, collision.contacts));
+        collisionStayTimer -= Time.deltaTime;
+        if (collisionStayTimer <= 0)
+        {
+            OnHitEvent(new CollisionData(collision.gameObject, collision.rigidbody, collision.contacts));
+            collisionStayTimer = collisionStayTime; 
+        }
     }
 }

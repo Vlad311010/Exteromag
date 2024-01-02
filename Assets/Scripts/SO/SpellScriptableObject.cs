@@ -22,9 +22,6 @@ public class SpellScriptableObject : ScriptableObject
     public Sprite spellIcon;
     public Color spellIconColor = Color.white;
 
-    [Header("Upgrades")]
-    public List<SpellScriptableObject> upgrades;
-
     [Header("Cast Parameters")]
     public int castCost;
     public float cooldown;
@@ -58,6 +55,7 @@ public class SpellScriptableObject : ScriptableObject
     public ChannelingAttributeData channelingAttribute;
     public DestroyTileAttributeData destroyTileAttribute;
     public ScaleAttributeData scaleAttribute;
+    public PointCastAttributeData pointCastAttribute;
 
     // Spawn attributes data (namig conventions matters)
     public List<SpellSpawnAttribute> spawnAttributes;
@@ -76,9 +74,11 @@ public class ExplosionAttributeData
 {
     public ExplosionAttributeData() { }
     public float radius;
+    public int damage;
     public float velocityImpact;
     public LayerMask obstacleLayerMask;
     public LayerMask interactionLayerMask;
+    public GameObject explosionEffect;
 }
 
 [Serializable]
@@ -154,12 +154,19 @@ public class ChannelingAttributeData
 public class DestroyTileAttributeData
 {
     public LayerMask layerMask;
+    public int radius;
+    public GameObject destroyEffect;
 }
 
 [Serializable]
 public class ScaleAttributeData
 {
     public Vector2 scale;
+}
+
+[Serializable]
+public class PointCastAttributeData
+{
 }
 
 // spawn attributes

@@ -1,7 +1,7 @@
 
 
 using UnityEngine;
-
+using UnityEngine.VFX;
 
 public class AIEffects : MonoBehaviour
 {
@@ -10,6 +10,10 @@ public class AIEffects : MonoBehaviour
     [SerializeField] GameObject onDeathEffect;
 
     [SerializeField] Color enemyColor;
+    [ColorUsageAttribute(true, true)]
+    [SerializeField] Color deathEffectColor;
+
+
 
 
     public void OnDeath()
@@ -23,7 +27,11 @@ public class AIEffects : MonoBehaviour
         
         if (onDeathEffect != null) 
         {
-            Instantiate(onDeathEffect, transform.position, transform.rotation);
+            GameObject deathEffect = Instantiate(onDeathEffect, transform.position, transform.rotation);
+            foreach (VisualEffect vfx in deathEffect.GetComponentsInChildren<VisualEffect>())
+            {
+                vfx.SetVector4("Color", deathEffectColor);
+            }
         }
 
         Instantiate(manaParticles, transform.position, Quaternion.identity);

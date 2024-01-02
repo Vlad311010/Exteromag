@@ -14,7 +14,8 @@ namespace Enums
         LimitedLifeTime = 9,
         Channeling = 10,
         DestroyTile = 11,
-        Scale = 12
+        Scale = 12,
+        PointCast = 13
     }
 
     public enum SpellSpawnAttribute

@@ -50,6 +50,7 @@ public static class Extensions
         int levelIdx = Int32.Parse(currentSceneName.Split("_")[1]);
         int sublevelIdx = Int32.Parse(currentSceneName.Split("_")[2]);
         string sceneToLoad = String.Format("Level_{0}_{1}", levelIdx, sublevelIdx + 1);
+        Debug.Log(sceneToLoad);
 
         if (SceneUtility.GetBuildIndexByScenePath(sceneToLoad) > -1)
             return sceneToLoad;

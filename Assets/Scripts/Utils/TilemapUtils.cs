@@ -41,4 +41,34 @@ public static class TilemapUtils
         tilemap.SetTile(coordinates, tile);
     }
 
+    public static List<T> GetAdjacentTiles<T>(Tilemap tilemap, Vector3Int coordinates) where T : Tile
+    {
+        List<T> adjacent = new List<T>();
+
+        T up = GetTileAt<T>(tilemap, coordinates + new Vector3Int(0, 1));
+        T down = GetTileAt<T>(tilemap, coordinates + new Vector3Int(0, -1));
+        T right = GetTileAt<T>(tilemap, coordinates + new Vector3Int(1, 0));
+        T left = GetTileAt<T>(tilemap, coordinates + new Vector3Int(-1, 0));
+
+        adjacent.Add(up);
+        adjacent.Add(down);
+        adjacent.Add(right);
+        adjacent.Add(left);
+
+        return adjacent;
+    }
+
+    public static List<Vector3Int> GetAdjacentTilesCoordinatels(Vector3Int coordinates)
+    {
+        return new List<Vector3Int>
+        {
+            coordinates + new Vector3Int(0, 1),
+            coordinates + new Vector3Int(0, -1),
+            coordinates + new Vector3Int(1, 0),
+            coordinates + new Vector3Int(-1, 0)
+        };
+    }
+
+
+
 }

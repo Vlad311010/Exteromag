@@ -32,10 +32,10 @@ public class RangeAttack : MonoBehaviour, IAttackAI
     public void AIUpdate()
     {
         targetIsVisible = AIGeneral.TargetIsVisible(transform.position, core.target, attackRadius, core.playerLayerMask | core.obstaclesLayerMask);
+        AIGeneral.LookAt(core.transform, core.target.transform);
         if (targetIsVisible)
         {
             attackBreakTimer -= Time.deltaTime;
-            AIGeneral.LookAt(core.transform, core.target.transform);
         }
         else
         {

@@ -714,3 +714,4 @@ MonoBehaviour:
   manaParticles: {fileID: 4923245117875230332, guid: e4340cc91bc9be842a1fd8ffe6cf348a, type: 3}
   onDeathEffect: {fileID: 9024711904792195752, guid: 8216161fce52ca24c8f4693dcbe4bc77, type: 3}
   enemyColor: {r: 0.9843138, g: 0.3647059, b: 0.3921569, a: 1}
+  deathEffectColor: {r: 3.898923, g: 0.4490906, b: 0.5307434, a: 1}

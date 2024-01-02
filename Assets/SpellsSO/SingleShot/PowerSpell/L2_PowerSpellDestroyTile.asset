@@ -87,6 +87,8 @@ MonoBehaviour:
     layerMask:
       serializedVersion: 2
       m_Bits: 8
+    radius: 2
+    destroyEffect: {fileID: 3796232927925661210, guid: 3bd56a9877b3c8b4b89fd0b8caa2758c, type: 3}
   scaleAttribute:
     scale: {x: 0, y: 0}
   spawnAttributes: 0000000002000000

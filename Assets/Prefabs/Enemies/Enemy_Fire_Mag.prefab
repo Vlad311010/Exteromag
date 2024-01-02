@@ -555,10 +555,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e4f05bd2cd1be4f857261e26f85714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splash: {fileID: 7916890796168821779, guid: 13d59e5ed84065343b7313dd01df612d, type: 3}
+  splash: {fileID: 0}
   manaParticles: {fileID: 4923245117875230332, guid: e4340cc91bc9be842a1fd8ffe6cf348a, type: 3}
-  onDeathEffect: {fileID: 0}
+  onDeathEffect: {fileID: 1181887953899698816, guid: d0b27a62eac93e7478c22a10a3a01d78, type: 3}
   enemyColor: {r: 0.9843138, g: 0.3647059, b: 0.3921569, a: 1}
+  deathEffectColor: {r: 1.1635529, g: 0, b: 3.898923, a: 1}
 --- !u!1 &8659937631666032875
 GameObject:
   m_ObjectHideFlags: 0

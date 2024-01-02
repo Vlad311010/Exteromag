@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24083a47762275c47b220664ca5652e8, type: 3}
+  m_Name: ESingle
+  m_EditorClassIdentifier: 
+  casterPosition: {x: 0, y: 0}
+  castPoint: {x: 0, y: 0}
+  owner: {fileID: 0}
+  projectile: {fileID: 4815055715623672144, guid: 5ffcc7b85deae0c4d9b99fd8707faf18, type: 3}
+  onCastParticles: {fileID: 0}
+  particles: {fileID: 0}
+  OnHitParticles: {fileID: 8707564758431779321, guid: 8c77551d2e838e4478128174fe490695, type: 3}
+  spellIcon: {fileID: 0}
+  spellIconColor: {r: 1, g: 1, b: 1, a: 1}
+  upgrades: []
+  castCost: 0
+  cooldown: 0.2
+  parentWithCaster: 0
+  interuptOnSpellChange: 1
+  preventConstantCasting: 0
+  speed: 29
+  decceleration: 20
+  deccelerationStart: 0.5
+  useDecceleration: 0
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 65
+  attributes: 0200000006000000
+  explosionAttribute:
+    radius: 0
+    velocityImpact: 0
+    obstacleLayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    interactionLayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+  instantAttribute:
+    distanceLimit: 0
+  bounceAttribute:
+    bounceLimit: 0
+    bounceLayer:
+      serializedVersion: 2
+      m_Bits: 577
+  rotateAroundTargetAttribute:
+    speed: 0
+    distanceFromAnchor: 0
+  penetrateAttribute:
+    penetrateLimit: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+  manaDrainAttribute:
+    manaDrain: 10
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 256
+  damageAttribute:
+    damage: 1
+  kickbackAttribute:
+    force: 0
+  reflectAttribute:
+    reflectCount: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    layerMaskToAdd:
+      serializedVersion: 2
+      m_Bits: 0
+    reflectToCaster: 0
+  limitedLifeTimeAttribute:
+    lifetime: 0
+  channelingAttribute:
+    slotIdx: 0
+    channelingConst: 0
+    channelingTick: 0
+  destroyTileAttribute:
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+  scaleAttribute:
+    scale: {x: 0, y: 0}
+  spawnAttributes: 0000000002000000
+  defaultSpawnAttribute:
+    originOffset: 0.5
+  randomOffsetAttribute:
+    angle: 15
+  shotgunAttribute:
+    angle: 15
+    range: 1
+    projectilesCount: 10
+    evenDistribution: 0
+  multipleAttribute:
+    projectilesCount: 0
+    distanceBetweenProjectiles: 0

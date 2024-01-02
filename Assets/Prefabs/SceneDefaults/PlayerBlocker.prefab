@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c36ba0d8231da34b8b2955953367698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeColor: {r: 0.9960785, g: 0.83921576, b: 0.49411768, a: 1}
+  activeColor: {r: 0.54901963, g: 0.0627451, b: 0.0627451, a: 1}
   unactiveColor: {r: 0.6415094, g: 0.6318263, b: 0.6318263, a: 1}
   id: 0
   startState: 0
