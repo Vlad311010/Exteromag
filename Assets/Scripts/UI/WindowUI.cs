@@ -53,7 +53,7 @@ public class WindowUI : MonoBehaviour
 
     public void SetActive(bool active)
     {
-
+        gameObject.SetActive(active);
         // set raycast target = false for every child (image component)
     }
 }

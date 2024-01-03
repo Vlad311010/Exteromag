@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3850325738360381760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5704261, y: -24.352829, z: 422.3793}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 8, y: 8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,7 +62,13 @@ VisualEffect:
     m_Vector3f:
       m_Array: []
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 4.9245777, y: 3.0513072, z: 2.723002, w: 1}
+        m_Name: ParticlesColor
+        m_Overridden: 1
+      - m_Value: {x: 1.9144523, y: 1.233617, z: 0.9463895, w: 1}
+        m_Name: MainColor
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:

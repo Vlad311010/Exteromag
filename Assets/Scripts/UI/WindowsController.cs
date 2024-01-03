@@ -3,9 +3,9 @@ using UnityEngine.InputSystem;
 
 public class WindowsController : MonoBehaviour
 {
-    [SerializeField] WindowUI pauseWindow;
-    [SerializeField] WindowUI spellUpgradeWindow;
-    [SerializeField] WindowUI respawnWindow;
+    [SerializeField] private WindowUI pauseWindow;
+    [SerializeField] private WindowUI spellUpgradeWindow;
+    [SerializeField] private WindowUI respawnWindow;
 
     private DefaultControls control;
 

@@ -35,7 +35,7 @@ MonoBehaviour:
     m_Bits: 776
   attributes: 00000000020000000d000000
   explosionAttribute:
-    radius: 4
+    radius: 3
     damage: 8
     velocityImpact: 0
     obstacleLayerMask:

@@ -11,6 +11,7 @@ public class BlockerScript : MonoBehaviour
 
     [SerializeField] int id = 0;
     [SerializeField] bool startState = false;
+    [SerializeField] int enemiesCountToDeactivate = -1;
 
     void Start()
     {
@@ -24,7 +25,10 @@ public class BlockerScript : MonoBehaviour
             Deactivate(id);
 
         GameEvents.current.onBlockerActivation += Activate;
+        GameEvents.current.onEnemiesCountChange += DeactiveOnEnemiesCount;
     }
+
+    
 
     public void Activate(int id)
     {
@@ -40,5 +44,11 @@ public class BlockerScript : MonoBehaviour
 
         spriteRenderer.color = unactiveColor;
         collider.enabled = false;
+    }
+
+    private void DeactiveOnEnemiesCount(int enemiesCount)
+    {
+        if (enemiesCount <= enemiesCountToDeactivate)
+            Deactivate(this.id);
     }
 }

@@ -42755,15 +42755,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3850325738360381823, guid: 9358e1ae4e8f8724b830f1f7e7e70073, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5704261
+      value: -8.63
       objectReference: {fileID: 0}
     - target: {fileID: 3850325738360381823, guid: 9358e1ae4e8f8724b830f1f7e7e70073, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -24.352829
+      value: -29.26
       objectReference: {fileID: 0}
     - target: {fileID: 3850325738360381823, guid: 9358e1ae4e8f8724b830f1f7e7e70073, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 422.3793
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3850325738360381823, guid: 9358e1ae4e8f8724b830f1f7e7e70073, type: 3}
       propertyPath: m_LocalRotation.w
@@ -42792,10 +42792,6 @@ PrefabInstance:
     - target: {fileID: 3850325738360381823, guid: 9358e1ae4e8f8724b830f1f7e7e70073, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7448560203089685909, guid: 9358e1ae4e8f8724b830f1f7e7e70073, type: 3}
-      propertyPath: destroyTimer
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9358e1ae4e8f8724b830f1f7e7e70073, type: 3}

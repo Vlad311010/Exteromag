@@ -15,6 +15,7 @@ public class SceneController : MonoBehaviour
 
 
     public static CharacterStatsSO characterStats;
+    public static SettingsSO gameSettings;
     private static CharacterLimitations characterLimitations;
     private static NavMeshSurface navMesh;
     private static Coroutine navMeshBakingCoroutine = null;
@@ -26,6 +27,7 @@ public class SceneController : MonoBehaviour
     {
         SpawnPlayer();
         characterStats = characterStats ?? ScriptableObject.CreateInstance("CharacterStatsSO") as CharacterStatsSO;
+        gameSettings = ScriptableObject.CreateInstance("SettingsSO") as SettingsSO;
     }
 
 
@@ -126,14 +128,6 @@ public class SceneController : MonoBehaviour
         GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterRespawn>().Respawn();
         LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
-    /*private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }*/
-
-
 
     public static void Pause()
     {
