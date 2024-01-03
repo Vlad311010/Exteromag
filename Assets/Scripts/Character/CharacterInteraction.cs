@@ -31,13 +31,7 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
     private void Start()
     {
         camera = Camera.main;
-
-        containedSpells = new SpellContainer[spellsSets.Length];
-        for (int i = 0; i < spellsSets.Length; i++)
-        {
-            containedSpells[i] = new SpellContainer(spellsSets[i], i);
-        }
-
+        RestartSpells();
     }
 
     void OnEnable()
@@ -137,5 +131,15 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
             mana.Consume(-mana.MaxMp / 2);
             health.ConsumeHp(1, Vector2.zero, true);
         }
+    }
+
+    public void RestartSpells()
+    {
+        containedSpells = new SpellContainer[spellsSets.Length];
+        for (int i = 0; i < spellsSets.Length; i++)
+        {
+            containedSpells[i] = new SpellContainer(spellsSets[i], i);
+        }
+
     }
 }

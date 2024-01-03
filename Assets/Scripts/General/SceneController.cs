@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    [SerializeField] bool restartPlayerStats = false;
     [SerializeField] GameObject playerPrefab;
     [SerializeField] Vector2 spawPos;
 
@@ -26,6 +27,9 @@ public class SceneController : MonoBehaviour
     private void Awake()
     {
         SpawnPlayer();
+        if (restartPlayerStats)
+            characterStats = null;
+
         characterStats = characterStats ?? ScriptableObject.CreateInstance("CharacterStatsSO") as CharacterStatsSO;
         gameSettings = ScriptableObject.CreateInstance("SettingsSO") as SettingsSO;
     }
@@ -74,7 +78,13 @@ public class SceneController : MonoBehaviour
         else
         {
             player.transform.position = spawPos;
+            if (restartPlayerStats)
+            {
+                player.GetComponent<CharacterInteraction>().RestartSpells();
+                player.GetComponent<CharacterRespawn>().ResetStats();
+            }
         }
+        
     }
 
     private void OnEnemyDeath()

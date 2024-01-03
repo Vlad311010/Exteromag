@@ -752,9 +752,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 436069848276951158, guid: 4e289345c23dde14a9748db54d9e4a1c, type: 3}
+      propertyPath: restartPlayerStats
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 436069848276951158, guid: 4e289345c23dde14a9748db54d9e4a1c, type: 3}
       propertyPath: characterStatsField
       value: 
       objectReference: {fileID: 11400000, guid: c13ebecac6c19c84bb473d915d19376d, type: 2}
+    - target: {fileID: 436069848276951158, guid: 4e289345c23dde14a9748db54d9e4a1c, type: 3}
+      propertyPath: forcePlayerStatsInit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 436069848276951158, guid: 4e289345c23dde14a9748db54d9e4a1c, type: 3}
       propertyPath: forcePlayerGOInstantiation
       value: 1
