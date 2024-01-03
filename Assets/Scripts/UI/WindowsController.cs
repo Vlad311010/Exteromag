@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class WindowsController : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class WindowsController : MonoBehaviour
 
         control.menu.Esc.performed += EscapePressed;
     }
+    private void OnDestroy()
+    {
+        control.menu.Esc.performed -= EscapePressed;
+    }
 
     void Start()
     {
@@ -28,11 +33,11 @@ public class WindowsController : MonoBehaviour
     }
 
 
+
     private void EscapePressed(InputAction.CallbackContext obj)
     {
         if (!obj.performed) return;
             
-        // WindowUI activeWindow = GameObject.FindGameObjectWithTag("WindowUI").GetComponent<WindowUI>(); // mb replace with windowIsOpen
         if (activeWindow == null)
         {
             activeWindow = pauseWindow.OpenWindow(activeWindow);
@@ -56,6 +61,26 @@ public class WindowsController : MonoBehaviour
     public void CloseWindow(WindowUI window)
     {
         activeWindow = window.CloseWindow(false);
+    }
+
+    public void OpenWindow(WindowUI window)
+    {
+        activeWindow = window.OpenWindow(activeWindow);
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ReloadeScene()
+    {
+        SceneController.ReloadScene();
+    }
+
+    public void ReloadeLevel()
+    {
+        SceneController.ReloadLevel();
     }
 
 }

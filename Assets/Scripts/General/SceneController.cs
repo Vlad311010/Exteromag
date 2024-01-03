@@ -56,7 +56,6 @@ public class SceneController : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         characterStats.hp = player.GetComponent<IHealthSystem>().CurrentHealth;
         characterStats.mana = player.GetComponent<ManaPool>().CurrentMp;
-        Debug.Log(characterStats.hp + " " + characterStats.mana);
     }
 
     private void OnDestroy()
@@ -103,6 +102,11 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(sceneIdx);
     }
 
+    private static void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     public static void BakeNavMesh(bool immediate = false)
     {
         if (immediate)
@@ -127,6 +131,14 @@ public class SceneController : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterRespawn>().Respawn();
         LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public static void ReloadLevel()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterRespawn>().Respawn();
+        // restart spells
+        string sceneToLoad = Extensions.GetLevelsFirstScene();
+        LoadScene(sceneToLoad);
     }
 
     public static void Pause()

@@ -15,7 +15,7 @@ public class WindowUI : MonoBehaviour
         if (pauseGame)
             SceneController.Pause();
         
-        gameObject.SetActive(true);
+        gameObject?.SetActive(true);    
         
         return this;
     }
@@ -53,7 +53,8 @@ public class WindowUI : MonoBehaviour
 
     public void SetActive(bool active)
     {
-        gameObject.SetActive(active);
+        // gameObject.SetActive(active);
+
         // set raycast target = false for every child (image component)
     }
 }

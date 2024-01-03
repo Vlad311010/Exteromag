@@ -284,6 +284,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8336849551553044875, guid: 844fad5ee2e9d7348951f1c7b9415021, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336849551553044875, guid: 844fad5ee2e9d7348951f1c7b9415021, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WindowsController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336849551553044875, guid: 844fad5ee2e9d7348951f1c7b9415021, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 844fad5ee2e9d7348951f1c7b9415021, type: 3}
 --- !u!1 &873504249
@@ -1392,11 +1404,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1570791856294548875, guid: 74a1b4332fdd9cd4085921be87bc864c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.3368845
+      value: -7.336919
       objectReference: {fileID: 0}
     - target: {fileID: 1570791856294548875, guid: 74a1b4332fdd9cd4085921be87bc864c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.4944773
+      value: 3.4936619
       objectReference: {fileID: 0}
     - target: {fileID: 1570791856353662947, guid: 74a1b4332fdd9cd4085921be87bc864c, type: 3}
       propertyPath: aim

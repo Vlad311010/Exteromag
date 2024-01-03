@@ -50,12 +50,20 @@ public static class Extensions
         int levelIdx = Int32.Parse(currentSceneName.Split("_")[1]);
         int sublevelIdx = Int32.Parse(currentSceneName.Split("_")[2]);
         string sceneToLoad = String.Format("Level_{0}_{1}", levelIdx, sublevelIdx + 1);
-        Debug.Log(sceneToLoad);
 
         if (SceneUtility.GetBuildIndexByScenePath(sceneToLoad) > -1)
             return sceneToLoad;
         else
             return "Hub";
+    }
+
+    public static string GetLevelsFirstScene()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        int levelIdx = Int32.Parse(currentSceneName.Split("_")[1]);
+        string firstScene = String.Format("Level_{0}_{1}", levelIdx, 1);
+
+        return firstScene;
     }
 
     public static void GizmosSetColor(float r, float g, float b, float a = 1f)
