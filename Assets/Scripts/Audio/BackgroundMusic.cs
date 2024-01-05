@@ -21,7 +21,7 @@ public class BackgroundMusic : MusicPlayer
     {
         if (clip == Clip) return;
 
-        // musicPlayer.SetAudioSourceVolume(volume);
+        SetAudioSourceVolume(volume);
         Play(clip);
     }
 

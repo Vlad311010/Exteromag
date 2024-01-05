@@ -15,25 +15,17 @@ public class CharacterHealthSystem : MonoBehaviour, IHealthSystem, IResatable
     [Header("Parameters")]
     [SerializeField] int maxHp;
 
-    [SerializeField] Material hitMaterial;
-    [SerializeField] Material defaultMaterial;
-    [SerializeField] float hitHighlightTime;
-    [SerializeField] AudioClip hitSound;
-
     [Header("Options")]
     [SerializeField] bool staggerable;
     [SerializeField] float staggerTime;
 
     private int currentHp;
-    private SpriteRenderer[] sprites;
-    private Coroutine hitHighlightCoroutine;
 
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         effects = GetComponent<CharacterEffects>();
         limitations = GetComponent<CharacterLimitations>();
-        sprites = GetComponentsInChildren<SpriteRenderer>();
 
         currentHp = maxHp;
         ConsumeHp(0, Vector2.zero, false);
@@ -54,7 +46,7 @@ public class CharacterHealthSystem : MonoBehaviour, IHealthSystem, IResatable
             GetComponent<IDestroyable>().DestroyObject();
         else if (!noDamageEffect && amount > 0)
         {
-            OnHit();
+            effects.OnHit();
 
             if (staggerable)
                 StartCoroutine(Stagger(staggerTime, staggerDirectiom));
@@ -71,31 +63,7 @@ public class CharacterHealthSystem : MonoBehaviour, IHealthSystem, IResatable
         limitations.DisableMovementContraint();
     }
 
-    private void OnHit()
-    {
-        effects.CameraShake(0.4f);
-        if (hitHighlightCoroutine != null)
-        {
-            StopCoroutine(hitHighlightCoroutine);
-        }
-        hitHighlightCoroutine = StartCoroutine(HitHighlight());
-    }
-
-    IEnumerator HitHighlight()
-    {
-        foreach (SpriteRenderer sprite in sprites)
-        {
-            sprite.material = hitMaterial;
-        }
-
-        yield return new WaitForSeconds(hitHighlightTime);
-
-        foreach (SpriteRenderer sprite in sprites)
-        {
-            sprite.material = defaultMaterial;
-        }
-    }
-
+    
     public void ResetValues()
     {
         currentHp = SceneController.characterStats.hp;

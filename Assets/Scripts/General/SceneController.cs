@@ -147,8 +147,15 @@ public class SceneController : MonoBehaviour
 
     public static void ReloadLevel()
     {
+        if (!SceneManager.GetActiveScene().name.Contains("Level")) // not on level (call from hub or main menu)
+        {
+            ReloadScene();
+            return;
+        }
+
         GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterRespawn>().Respawn();
         // restart spells
+
         string sceneToLoad = Extensions.GetLevelsFirstScene();
         LoadScene(sceneToLoad);
     }

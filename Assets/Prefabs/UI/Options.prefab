@@ -120,7 +120,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 558419664949360233}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8507337478008231423}
+        m_TargetAssemblyTypeName: UISoundDeligetion, Assembly-CSharp
+        m_MethodName: Click1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &1153851730132281604
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +663,19 @@ MonoBehaviour:
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8507337478008231423}
+        m_TargetAssemblyTypeName: UISoundDeligetion, Assembly-CSharp
+        m_MethodName: Drag1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1153851730668426133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1134,7 +1158,19 @@ MonoBehaviour:
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8507337478008231423}
+        m_TargetAssemblyTypeName: UISoundDeligetion, Assembly-CSharp
+        m_MethodName: Drag1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1153851731779639324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1557,6 +1593,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4493557170738263178}
   - component: {fileID: 4493557170738263179}
+  - component: {fileID: 8507337478008231423}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -1601,6 +1638,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closableByEsc: 1
   pauseGame: 0
+--- !u!114 &8507337478008231423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4493557170738263172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af0fe24a867a384c91152acae9eb1fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6528941609865852997
 GameObject:
   m_ObjectHideFlags: 0

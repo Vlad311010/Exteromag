@@ -4,22 +4,69 @@ using UnityEngine;
 
 public class CharacterEffects : MonoBehaviour
 {
+    // visual 
+      // hit
+    [SerializeField] Material hitMaterial;
+    [SerializeField] Material defaultMaterial;
+    [SerializeField] float hitHighlightTime;
+
+      // death
     [SerializeField] Color color; 
     [SerializeField] GameObject splash;
     [SerializeField] GameObject onDeathEffect;
+
+
+
+    // sound
+    [SerializeField] AudioClip hitSound;
+    [SerializeField] AudioClip deathSound;
+
+    // camera 
     [SerializeField] CinemachineVirtualCamera cinemachine;
-    
     private CinemachineBasicMultiChannelPerlin cameraNoise;
+
+    private SFXPlayer sound;
+    private SpriteRenderer[] sprites;
+    private Coroutine hitHighlightCoroutine;
 
     private void Start()
     {
+        sprites = GetComponentsInChildren<SpriteRenderer>();
         cinemachine = GameObject.FindGameObjectWithTag("CM").GetComponent<CinemachineVirtualCamera>();
         cameraNoise = cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        sound = GetComponentInChildren<SFXPlayer>();
     }
 
 
+    public void OnHit()
+    {
+        CameraShake(0.4f);
+        if (hitHighlightCoroutine != null)
+        {
+            StopCoroutine(hitHighlightCoroutine);
+        }
+        hitHighlightCoroutine = StartCoroutine(HitHighlight());
+        sound.Play(hitSound);
+    }
+
+    IEnumerator HitHighlight()
+    {
+        foreach (SpriteRenderer sprite in sprites)
+        {
+            sprite.material = hitMaterial;
+        }
+
+        yield return new WaitForSeconds(hitHighlightTime);
+
+        foreach (SpriteRenderer sprite in sprites)
+        {
+            sprite.material = defaultMaterial;
+        }
+    }
+
     public void OnDeathEffects()
     {
+        sound.Play(deathSound);
         Instantiate(onDeathEffect, transform.position, transform.rotation).GetComponent<SpriteRenderer>();
         // Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0, 359));
         // SpriteRenderer splashSprite = Instantiate(splash, transform.position, rotation).GetComponent<SpriteRenderer>();

@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6623488463740933090}
   - component: {fileID: 526471108685700208}
   - component: {fileID: 6623488463740933102}
+  - component: {fileID: 7044841502081534909}
+  - component: {fileID: 5576260379308642864}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -136,6 +138,119 @@ MonoBehaviour:
   pauseWindow: {fileID: 6623488464515637501}
   spellUpgradeWindow: {fileID: 6623488463905976867}
   respawnWindow: {fileID: 1024942491523828872}
+--- !u!82 &7044841502081534909
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6623488463740933091}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &5576260379308642864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6623488463740933091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb26ebfabfe6b254daf5bdd379efb8f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  click1: {fileID: 8300000, guid: 5972fd2b25268ba4cb86053abee344b8, type: 3}
+  click2: {fileID: 0}
+  click3: {fileID: 0}
+  drag1: {fileID: 8300000, guid: 1ebeb1e3ce117454599092bc4f58457c, type: 3}
+  drag2: {fileID: 0}
 --- !u!1001 &387205869437379577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1442,37 +1557,9 @@ PrefabInstance:
       value: PauseWindow
       objectReference: {fileID: 0}
     - target: {fileID: 5461111807363090664, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5461111807363090664, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5461111807363090664, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 6623488463740933102}
-    - target: {fileID: 5461111807363090664, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5461111807363090664, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseWindow
-      objectReference: {fileID: 0}
-    - target: {fileID: 5461111807363090664, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WindowsController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5461111807363090664, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 2456365434252216877}
-    - target: {fileID: 5461111807363090664, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: WindowUI, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 7027481777633081842, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 2
@@ -1498,37 +1585,9 @@ PrefabInstance:
       value: WindowUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7525474542229176961, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7525474542229176961, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7525474542229176961, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 6623488463740933102}
-    - target: {fileID: 7525474542229176961, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7525474542229176961, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseWindow
-      objectReference: {fileID: 0}
-    - target: {fileID: 7525474542229176961, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WindowsController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7525474542229176961, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 4030726554771378447}
-    - target: {fileID: 7525474542229176961, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: WindowUI, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 8000098229769343361, guid: 9f8d79a7bf73f82468510b6f1167d231, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 2

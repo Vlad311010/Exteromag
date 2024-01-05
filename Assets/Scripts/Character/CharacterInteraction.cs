@@ -14,6 +14,7 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
     private CharacterLimitations limitations; 
     private ManaPool mana;
     private IHealthSystem health;
+    private CharacterEffects effects;
     Camera camera;
 
 
@@ -26,6 +27,7 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
         limitations = GetComponentInChildren<CharacterLimitations>();
         mana = GetComponent<ManaPool>();
         health = GetComponent<IHealthSystem>();
+        effects = GetComponent<CharacterEffects>();
     }
 
     private void Start()

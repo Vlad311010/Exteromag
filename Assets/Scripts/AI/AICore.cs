@@ -19,14 +19,16 @@ public class AICore : MonoBehaviour, IDestroyable
     [SerializeField] float visionRange = 50;
     
     [SerializeField] bool ignoreWalls = false;
-    [SerializeField] bool moveAIActive = true;
-    [SerializeField] bool attackAIActive = true;
+    [SerializeField] public bool moveAIActive = true;
+    [SerializeField] public bool attackAIActive = true;
 
     [HideInInspector] public bool canAttack = true;
     public bool damageOnCollision = false;
     private bool playerSpoted = false;
 
     private float deathDelayTime = 2;
+
+    public Vector2 movementDirection { get; private set; }
 
 
     void Awake()
@@ -54,6 +56,7 @@ public class AICore : MonoBehaviour, IDestroyable
     {
         LayerMask visionLayerMask = ignoreWalls ? playerLayerMask : playerLayerMask | obstaclesLayerMask;
         playerSpoted = playerSpoted || AIGeneral.TargetIsVisible(transform.position, target, visionRange, visionLayerMask);
+        movementDirection = (transform.position - agent.nextPosition).normalized;
 
         if (!playerSpoted) return;
 
@@ -84,15 +87,16 @@ public class AICore : MonoBehaviour, IDestroyable
         effects.OnDeath();
         GameEvents.current.EnemyDied();
         // Destroy(this.gameObject);
-        GetComponent<Rigidbody2D>().simulated = false;
-        GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
-        agent.isStopped = true;
-        agent.enabled = false;
         foreach (SpriteRenderer sprite in GetComponentsInChildren<SpriteRenderer>())
         {
             Destroy(sprite);
         }
+        moveAI.DiassableBehavior();
+        attackAI.DiassableBehavior();
+        agent.enabled = false;
+        GetComponent<Rigidbody2D>().simulated = false;
+        GetComponent<Collider2D>().enabled = false;
+
 
         StartCoroutine(DelayedDestroy(deathDelayTime));
     }

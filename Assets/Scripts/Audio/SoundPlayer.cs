@@ -35,6 +35,12 @@ public abstract class SoundPlayer : MonoBehaviour
         audio.Play();
     }
 
+    public void SetAudioSourceVolume(float volume)
+    {
+        defaultVolume = volume;
+        SetSoundVolume();
+    }
+
     protected virtual void OnDisable()
     {
         // GameEvents.current.onSettingsChange -= SetSoundVolume;
