@@ -70,16 +70,22 @@ public class WindowsController : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        activeWindow.CloseWindow(false);
+        activeWindow = null;
         SceneManager.LoadScene("MainMenu");
     }
 
     public void ReloadeScene()
     {
+        activeWindow.CloseWindow(false);
+        activeWindow = null;
         SceneController.ReloadScene();
     }
 
     public void ReloadeLevel()
     {
+        activeWindow.CloseWindow(false);
+        activeWindow = null;
         SceneController.ReloadLevel();
     }
 

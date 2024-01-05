@@ -1,4 +1,5 @@
 using Interfaces;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,6 +25,8 @@ public class AICore : MonoBehaviour, IDestroyable
     [HideInInspector] public bool canAttack = true;
     public bool damageOnCollision = false;
     private bool playerSpoted = false;
+
+    private float deathDelayTime = 2;
 
 
     void Awake()
@@ -80,13 +83,25 @@ public class AICore : MonoBehaviour, IDestroyable
     {
         effects.OnDeath();
         GameEvents.current.EnemyDied();
-        Destroy(this.gameObject);
+        // Destroy(this.gameObject);
+        GetComponent<Rigidbody2D>().simulated = false;
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+        agent.isStopped = true;
+        agent.enabled = false;
+        foreach (SpriteRenderer sprite in GetComponentsInChildren<SpriteRenderer>())
+        {
+            Destroy(sprite);
+        }
+
+        StartCoroutine(DelayedDestroy(deathDelayTime));
     }
 
-    /*private void OnDestroy()
+    IEnumerator DelayedDestroy(float time)
     {
-        GameEvents.current.EnemyDied();
-    }*/
+        yield return new WaitForSeconds(time);
+        Destroy(this.gameObject);
+    }
 
     public void SetTarget()
     {
@@ -96,10 +111,6 @@ public class AICore : MonoBehaviour, IDestroyable
     public void SetGoToPoint(Vector2 goToPoint)
     {
         agent.destination = goToPoint;
-    }
-
-    public void OnHit()
-    {
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

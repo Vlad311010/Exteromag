@@ -9,6 +9,8 @@ TagManager:
   - NavMesh
   - Aim
   - CM
+  - SceneController
+  - BackgroundMusicPlayer
   layers:
   - Default
   - TransparentFX

@@ -135,4 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bd8f985be97e6498cb04a0259ea10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTimer: 0.3
+  destroyTimer: 0.2
+  shrinkPerFrame: 0.8
+  shrinkLimit: 0.8

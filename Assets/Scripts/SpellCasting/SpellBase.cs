@@ -2,18 +2,21 @@ using UnityEngine;
 using Interfaces;
 using Structs;
 using System.Collections;
+using UnityEngine.VFX;
 
 public class SpellBase : MonoBehaviour
 {
+    private SFXPlayer sound;
     [SerializeField] public SpellScriptableObject spell { get; private set; }
     private ISpellAttribute[] attributes;
     private float lifeTime = 100f;
+    private float destryoDelayTime;
 
     [HideInInspector] public LayerMask collisionLayerMask;
-    
 
     public void Init(SpellScriptableObject spell)
     {
+        sound = GetComponent<SFXPlayer>();
         this.spell = spell;
         attributes = GetAttributesList();
         collisionLayerMask = spell.collisionLayerMask;
@@ -51,18 +54,17 @@ public class SpellBase : MonoBehaviour
 
     private void SpawnHitParticles()
     {
-        if (spell.OnHitParticles == null)
+        if (spell.onHitParticles == null)
             return;
 
-        Instantiate(spell.OnHitParticles, transform.position, Quaternion.identity);
+        Instantiate(spell.onHitParticles, transform.position, Quaternion.identity);
     }
 
     public void OnHit(CollisionData collisionData)
     {
-        // instanciate particle
-        // destroy object
         // spell impact
-
+        sound.Play(spell.hitSound);
+        
         AttributesOnHitEvent(collisionData);
     }
 
@@ -104,17 +106,36 @@ public class SpellBase : MonoBehaviour
         }
     }
 
-
-
     public void Despawn()
     {
         SpawnHitParticles();
-        Destroy(this.gameObject);
+        if (sound.Clip != null)
+        {
+            GetComponent<Collider2D>().enabled = false;
+            GetComponent<Rigidbody2D>().simulated = false;
+            foreach (var vf in GetComponentsInChildren<VisualEffect>())
+            {
+                vf.enabled = false;
+            }
+            foreach (var sprite in GetComponentsInChildren<SpriteRenderer>())
+            {
+                sprite.enabled = false;
+            }
+            foreach (var trail in GetComponentsInChildren<TrailRenderer>())
+            {
+                trail.enabled = false;
+            }
+
+
+            StartCoroutine(DespawnCoroutine(sound.Clip.length));
+        }
+        else
+            Destroy(gameObject);
     }
 
     IEnumerator DespawnCoroutine(float time)
     {
         yield return new WaitForSeconds(time);
-        Despawn();
+        Destroy(gameObject);
     }
 }

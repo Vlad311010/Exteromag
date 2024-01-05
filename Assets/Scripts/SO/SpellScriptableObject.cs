@@ -12,11 +12,14 @@ public class SpellScriptableObject : ScriptableObject
     // [HideInInspector] public Transform target;
     [HideInInspector] public Transform owner;
 
-    [Header("References")]
+    [Header("Object Base")]
     public GameObject projectile;
+
+    [Header("Effects")]
     public GameObject onCastParticles;
     public GameObject particles;
-    public GameObject OnHitParticles;
+    public GameObject onHitParticles;
+    public AudioClip hitSound;
 
     [Header("UI")]
     public Sprite spellIcon;

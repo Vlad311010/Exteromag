@@ -171,4 +171,13 @@ public class GameEvents : MonoBehaviour
         }
     }
 
+    public event Action onSettingsChange;
+    public void SettingsChange()
+    {
+        if (onSettingsChange != null)
+        {
+            onSettingsChange();
+        }
+    }
+
 }

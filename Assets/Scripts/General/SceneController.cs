@@ -10,9 +10,10 @@ public class SceneController : MonoBehaviour
     [SerializeField] bool restartPlayerStats = false;
     [SerializeField] GameObject playerPrefab;
     [SerializeField] Vector2 spawPos;
-
     [SerializeField] Vector2 exitPos;
     [SerializeField] GameObject exit;
+
+    public AudioClip sceneMusicTheme;
 
 
     public static CharacterStatsSO characterStats;
@@ -116,6 +117,7 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
 
     public static void BakeNavMesh(bool immediate = false)
     {

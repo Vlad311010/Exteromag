@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb6542ed95573740b9c3af042680a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closableByEsc: 1
+  closableByEsc: 0
   pauseGame: 0
 --- !u!1 &2425593446581935103
 GameObject:

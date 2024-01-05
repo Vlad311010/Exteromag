@@ -185,6 +185,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneController
       objectReference: {fileID: 0}
+    - target: {fileID: 5295320182312109203, guid: 9af94c149042c8c4fb299468e72e8a87, type: 3}
+      propertyPath: m_TagString
+      value: SceneController
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9af94c149042c8c4fb299468e72e8a87, type: 3}
 --- !u!4 &436069848276951157 stripped

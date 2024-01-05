@@ -25,6 +25,11 @@ public class WindowsControllerMainMenu : MonoBehaviour
         control.menu.Esc.performed += EscapePressed;
     }
 
+    private void OnDestroy()
+    {
+        control.menu.Esc.performed -= EscapePressed;
+    }
+
     void Start()
     {
         activeWindow = mainMenu;

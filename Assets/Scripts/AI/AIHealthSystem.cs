@@ -1,29 +1,22 @@
 using Interfaces;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AIHealthSystem : MonoBehaviour, IHealthSystem
 {
+    AIEffects effects;
+
     public int CurrentHealth { get => currentHp; }
 
     [SerializeField] int maxHp;
-
-    [SerializeField] Material hitMaterial;
-    [SerializeField] Material defaultMaterial;
-    [SerializeField] float hitHighlightTime;
-    [SerializeField] AudioClip hitSound;
-
     private int currentHp;
-    private SpriteRenderer[] sprites;
-    private Coroutine hitHighlightCoroutine;
+    
 
 
 
     void Start()
     {
         currentHp = maxHp;
-        sprites = GetComponentsInChildren<SpriteRenderer>();
+        effects = GetComponent<AIEffects>();
     }
 
     public void ConsumeHp(int amount, Vector2 staggerDirectiom, bool noDamageEffect = false)
@@ -34,35 +27,8 @@ public class AIHealthSystem : MonoBehaviour, IHealthSystem
             GetComponent<IDestroyable>().DestroyObject();
         else if (amount > 0)
         {
-            OnHit();
+            effects.OnHit();
         }
     }
-
-    private void OnHit()
-    {
-        if (hitHighlightCoroutine != null)
-        {
-            StopCoroutine(hitHighlightCoroutine);
-        }
-        hitHighlightCoroutine = StartCoroutine(HitHighlight());
-    }
-
-    IEnumerator HitHighlight()
-    {
-        foreach (SpriteRenderer sprite in sprites)
-        {
-            if (sprite != null)
-                sprite.material = hitMaterial;
-        }
-
-        yield return new WaitForSeconds(hitHighlightTime);
-
-        foreach (SpriteRenderer sprite in sprites)
-        {
-            if (sprite != null)
-                sprite.material = defaultMaterial;
-        }
-    }
-
 
 }

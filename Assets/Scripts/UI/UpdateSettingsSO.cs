@@ -11,12 +11,13 @@ public class UpdateSettingsSO : MonoBehaviour
     {
         slider = GetComponent<Slider>();
         slider.onValueChanged.AddListener(delegate { UpdateValue(); });
-        
+
+        slider.value = SettingsSO.Get(variableName) * 100;
     }
 
     private void UpdateValue()
     {
-        SettingsSO.settings[variableName] = slider.value / 100f;
+        SettingsSO.Set(variableName, slider.value / 100f);
     }
 
     

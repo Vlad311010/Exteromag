@@ -9,6 +9,9 @@ public class VFXDestroy : MonoBehaviour
 
     [SerializeField] float destroyTimer = 0;
 
+    [SerializeField] float shrinkPerFrame;
+    [SerializeField] float shrinkLimit = 0.8f;
+
     void Awake()
     {
         effect = GetComponent<VisualEffect>();
@@ -19,24 +22,11 @@ public class VFXDestroy : MonoBehaviour
 
     }
 
-    /*void Update()
-    {
-        
-        if (minimalLifeTime <= 0 && effect.aliveParticleCount == 0)
-        {
-            Destroy(effect.gameObject);
-        }
-        else
-        {
-            minimalLifeTime -= Time.deltaTime;
-        }
-    }*/
-
     IEnumerator ParticlesCountCoroutine()
     {
         if (minimalLifeTime <= 0 && effect.aliveParticleCount == 0)
         {
-            Destroy(effect.gameObject);
+            InitDestroy();
         }
         else
         {
@@ -51,9 +41,27 @@ public class VFXDestroy : MonoBehaviour
         destroyTimer -= Time.deltaTime;
         if (destroyTimer <= 0)
         {
-            Destroy(effect.gameObject);
+            InitDestroy();
         }
         yield return new WaitForEndOfFrame();
         StartCoroutine(TimerCoroutine());
+    }
+
+    private void InitDestroy()
+    {
+        if (shrinkPerFrame <= 0)
+            Destroy(gameObject);
+        else
+            StartCoroutine(Shrink());
+    }
+
+    IEnumerator Shrink()
+    {
+        transform.localScale = transform.localScale - Vector3.one * shrinkPerFrame * Time.deltaTime;
+        yield return new WaitForEndOfFrame();
+        if (transform.localScale.x < shrinkLimit || transform.localScale.y < shrinkLimit)
+            Destroy(gameObject);
+        else
+            StartCoroutine(Shrink());
     }
 }

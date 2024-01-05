@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedNodes:
   - description: Base
-    spell: {fileID: 11400000, guid: 43ac0dad7cb33d8459044aa669f37fc5, type: 2}
+    spell: {fileID: 11400000, guid: 9311cc8dede2d864481de1eec8d08650, type: 2}
     childCount: 2
   - description: Bounce of walls (2) times, better accuracy
     spell: {fileID: 11400000, guid: 1b7c0ebc9e863174eb7bdb6bbb0cc2a2, type: 2}
