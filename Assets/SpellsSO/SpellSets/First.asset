@@ -16,12 +16,19 @@ MonoBehaviour:
   - description: Base
     spell: {fileID: 11400000, guid: 9311cc8dede2d864481de1eec8d08650, type: 2}
     childCount: 2
-  - description: Bounce of walls (2) times, better accuracy
+  - description: "ricochet of walls,accuracy\u2191,cast cost\u2193,-cooldown\u2193"
     spell: {fileID: 11400000, guid: 1b7c0ebc9e863174eb7bdb6bbb0cc2a2, type: 2}
     childCount: 1
-  - description: bounce
+  - description: One more projectile
     spell: {fileID: 11400000, guid: 2c081cb31b2e23b459688dfd03dd8592, type: 2}
     childCount: 0
-  - description: bounce
+  - description: "-damage\u2193,cooldown\u2193\u2193,projectiles speed\u2191,cast
+      cost\u2193,-accuracy\u2193"
     spell: {fileID: 11400000, guid: ba2db51a74dd75b48831af4490aff88f, type: 2}
+    childCount: 2
+  - description: "cooldown\u2193,projectiles faster\u2191,-accuracy\u2193"
+    spell: {fileID: 11400000, guid: 0ea6301809ea5b546bb9159cc440a600, type: 2}
+    childCount: 0
+  - description: "Triple projectile,-cooldown\u2191,projectiles speed\u2191,-accuracy\u2193"
+    spell: {fileID: 11400000, guid: d16ac6dfd1673c1469174bab8fb28e40, type: 2}
     childCount: 0

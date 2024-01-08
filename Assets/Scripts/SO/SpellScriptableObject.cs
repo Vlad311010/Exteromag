@@ -16,9 +16,12 @@ public class SpellScriptableObject : ScriptableObject
     public GameObject projectile;
 
     [Header("Effects")]
-    public GameObject onCastParticles;
+    public GameObject onCastEffect;
     public GameObject particles;
-    public GameObject onHitParticles;
+    public GameObject onHitEffect;
+    public GameObject onHitEffectTilemap;
+
+    public AudioClip castSound;
     public AudioClip hitSound;
 
     [Header("UI")]

@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelExitScript : MonoBehaviour
 {
+    private DefaultControls control;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

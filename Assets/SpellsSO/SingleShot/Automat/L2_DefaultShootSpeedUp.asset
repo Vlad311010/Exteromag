@@ -10,31 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24083a47762275c47b220664ca5652e8, type: 3}
-  m_Name: L2_PowerSpellDestroyTile
+  m_Name: L2_DefaultShootSpeedUp
   m_EditorClassIdentifier: 
   casterPosition: {x: 0, y: 0}
   castPoint: {x: 0, y: 0}
   owner: {fileID: 0}
-  projectile: {fileID: 6975333911988204409, guid: d5360eb81feb6764180783422a59b59d, type: 3}
-  onCastParticles: {fileID: 0}
+  projectile: {fileID: 8397214281368865613, guid: ceb4f7578b85c614c8cbb4c4b3be11aa, type: 3}
+  onCastEffect: {fileID: 0}
   particles: {fileID: 0}
-  onHitParticles: {fileID: 0}
-  hitSound: {fileID: 0}
-  spellIcon: {fileID: 21300000, guid: 4d40cf5fa911a684a86176f9270cad81, type: 3}
+  onHitEffect: {fileID: 8707564758431779321, guid: 8c77551d2e838e4478128174fe490695, type: 3}
+  onHitEffectTilemap: {fileID: 0}
+  castSound: {fileID: 8300000, guid: 104cba0dc1cdb0342a0b7dbda370b63d, type: 3}
+  hitSound: {fileID: 8300000, guid: 31ad1bcd15ccb4045a39ada862d0f7ca, type: 3}
+  spellIcon: {fileID: 21300000, guid: 124bd1d935517204a815f2d52bc46ee1, type: 3}
   spellIconColor: {r: 1, g: 1, b: 1, a: 1}
-  castCost: 60
-  cooldown: 1.5
+  castCost: 2
+  cooldown: 0.11
   parentWithCaster: 0
   interuptOnSpellChange: 1
   preventConstantCasting: 0
-  speed: 35
+  speed: 30
   decceleration: 20
   deccelerationStart: 0.5
   useDecceleration: 0
   collisionLayerMask:
     serializedVersion: 2
     m_Bits: 776
-  attributes: 02000000060000000b000000
+  attributes: 0200000006000000
   explosionAttribute:
     radius: 0
     damage: 0
@@ -52,7 +54,7 @@ MonoBehaviour:
     bounceLimit: 0
     bounceLayer:
       serializedVersion: 2
-      m_Bits: 776
+      m_Bits: 520
   rotateAroundTargetAttribute:
     speed: 0
     distanceFromAnchor: 0
@@ -67,7 +69,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
   damageAttribute:
-    damage: 4
+    damage: 3
   kickbackAttribute:
     force: 50
   reflectAttribute:
@@ -88,16 +90,16 @@ MonoBehaviour:
   destroyTileAttribute:
     layerMask:
       serializedVersion: 2
-      m_Bits: 8
-    radius: 2
-    destroyEffect: {fileID: 3796232927925661210, guid: 3bd56a9877b3c8b4b89fd0b8caa2758c, type: 3}
+      m_Bits: 0
+    radius: 0
+    destroyEffect: {fileID: 0}
   scaleAttribute:
     scale: {x: 0, y: 0}
   spawnAttributes: 0000000002000000
   defaultSpawnAttribute:
     originOffset: 0.5
   randomOffsetAttribute:
-    angle: 8
+    angle: 20
   shotgunAttribute:
     angle: 15
     range: 1

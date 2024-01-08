@@ -117,8 +117,8 @@ VFXRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1460991401
+  m_SortingLayer: -1
   m_SortingOrder: 10
 --- !u!114 &729274368715667723
 MonoBehaviour:
@@ -132,3 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bd8f985be97e6498cb04a0259ea10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyTimer: 0
+  shrinkPerFrame: 0
+  shrinkLimit: 0.8

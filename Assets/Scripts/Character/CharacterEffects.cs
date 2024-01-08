@@ -5,7 +5,10 @@ using UnityEngine;
 public class CharacterEffects : MonoBehaviour
 {
     // visual 
-      // hit
+    // health sacrifice
+    [SerializeField] GameObject manaParticles;
+
+    // hit
     [SerializeField] Material hitMaterial;
     [SerializeField] Material defaultMaterial;
     [SerializeField] float hitHighlightTime;
@@ -18,6 +21,8 @@ public class CharacterEffects : MonoBehaviour
 
 
     // sound
+    [SerializeField] AudioClip CastFailedSound;
+    [SerializeField] AudioClip healtSacrificeSound;
     [SerializeField] AudioClip hitSound;
     [SerializeField] AudioClip deathSound;
 
@@ -37,6 +42,17 @@ public class CharacterEffects : MonoBehaviour
         sound = GetComponentInChildren<SFXPlayer>();
     }
 
+    public void OnHealthSacrifice()
+    {
+        Instantiate(manaParticles, transform.position, Quaternion.identity);
+        sound.Play(healtSacrificeSound);
+    } 
+
+    public void CastFailded()
+    {
+        if (sound.Clip != CastFailedSound || !sound.IsPlaying) 
+            sound.Play(CastFailedSound);
+    }
 
     public void OnHit()
     {

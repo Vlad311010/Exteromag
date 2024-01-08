@@ -50,7 +50,7 @@ public class DashAttack : MonoBehaviour, IAttackAI
         targetIsVisible = AIGeneral.TargetIsVisible(transform.position, core.target, attackRange, core.playerLayerMask | core.obstaclesLayerMask);
         direction = (core.target.transform.position - transform.position).normalized;
         
-        if (!attackState)
+        if (!attackState && core.target != null)
             AIGeneral.LookAt(core.transform, core.target);
 
         if (!attackState && core.canAttack && targetIsVisible)

@@ -3,6 +3,7 @@ using Interfaces;
 using Structs;
 using System.Collections;
 using UnityEngine.VFX;
+using UnityEngine.Tilemaps;
 
 public class SpellBase : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class SpellBase : MonoBehaviour
     private ISpellAttribute[] attributes;
     private float lifeTime = 100f;
     private float destryoDelayTime;
+
+    private Vector2 lastCollisionNormal = Vector2.zero;
+    private Transform lastCollisionTransform;
 
     [HideInInspector] public LayerMask collisionLayerMask;
 
@@ -26,10 +30,9 @@ public class SpellBase : MonoBehaviour
 
     public void OnCast()
     {
-        // instanciate particle
         SpawnCastParticles();
         SpawnProjectileParticles();
-        // play sound
+        sound.Play(spell.castSound);
 
         AttributesOnCastEvent();
         StartCoroutine(DespawnCoroutine(lifeTime));
@@ -37,10 +40,10 @@ public class SpellBase : MonoBehaviour
 
     private void SpawnCastParticles()
     {
-        if (spell.onCastParticles == null)
+        if (spell.onCastEffect == null)
             return;
 
-        Instantiate(spell.onCastParticles, transform.position, Quaternion.identity);
+        Instantiate(spell.onCastEffect, transform.position, Quaternion.identity);
     }
 
 
@@ -54,10 +57,14 @@ public class SpellBase : MonoBehaviour
 
     private void SpawnHitParticles()
     {
-        if (spell.onHitParticles == null)
+        if (spell.onHitEffect == null)
             return;
 
-        Instantiate(spell.onHitParticles, transform.position, Quaternion.identity);
+
+        GameObject hitEffect = spell.onHitEffectTilemap != null && lastCollisionTransform.gameObject.TryGetComponent(out Tilemap _) ? spell.onHitEffectTilemap : spell.onHitEffect;
+        Quaternion lookDirection = Quaternion.LookRotation(new Vector3(0, 0, 1), -lastCollisionNormal);
+        Quaternion rotationToNoraml = Quaternion.Euler(0, 0, lookDirection.eulerAngles.z);
+        GameObject effect = Instantiate(hitEffect, transform.position, rotationToNoraml);
     }
 
     public void OnHit(CollisionData collisionData)
@@ -91,6 +98,8 @@ public class SpellBase : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        lastCollisionNormal = collision.contacts[0].normal;
+        lastCollisionTransform = collision.transform;
         if (collisionLayerMask == (collisionLayerMask | (1 << collision.gameObject.layer)))
         {
             OnHit(new CollisionData(collision.gameObject, collision.rigidbody, collision.contacts));

@@ -42,12 +42,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.9
+    - _Alpha: 0.8
     - _ColorChangeSpeed: 0.5
     - _Fade: 4
     - _TimeScale: 6.1
     m_Colors:
-    - _Color1: {r: 0.6584046, g: 0.073298395, b: 1, a: 1}
-    - _Color2: {r: 0.69049454, g: 0, b: 1, a: 1}
+    - _Color1: {r: 0.55407804, g: 0, b: 0.869407, a: 1}
+    - _Color2: {r: 0.4799528, g: 0, b: 0.6981132, a: 1}
     - _Speed: {r: 0.005, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

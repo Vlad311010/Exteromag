@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 5835505698733557840}
   - component: {fileID: 67817429730639823}
   - component: {fileID: 1148932510865525019}
+  - component: {fileID: 5582660208586480388}
   - component: {fileID: 5955779413471915195}
   - component: {fileID: 2154514054184243934}
   - component: {fileID: -7661416899570951378}
@@ -560,7 +561,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 9
+  m_Speed: 7
   m_Acceleration: 25
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -584,7 +585,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba9faa58ebcef04db656c625c060d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   agent: {fileID: 67817429730639823}
   threatLevel: 3
   target: {fileID: 0}
@@ -600,6 +600,18 @@ MonoBehaviour:
   attackAIActive: 1
   canAttack: 1
   damageOnCollision: 0
+--- !u!114 &5582660208586480388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8132667022566546260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a764f4d2f7fa341b9733884b38c854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5955779413471915195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,7 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88aaa29c1dbd4c24a93d7b7d4b622fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 15
+  maxHp: 27
 --- !u!114 &2154514054184243934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,7 +667,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 60
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

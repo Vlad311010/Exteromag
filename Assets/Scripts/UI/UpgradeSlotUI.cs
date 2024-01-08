@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -20,7 +21,11 @@ public class UpgradeSlotUI : MonoBehaviour, IPointerEnterHandler
         upgradeButton.interactable = false;
         if (spellSetToUse == null || spellSetToUse.upgrades.Count == 0)
         {
-            gameObject.SetActive(false);
+            // gameObject.SetActive(false);
+            for (int i = 0; i < images.Length; i++)
+            {
+                images[i].transform.parent.gameObject.SetActive(false);
+            }
             return;
         }
 
@@ -42,10 +47,32 @@ public class UpgradeSlotUI : MonoBehaviour, IPointerEnterHandler
     }
     
 
+    private string SetTextColor(string text, string color)
+    {
+        return string.Format("<color={0}>{1}</color>", color, text);
+    }
+
+    private List<string> FormatDescription(string text)
+    {
+        List<string> bulletPoints = new List<string>();
+        foreach (string t in text.Split(','))
+        {
+            if (t[0] == '-')
+            {
+                bulletPoints.Add(SetTextColor(t.Substring(1), "#FF0000"));
+            }
+            else
+            {
+                bulletPoints.Add(SetTextColor(t, "#005500"));
+            }
+        }
+        return bulletPoints;
+    }
+
     public void ShowUpgradeDescription(int idx)
     {
-        description.text = spellSet.upgrades[idx].description;  
-
+        List<string> bulletPoints = FormatDescription(spellSet.upgrades[idx].description);
+        description.text = "• " + string.Join("\n• ", bulletPoints);
     }
 
     public void SetSelectedSpellUpgrade(int upgradeIdx)

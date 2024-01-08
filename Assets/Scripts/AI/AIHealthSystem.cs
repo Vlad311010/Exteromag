@@ -11,8 +11,6 @@ public class AIHealthSystem : MonoBehaviour, IHealthSystem
     private int currentHp;
     
 
-
-
     void Start()
     {
         currentHp = maxHp;
@@ -24,7 +22,10 @@ public class AIHealthSystem : MonoBehaviour, IHealthSystem
         currentHp = System.Math.Clamp(currentHp - amount, 0, maxHp);
         GameEvents.current.HealthChange(currentHp, maxHp);
         if (currentHp <= 0)
+        {
             GetComponent<IDestroyable>().DestroyObject();
+            this.enabled = false;
+        }
         else if (amount > 0)
         {
             effects.OnHit();

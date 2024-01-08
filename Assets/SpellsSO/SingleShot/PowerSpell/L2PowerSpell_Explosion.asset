@@ -10,19 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24083a47762275c47b220664ca5652e8, type: 3}
-  m_Name: L_Explosion
+  m_Name: L2PowerSpell_Explosion
   m_EditorClassIdentifier: 
   casterPosition: {x: 0, y: 0}
   castPoint: {x: 0, y: 0}
   owner: {fileID: 0}
-  projectile: {fileID: 6975333911988204409, guid: d5360eb81feb6764180783422a59b59d, type: 3}
-  onCastParticles: {fileID: 0}
+  projectile: {fileID: 6975333911988204409, guid: f25b5ad5ee371db4b9c715102ee7be9e, type: 3}
+  onCastEffect: {fileID: 0}
   particles: {fileID: 0}
-  OnHitParticles: {fileID: 0}
-  spellIcon: {fileID: 0}
+  onHitEffect: {fileID: 3850325738360381760, guid: 9358e1ae4e8f8724b830f1f7e7e70073, type: 3}
+  onHitEffectTilemap: {fileID: 0}
+  castSound: {fileID: 8300000, guid: e0febb41bc75b6248b440d1f955141c2, type: 3}
+  hitSound: {fileID: 8300000, guid: 84561634477fcb143b905f39b744024f, type: 3}
+  spellIcon: {fileID: 21300000, guid: 7a02e50bf8c0bc340ba17bb81d530591, type: 3}
   spellIconColor: {r: 1, g: 1, b: 1, a: 1}
-  castCost: 0
-  cooldown: 0.75
+  castCost: 50
+  cooldown: 3
   parentWithCaster: 0
   interuptOnSpellChange: 1
   preventConstantCasting: 0
@@ -36,7 +39,7 @@ MonoBehaviour:
   attributes: 00000000020000000d000000
   explosionAttribute:
     radius: 3
-    damage: 8
+    damage: 18
     velocityImpact: 0
     obstacleLayerMask:
       serializedVersion: 2
@@ -94,7 +97,7 @@ MonoBehaviour:
     scale: {x: 0, y: 0}
   spawnAttributes: 0000000002000000
   defaultSpawnAttribute:
-    originOffset: 1
+    originOffset: 0.5
   randomOffsetAttribute:
     angle: 0
   shotgunAttribute:

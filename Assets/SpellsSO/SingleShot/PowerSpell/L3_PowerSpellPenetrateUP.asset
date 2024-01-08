@@ -16,14 +16,16 @@ MonoBehaviour:
   castPoint: {x: 0, y: 0}
   owner: {fileID: 0}
   projectile: {fileID: 6975333911988204409, guid: d5360eb81feb6764180783422a59b59d, type: 3}
-  onCastParticles: {fileID: 0}
+  onCastEffect: {fileID: 0}
   particles: {fileID: 0}
-  onHitParticles: {fileID: 0}
-  hitSound: {fileID: 0}
+  onHitEffect: {fileID: 4295849094280497667, guid: 8839a790062a8d44586015a1c0240a84, type: 3}
+  onHitEffectTilemap: {fileID: 5402750425886512527, guid: 3011ae3d76bde1b45bb0f5b8a1ad4aea, type: 3}
+  castSound: {fileID: 8300000, guid: e0febb41bc75b6248b440d1f955141c2, type: 3}
+  hitSound: {fileID: 8300000, guid: e5cb500975996fe45bc4113f3e423011, type: 3}
   spellIcon: {fileID: 21300000, guid: c1b6366927e88c04cb85fcaea34b12e1, type: 3}
   spellIconColor: {r: 1, g: 1, b: 1, a: 1}
-  castCost: 60
-  cooldown: 1.5
+  castCost: 40
+  cooldown: 1
   parentWithCaster: 0
   interuptOnSpellChange: 1
   preventConstantCasting: 0
@@ -60,14 +62,14 @@ MonoBehaviour:
     penetrateLimit: 3
     layerMask:
       serializedVersion: 2
-      m_Bits: 776
+      m_Bits: 768
   manaDrainAttribute:
     manaDrain: 10
     layerMask:
       serializedVersion: 2
       m_Bits: 256
   damageAttribute:
-    damage: 20
+    damage: 21
   kickbackAttribute:
     force: 50
   reflectAttribute:
@@ -95,7 +97,7 @@ MonoBehaviour:
     scale: {x: 0, y: 0}
   spawnAttributes: 0000000002000000
   defaultSpawnAttribute:
-    originOffset: 1
+    originOffset: 0.5
   randomOffsetAttribute:
     angle: 0
   shotgunAttribute:

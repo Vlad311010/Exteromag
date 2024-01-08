@@ -1400,7 +1400,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: edf60161046648e499c095087a996d9e, type: 3}
     - target: {fileID: 292951216564423524, guid: 579c28d8e43ecb6408e52a8c6c814b2a, type: 3}
       propertyPath: musicVolume
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 292951216564423525, guid: 579c28d8e43ecb6408e52a8c6c814b2a, type: 3}
       propertyPath: m_RootOrder

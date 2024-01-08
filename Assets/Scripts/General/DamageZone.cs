@@ -16,10 +16,13 @@ public class DamageZone : MonoBehaviour
     [SerializeField] LayerMask layerMask;
 
     private List<Transform> objectsInDamageZone = new List<Transform>();
-
+    private AudioSource audio;
 
     void Start()
     {
+        TryGetComponent(out audio);
+        if (audio != null)
+            audio.enabled = false;
         GetComponent<SpriteRenderer>().material = unactiveMaterial;
         StartCoroutine(ActivationTimer());
     }
@@ -28,6 +31,8 @@ public class DamageZone : MonoBehaviour
     {
         yield return new WaitForSeconds(activationTime);
         GetComponent<SpriteRenderer>().material = activeMaterial;
+        if (audio != null)
+            audio.enabled = true;
         StartCoroutine(DealDamage());
     }
 

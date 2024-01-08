@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class SoundPlayer : MonoBehaviour
 {
     public AudioClip Clip { get => audio.clip; }
+    public bool IsPlaying { get => audio.isPlaying; }
 
     protected AudioSource audio;
 
@@ -18,6 +19,7 @@ public abstract class SoundPlayer : MonoBehaviour
         SetDefaultSoundSettings();
         SetSoundVolume();
     }
+
 
     protected abstract void SetDefaultSoundSettings();
     public abstract void SetSoundVolume();

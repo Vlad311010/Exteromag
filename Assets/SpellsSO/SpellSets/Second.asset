@@ -13,18 +13,21 @@ MonoBehaviour:
   m_Name: Second
   m_EditorClassIdentifier: 
   serializedNodes:
-  - description: 
-    spell: {fileID: 11400000, guid: dfd62be816949764a9cab9aeabf27b96, type: 2}
+  - description: Base
+    spell: {fileID: 11400000, guid: 5a76a392bc3255f4f963fa8a081ba634, type: 2}
     childCount: 1
-  - description: 
+  - description: up
     spell: {fileID: 11400000, guid: 9de2baff6ad835b46bca1e6ef6da8a1d, type: 2}
     childCount: 2
-  - description: 
+  - description: explode
+    spell: {fileID: 11400000, guid: 43ac0dad7cb33d8459044aa669f37fc5, type: 2}
+    childCount: 1
+  - description: destroy
     spell: {fileID: 11400000, guid: dfd62be816949764a9cab9aeabf27b96, type: 2}
     childCount: 0
-  - description: 
+  - description: penetrate
     spell: {fileID: 11400000, guid: 3c1f0f79eee8d2c4ab9ea224b5499c13, type: 2}
     childCount: 1
-  - description: 
+  - description: up
     spell: {fileID: 11400000, guid: 0ea7dda64d978cc408fcaf4e6c9b3cc3, type: 2}
     childCount: 0

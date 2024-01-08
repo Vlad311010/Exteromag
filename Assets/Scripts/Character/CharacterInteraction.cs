@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Interfaces;
 
-public class CharacterInteraction : MonoBehaviour, IDestroyable
+public class CharacterInteraction : MonoBehaviour, IDestroyable, IResatable
 {
     public DefaultControls control { get; private set; }
 
@@ -87,6 +87,10 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
                 StartCoroutine(containedSpells[selectedSlotIdx].SpellCooldown());
                 SpellCasting.Cast(transform, containedSpells[selectedSlotIdx].spell, aim.TakeSnapshot());
             }
+            else
+            {
+                effects.CastFailded();
+            }
         }
     }
 
@@ -97,7 +101,6 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
             GetComponentInChildren<Animator>().SetBool("Casting", true);
             containedSpells[selectedSlotIdx].holdDown = true;
             GameEvents.current.SpellCastButtonHold(true, selectedSlotIdx);
-
         }
         else if (obj.canceled)
         {
@@ -130,6 +133,7 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
     {
         if (obj.performed)
         {
+            effects.OnHealthSacrifice();
             mana.Consume(-mana.MaxMp / 2);
             health.ConsumeHp(1, Vector2.zero, true);
         }
@@ -143,5 +147,13 @@ public class CharacterInteraction : MonoBehaviour, IDestroyable
             containedSpells[i] = new SpellContainer(spellsSets[i], i);
         }
 
+    }
+
+    public void ResetValues()
+    {
+        for (int i = 0; i < containedSpells.Length; i++)
+        {
+            containedSpells[i].ResetCooldown();
+        }
     }
 }

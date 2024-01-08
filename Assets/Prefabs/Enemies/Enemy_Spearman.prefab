@@ -144,7 +144,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f3c95f663b95cdd42b603774f45c86a1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2fdd5ac3e2a40d44b9ce54944e6654d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -293,7 +293,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: aed1e734c4308a24aa3695ba00f01b48, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -378,7 +378,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f3c95f663b95cdd42b603774f45c86a1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2fdd5ac3e2a40d44b9ce54944e6654d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -402,6 +402,7 @@ GameObject:
   - component: {fileID: 8912076520021763784}
   - component: {fileID: 3736478072418557291}
   - component: {fileID: 1323386712602124497}
+  - component: {fileID: 5222909926675548674}
   - component: {fileID: 9168011915175667914}
   - component: {fileID: 4779065019850235747}
   - component: {fileID: -8140742408011096936}
@@ -502,7 +503,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba9faa58ebcef04db656c625c060d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   agent: {fileID: 3736478072418557291}
   threatLevel: -1
   target: {fileID: 0}
@@ -518,6 +518,18 @@ MonoBehaviour:
   attackAIActive: 1
   canAttack: 1
   damageOnCollision: 0
+--- !u!114 &5222909926675548674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560073087995206121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a764f4d2f7fa341b9733884b38c854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9168011915175667914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,7 +585,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 60
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -736,7 +748,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 11d16df521624474c90cb2ca770ac5c6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2017b7bbb37accf438706060e36e5a63, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

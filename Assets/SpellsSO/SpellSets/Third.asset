@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: Third
   m_EditorClassIdentifier: 
   serializedNodes:
-  - description: c
-    spell: {fileID: 11400000, guid: 13ea98d3eb5525d4abbf074d70d970df, type: 2}
+  - description: Base
+    spell: {fileID: 11400000, guid: bc5d8b56261e21c4baaa63619222e73e, type: 2}
     childCount: 1
-    indexOfFirstChild: 1
-  - description: 
+  - description: Replace shield with magic field that freezes any projectile
     spell: {fileID: 11400000, guid: 209ec051794df5a4ba06a4ad9a459d1d, type: 2}
     childCount: 0
-    indexOfFirstChild: 2

@@ -1,7 +1,7 @@
 using Interfaces;
 using Structs;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class PenetrateAttribute : MonoBehaviour, ISpellAttribute
 {
@@ -25,15 +25,23 @@ public class PenetrateAttribute : MonoBehaviour, ISpellAttribute
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        penetrateLimit--;
-        if (penetrateLimit < 0 || !layerMask.CheckLayer(collision.gameObject.layer))
+        Debug.Log(penetrateLimit);
+        if (penetrateLimit <= 0 || !layerMask.CheckLayer(collision.gameObject.layer))
             GetComponent<SpellBase>().Despawn();
 
+        penetrateLimit--;
         GetComponent<Collider2D>().isTrigger = true;
+        StartCoroutine(TurnOffTrigger());
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        GetComponent<Collider2D>().isTrigger = false;
+    }
+
+    IEnumerator TurnOffTrigger()
+    {
+        yield return new WaitForSeconds(0.05f);
         GetComponent<Collider2D>().isTrigger = false;
     }
 }

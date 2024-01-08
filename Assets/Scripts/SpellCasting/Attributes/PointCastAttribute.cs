@@ -26,6 +26,7 @@ public class PointCastAttribute : MonoBehaviour, ISpellAttribute
             SpellBase spellBase = GetComponent<SpellBase>();
             spellBase.OnHit(CollisionData.Empty);
             spellBase.Despawn();
+            Destroy(this);
         }
     }
 

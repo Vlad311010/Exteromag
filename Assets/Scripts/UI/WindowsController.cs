@@ -30,9 +30,13 @@ public class WindowsController : MonoBehaviour
     {
         GameEvents.current.onUpgradePickUp += OpenSpellUpgradeMenu;
         GameEvents.current.onPlayersDeath += OpenRespawnWindow;
+        GameEvents.current.onExitTriggered += DisablePause;
     }
 
-
+    private void DisablePause()
+    {
+        control.menu.Disable();
+    }
 
     private void EscapePressed(InputAction.CallbackContext obj)
     {

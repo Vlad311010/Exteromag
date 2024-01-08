@@ -14,6 +14,12 @@ public static class AIGeneral
         self.rotation = Quaternion.LookRotation(Vector3.forward, playerDir);
     }
 
+    public static void LookAt(Transform self, Vector3 target)
+    {
+        Vector3 playerDir = (target - self.position).normalized;
+        self.rotation = Quaternion.LookRotation(Vector3.forward, playerDir);
+    }
+
     public static void LookAt(Transform self, Transform target, float step, bool inverse=true)
     {
         Vector3 playerDir = (target.position - self.position).normalized;

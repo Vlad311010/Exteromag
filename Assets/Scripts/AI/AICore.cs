@@ -1,16 +1,17 @@
 using Interfaces;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class AICore : MonoBehaviour, IDestroyable
 {
     AIEffects effects;
-    public Animator animator;
+    public Animator animator { get; private set; }
+    AIDisable disable;
 
     public NavMeshAgent agent;
     public int threatLevel;
     public Transform target;
+
     public IMoveAI moveAI { get; private set; }
     public IAttackAI attackAI { get; private set; }
     [SerializeField] public LayerMask playerLayerMask;
@@ -26,15 +27,13 @@ public class AICore : MonoBehaviour, IDestroyable
     public bool damageOnCollision = false;
     private bool playerSpoted = false;
 
-    private float deathDelayTime = 2;
-
     public Vector2 movementDirection { get; private set; }
-
 
     void Awake()
     {
         effects = GetComponent<AIEffects>();
         animator = GetComponentInChildren<Animator>();
+        disable = GetComponent<AIDisable>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateUpAxis = false;
         agent.updateRotation = false;
@@ -58,7 +57,11 @@ public class AICore : MonoBehaviour, IDestroyable
         playerSpoted = playerSpoted || AIGeneral.TargetIsVisible(transform.position, target, visionRange, visionLayerMask);
         movementDirection = (transform.position - agent.nextPosition).normalized;
 
-        if (!playerSpoted) return;
+        if (!playerSpoted)
+        {
+            AIGeneral.LookAt(transform, agent.nextPosition);
+            return;
+        }
 
         if (moveAIActive)
             moveAI.AIUpdate();
@@ -85,26 +88,8 @@ public class AICore : MonoBehaviour, IDestroyable
     public void DestroyObject()
     {
         effects.OnDeath();
-        GameEvents.current.EnemyDied();
-        // Destroy(this.gameObject);
-        foreach (SpriteRenderer sprite in GetComponentsInChildren<SpriteRenderer>())
-        {
-            Destroy(sprite);
-        }
-        moveAI.DiassableBehavior();
-        attackAI.DiassableBehavior();
-        agent.enabled = false;
-        GetComponent<Rigidbody2D>().simulated = false;
-        GetComponent<Collider2D>().enabled = false;
-
-
-        StartCoroutine(DelayedDestroy(deathDelayTime));
-    }
-
-    IEnumerator DelayedDestroy(float time)
-    {
-        yield return new WaitForSeconds(time);
-        Destroy(this.gameObject);
+        // GameEvents.current.EnemyDied();
+        disable.Disable();
     }
 
     public void SetTarget()
@@ -115,6 +100,7 @@ public class AICore : MonoBehaviour, IDestroyable
     public void SetGoToPoint(Vector2 goToPoint)
     {
         agent.destination = goToPoint;
+        AIGeneral.LookAt(transform, goToPoint);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

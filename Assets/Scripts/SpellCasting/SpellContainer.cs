@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -47,5 +48,11 @@ public class SpellContainer
     public bool IsEmpty()
     {
         return spellSet == null;
+    }
+
+    internal void ResetCooldown()
+    {
+        isInCooldown = false;
+        cooldownTimer = -1;
     }
 }

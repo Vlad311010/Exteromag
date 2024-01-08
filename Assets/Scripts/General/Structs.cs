@@ -48,6 +48,8 @@ namespace Structs
         public List<Vector2> projectilesPosition { get; }
         public List<Quaternion> projectilesRotation { get; }
 
+        public int ProjectileCount => projectilesPosition.Count;
+
         public SpellSpawnData(Vector2 casterPosition, Vector2 castPoint, Vector2 direction)
         {
             this.casterPosition = casterPosition;
@@ -64,6 +66,12 @@ namespace Structs
             projectilesPosition.Add(pos);
             projectilesRotation.Add(rotation);
         }
+        public void ModifieProjectileRotationData(int idx, Quaternion rotation)
+        {
+            // projectilesPosition.Add(pos);
+            projectilesRotation[idx] = rotation;
+        }
+
     }
 
 }

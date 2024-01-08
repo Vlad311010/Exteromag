@@ -66,7 +66,7 @@ public class CharacterHealthSystem : MonoBehaviour, IHealthSystem, IResatable
     
     public void ResetValues()
     {
-        currentHp = SceneController.characterStats.hp;
+        currentHp = Mathf.Clamp(SceneController.characterStats.hp, 0, maxHp);
         GameEvents.current.HealthChangePlayer(currentHp, maxHp);
     }
 

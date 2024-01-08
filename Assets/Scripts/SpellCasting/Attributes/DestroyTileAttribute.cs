@@ -20,7 +20,7 @@ public class DestroyTileAttribute : MonoBehaviour, ISpellAttribute
 
     public void OnHitEvent(CollisionData collisionData)
     {
-        if (layerMask.CheckLayer(collisionData.GameObject.layer) && collisionData.GameObject.TryGetComponent(out Tilemap tilemap))
+        if (collisionData.GameObject != null && layerMask.CheckLayer(collisionData.GameObject.layer) && collisionData.GameObject.TryGetComponent(out Tilemap tilemap))
         {
             DestroyTile(tilemap, collisionData);
         }

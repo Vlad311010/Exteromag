@@ -52,7 +52,6 @@ namespace Interfaces
         public AICore core { get; set; }
         void AIUpdate();
         void AIReset();
-        void DiassableBehavior();
     }
 
     public interface IAttackAI
@@ -60,7 +59,6 @@ namespace Interfaces
         public AICore core { get; set; }
         void AIUpdate();
         public void Attack();
-        void DiassableBehavior();
     }
 
 }

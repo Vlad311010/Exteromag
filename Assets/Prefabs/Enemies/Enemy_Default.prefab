@@ -568,6 +568,7 @@ GameObject:
   - component: {fileID: 4756115030750997156}
   - component: {fileID: 1299872882249932091}
   - component: {fileID: 2092811394416028655}
+  - component: {fileID: 3965057715047644708}
   - component: {fileID: 4638093239567830607}
   - component: {fileID: 1088925486743695402}
   - component: {fileID: 4556110489481160953}
@@ -668,7 +669,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba9faa58ebcef04db656c625c060d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   agent: {fileID: 1299872882249932091}
   threatLevel: 3
   target: {fileID: 0}
@@ -684,6 +684,18 @@ MonoBehaviour:
   attackAIActive: 1
   canAttack: 1
   damageOnCollision: 0
+--- !u!114 &3965057715047644708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072891641922320800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a764f4d2f7fa341b9733884b38c854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4638093239567830607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,7 +751,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 60
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

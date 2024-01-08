@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24083a47762275c47b220664ca5652e8, type: 3}
-  m_Name: Shield
+  m_Name: ShieldReflect
   m_EditorClassIdentifier: 
   casterPosition: {x: 0, y: 0}
   castPoint: {x: 0, y: 0}
   owner: {fileID: 0}
   projectile: {fileID: 7786694226625426548, guid: d285869feb8185c4b80c3dbfdcc6ba34, type: 3}
-  onCastParticles: {fileID: 0}
+  onCastEffect: {fileID: 0}
   particles: {fileID: 0}
-  onHitParticles: {fileID: 0}
+  onHitEffect: {fileID: 0}
+  onHitEffectTilemap: {fileID: 0}
+  castSound: {fileID: 0}
   hitSound: {fileID: 8300000, guid: a641715d32e77464189810b4a3ab3278, type: 3}
-  spellIcon: {fileID: 0}
+  spellIcon: {fileID: 21300000, guid: eb245d5d687949d418359ce0bf1a01b1, type: 3}
   spellIconColor: {r: 1, g: 1, b: 1, a: 1}
   castCost: 2
   cooldown: 0.1
@@ -83,8 +85,8 @@ MonoBehaviour:
     lifetime: 0.1
   channelingAttribute:
     slotIdx: 2
-    channelingConst: 1
-    channelingTick: 0.1
+    channelingConst: 3
+    channelingTick: 0.2
   destroyTileAttribute:
     layerMask:
       serializedVersion: 2

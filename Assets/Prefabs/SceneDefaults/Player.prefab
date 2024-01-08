@@ -5171,14 +5171,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5abb2b494fb88934889d8fe00d01973f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manaParticles: {fileID: 6071331677197331224, guid: 721f209636927dc4cbefa478394f0837, type: 3}
   hitMaterial: {fileID: 2100000, guid: 5153d70b6a62544418a6820cd87ef6cc, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   hitHighlightTime: 0.2
   color: {r: 0.21568629, g: 0.85098046, b: 0.54509807, a: 1}
   splash: {fileID: 7916890796168821779, guid: 13d59e5ed84065343b7313dd01df612d, type: 3}
   onDeathEffect: {fileID: 4061698271305492194, guid: b3f966d2c41a90242aa24de099161379, type: 3}
-  hitSound: {fileID: 8300000, guid: afeebc4a92cb71f419fbc51b8301975b, type: 3}
-  deathSound: {fileID: 8300000, guid: c3ef2ffec96d8704397184249d08dac3, type: 3}
+  CastFailedSound: {fileID: 8300000, guid: d613b35ea9b020d408b8a4e9bef46352, type: 3}
+  healtSacrificeSound: {fileID: 8300000, guid: 43ed52cc16d6f4045987c86b4430b62d, type: 3}
+  hitSound: {fileID: 8300000, guid: 3d0b701a2c860a54192fb2eb63f84820, type: 3}
+  deathSound: {fileID: 8300000, guid: 58f0f9c1f23580a44b5085af2e4f1194, type: 3}
   cinemachine: {fileID: 0}
 --- !u!114 &5061949154812895004
 MonoBehaviour:
@@ -5255,7 +5258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdcdb862e0e921d408a99d6c158f7908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mpRestorePerKill: 30
+  mpRestorePerKill: 35
   maxMp: 300
 --- !u!114 &2326219930658411541
 MonoBehaviour:
@@ -5269,7 +5272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26cfe71bcefba7345a4234dababd9909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 3
+  maxHp: 10
   staggerable: 1
   staggerTime: 0.2
 --- !u!1 &5061949155017079616
@@ -5669,7 +5672,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 30
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

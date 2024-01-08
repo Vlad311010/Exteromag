@@ -153,6 +153,7 @@ public class SceneController : MonoBehaviour
             return;
         }
 
+        characterStats = ScriptableObject.CreateInstance("CharacterStatsSO") as CharacterStatsSO; 
         GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterRespawn>().Respawn();
         // restart spells
 
