@@ -103,8 +103,8 @@ MonoBehaviour:
   activeMaterial: {fileID: 2100000, guid: 4354c5222f3a2654d84a901d163104ee, type: 2}
   unactiveMaterial: {fileID: 2100000, guid: bb3f9901712d7c447afeb99186ef5c65, type: 2}
   activationTime: 1.5
-  tickTime: 0.1
-  ticks: 30
+  tickTime: 0.3
+  ticks: 10
   damagePerTick: 1
   layerMask:
     serializedVersion: 2

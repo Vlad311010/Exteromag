@@ -13,21 +13,70 @@ MonoBehaviour:
   m_Name: Second
   m_EditorClassIdentifier: 
   serializedNodes:
-  - description: Base
+  - translation:
+    - name: English
+      language: 10
+      text: base
+    - name: Ukrainian
+      language: 38
+      text: "\u041F\u0456\u0434\u0441\u0442\u0430\u0432\u0430"
+    description: Base
     spell: {fileID: 11400000, guid: 5a76a392bc3255f4f963fa8a081ba634, type: 2}
     childCount: 1
-  - description: up
+  - translation:
+    - name: English
+      language: 10
+      text: "projectile speed\u2191,damage\u2191"
+    - name: Ukrainian
+      language: 38
+      text: "\u0448\u0432\u0438\u0434\u043A\u0456\u0441\u0442\u044C \u0441\u043D\u0430\u0440\u044F\u0434\u0443\u2191,\u0448\u043A\u043E\u0434\u0432\u2191"
+    description: "projectile speed\u2191,damage\u2191"
     spell: {fileID: 11400000, guid: 9de2baff6ad835b46bca1e6ef6da8a1d, type: 2}
     childCount: 2
-  - description: explode
+  - translation:
+    - name: English
+      language: 10
+      text: "explodes,damage\u2191,-cast cost,-cooldown\u2193,-projectile speed\u2193"
+    - name: Ukrainian
+      language: 38
+      text: "\u0432\u0437\u0440\u0438\u0432\u0430\u0454\u0442\u044C\u0441\u044F,\u0448\u043A\u043E\u0434\u0430\u2191,-\u0432\u0430\u0440\u0442\u0456\u0441\u0442\u044C
+        \u0441\u0442\u0432\u043E\u0440\u0435\u043D\u043D\u044F,-\u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430\u2193,-\u0448\u0432\u0438\u0434\u043A\u0456\u0441\u0442\u044C
+        \u0441\u043D\u0430\u0440\u044F\u0434\u0443\u2193"
+    description: "explodes,damage\u2191,-cast cost\u2193,-cooldown\u2193,-projectile
+      speed\u2193"
     spell: {fileID: 11400000, guid: 43ac0dad7cb33d8459044aa669f37fc5, type: 2}
     childCount: 1
-  - description: destroy
+  - translation:
+    - name: English
+      language: 10
+      text: "destroys walls,-cast cost\u2191,projectile speed\u2191"
+    - name: Ukrainian
+      language: 38
+      text: "\u0437\u043D\u0438\u0448\u0443\u0454 \u0441\u0442\u0456\u043D\u0438,-\u0432\u0430\u0440\u0442\u0456\u0441\u0442\u044C
+        \u0441\u0442\u0432\u043E\u0440\u0435\u043D\u043D\u044F\u2191,\u0448\u0432\u0438\u0434\u043A\u0456\u0441\u0442\u044C
+        \u0441\u043D\u0430\u0440\u044F\u0434\u0443\u2191"
+    description: "destroy walls,-cast cost\u2191,projectile speed\u2191"
     spell: {fileID: 11400000, guid: dfd62be816949764a9cab9aeabf27b96, type: 2}
     childCount: 0
-  - description: penetrate
+  - translation:
+    - name: English
+      language: 10
+      text: penetrate(1) enemies and shields
+    - name: Ukrainian
+      language: 38
+      text: "\u043F\u0440\u043E\u043D\u0438\u0437\u0443\u0454(1) \u0432\u043E\u0440\u043E\u0433\u0456\u0432
+        \u0456 \u0449\u0438\u0442\u0438"
+    description: Penetrate enemies and shields(1)
     spell: {fileID: 11400000, guid: 3c1f0f79eee8d2c4ab9ea224b5499c13, type: 2}
     childCount: 1
-  - description: up
+  - translation:
+    - name: English
+      language: 10
+      text: "penetrate(3),-cast cost\u2193,damage\u2191"
+    - name: Ukrainian
+      language: 38
+      text: "\u043F\u0440\u043E\u043D\u0438\u0437\u0443\u0454(3),-\u0432\u0430\u0440\u0442\u0456\u0441\u0442\u044C
+        \u0441\u0442\u0432\u043E\u0440\u0435\u043D\u043D\u044F\u2193,\u0448\u043A\u043E\u0434\u0430\u2191"
+    description: "penetrate(3),-cast cost\u2193,damage\u2191"
     spell: {fileID: 11400000, guid: 0ea7dda64d978cc408fcaf4e6c9b3cc3, type: 2}
     childCount: 0

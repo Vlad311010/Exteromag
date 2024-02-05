@@ -24,7 +24,7 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: 84561634477fcb143b905f39b744024f, type: 3}
   spellIcon: {fileID: 21300000, guid: 7057e08b6f8ed864eb2933b66c297dee, type: 3}
   spellIconColor: {r: 1, g: 1, b: 1, a: 1}
-  castCost: 60
+  castCost: 80
   cooldown: 3
   parentWithCaster: 0
   interuptOnSpellChange: 1

@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 1632354055793025458}
   - component: {fileID: 1258312851878599405}
   - component: {fileID: 1497747044355836314}
+  - component: {fileID: 7416837011157502344}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -211,7 +212,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Exit
+  m_text: "\u0412\u0438\u0445\u0456\u0434\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 78de95e016ada5342997246fb783c818, type: 2}
   m_sharedMaterial: {fileID: 6671189706511021970, guid: 78de95e016ada5342997246fb783c818, type: 2}
@@ -280,6 +281,25 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7416837011157502344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2425593446581935103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa19b10593aa4254fbada5ce7cf5aa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translations:
+  - name: English
+    language: 10
+    text: Exit
+  - name: Ukrainian
+    language: 38
+    text: "\u0412\u0438\u0445\u0456\u0434\n"
 --- !u!1 &3800039932972481452
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +311,7 @@ GameObject:
   - component: {fileID: 3800039932972481453}
   - component: {fileID: 3800039932972481451}
   - component: {fileID: 3800039932972481450}
+  - component: {fileID: 2971061747559561267}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -346,9 +367,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Credits
-
-'
+  m_text: "\u0412\u0434\u044F\u0447\u043D\u043E\u0441\u0442\u0456"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 78de95e016ada5342997246fb783c818, type: 2}
   m_sharedMaterial: {fileID: 6671189706511021970, guid: 78de95e016ada5342997246fb783c818, type: 2}
@@ -417,6 +436,27 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2971061747559561267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3800039932972481452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa19b10593aa4254fbada5ce7cf5aa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translations:
+  - name: English
+    language: 10
+    text: 'Credits
+
+'
+  - name: Ukrainian
+    language: 38
+    text: "\u0412\u0434\u044F\u0447\u043D\u043E\u0441\u0442\u0456"
 --- !u!1 &3800039933518742425
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +468,7 @@ GameObject:
   - component: {fileID: 3800039933518742502}
   - component: {fileID: 3800039933518742500}
   - component: {fileID: 3800039933518742503}
+  - component: {fileID: 3252592594691614853}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -483,7 +524,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play
+  m_text: "\u0413\u0440\u0430\u0442\u0438"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 78de95e016ada5342997246fb783c818, type: 2}
   m_sharedMaterial: {fileID: 6671189706511021970, guid: 78de95e016ada5342997246fb783c818, type: 2}
@@ -552,6 +593,25 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3252592594691614853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3800039933518742425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa19b10593aa4254fbada5ce7cf5aa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translations:
+  - name: English
+    language: 10
+    text: Play
+  - name: Ukrainian
+    language: 38
+    text: "\u0413\u0440\u0430\u0442\u0438"
 --- !u!1 &3800039934162073048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,6 +1061,7 @@ GameObject:
   - component: {fileID: 3800039934864640926}
   - component: {fileID: 3800039934864640924}
   - component: {fileID: 3800039934864640927}
+  - component: {fileID: 4824736878657588427}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1056,9 +1117,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Options
-
-'
+  m_text: "\u041E\u043F\u0446\u0456\u0457"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 78de95e016ada5342997246fb783c818, type: 2}
   m_sharedMaterial: {fileID: 6671189706511021970, guid: 78de95e016ada5342997246fb783c818, type: 2}
@@ -1127,6 +1186,27 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4824736878657588427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3800039934864640913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa19b10593aa4254fbada5ce7cf5aa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translations:
+  - name: English
+    language: 10
+    text: 'Options
+
+'
+  - name: Ukrainian
+    language: 38
+    text: "\u041E\u043F\u0446\u0456\u0457"
 --- !u!1 &3800039935052067967
 GameObject:
   m_ObjectHideFlags: 0

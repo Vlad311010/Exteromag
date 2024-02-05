@@ -33,6 +33,7 @@ public class SceneController : MonoBehaviour
 
         characterStats = characterStats ?? ScriptableObject.CreateInstance("CharacterStatsSO") as CharacterStatsSO;
         gameSettings = ScriptableObject.CreateInstance("SettingsSO") as SettingsSO;
+        Cursor.visible = false;
     }
 
 
@@ -40,7 +41,7 @@ public class SceneController : MonoBehaviour
     {
         self = this;
 
-        GameEvents.current.onEnemyDeath += OnEnemyDeath;
+        GameEvents.current.onEnemyDestroy += OnEnemyDeath;
         GameEvents.current.onEnemySpawn += OnEnemySpawn;
         GameEvents.current.onSpawnerDestroy += OnSpawnerDestroy;
         GameEvents.current.onExitTriggered += SavePlayerStats;
@@ -65,7 +66,7 @@ public class SceneController : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameEvents.current.onEnemyDeath -= OnEnemyDeath;
+        GameEvents.current.onEnemyDestroy -= OnEnemyDeath;
         GameEvents.current.onSpawnerDestroy -= OnSpawnerDestroy;
     }
 
@@ -164,12 +165,14 @@ public class SceneController : MonoBehaviour
     public static void Pause()
     {
         Time.timeScale = 0f;
+        Cursor.visible = true;
         characterLimitations.DisableActions();
     }
 
     public static void Resume()
     {
         Time.timeScale = 1f;
+        Cursor.visible = false;
         characterLimitations.ActivateActions();
     }
 

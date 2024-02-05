@@ -4,6 +4,7 @@ using UnityEngine;
 public class AIHealthSystem : MonoBehaviour, IHealthSystem
 {
     AIEffects effects;
+    AICore core;
 
     public int CurrentHealth { get => currentHp; }
 
@@ -15,6 +16,7 @@ public class AIHealthSystem : MonoBehaviour, IHealthSystem
     {
         currentHp = maxHp;
         effects = GetComponent<AIEffects>();
+        core = GetComponent<AICore>();
     }
 
     public void ConsumeHp(int amount, Vector2 staggerDirectiom, bool noDamageEffect = false)

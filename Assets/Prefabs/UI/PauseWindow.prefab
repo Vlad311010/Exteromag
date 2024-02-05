@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1289259752}
   - component: {fileID: 1289259754}
   - component: {fileID: 1289259753}
+  - component: {fileID: 8064010847801832067}
   m_Layer: 5
   m_Name: PauseText
   m_TagString: Untagged
@@ -135,6 +136,25 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8064010847801832067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289259751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa19b10593aa4254fbada5ce7cf5aa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translations:
+  - name: English
+    language: 10
+    text: Pause
+  - name: English
+    language: 38
+    text: "\u041F\u0430\u0443\u0437\u0430"
 --- !u!1 &260489684149608116
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,6 +604,7 @@ GameObject:
   - component: {fileID: 8463605916464732224}
   - component: {fileID: 7046154540978082788}
   - component: {fileID: 6630265696781346845}
+  - component: {fileID: 4910482333953894618}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -708,6 +729,26 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4910482333953894618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719235561377947684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa19b10593aa4254fbada5ce7cf5aa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translations:
+  - name: English
+    language: 10
+    text: Restart level
+  - name: English
+    language: 38
+    text: "\u041F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u0442\u0438\u0442\u0438
+      \u0440\u0456\u0432\u0435\u043D\u044C"
 --- !u!1 &1995788622969779757
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,6 +760,7 @@ GameObject:
   - component: {fileID: 8122498914651996143}
   - component: {fileID: 7552791487032325310}
   - component: {fileID: 8675395065397773757}
+  - component: {fileID: 2757088380954367163}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -845,6 +887,26 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2757088380954367163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995788622969779757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa19b10593aa4254fbada5ce7cf5aa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translations:
+  - name: English
+    language: 10
+    text: Restart room
+  - name: English
+    language: 38
+    text: "\u041F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u0442\u0438\u0442\u0438
+      \u043A\u0456\u043C\u043D\u0430\u0442\u0443"
 --- !u!1 &2431370646591806432
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +918,7 @@ GameObject:
   - component: {fileID: 5742983245572967160}
   - component: {fileID: 4729806116909319125}
   - component: {fileID: 6366615838107869414}
+  - component: {fileID: 6958054348837645728}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -982,6 +1045,25 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6958054348837645728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2431370646591806432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa19b10593aa4254fbada5ce7cf5aa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translations:
+  - name: English
+    language: 10
+    text: Resume
+  - name: English
+    language: 38
+    text: "\u041F\u0440\u043E\u0434\u043E\u0432\u0436\u0438\u0442\u0438"
 --- !u!1 &2817095508149779821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,6 +1798,7 @@ GameObject:
   - component: {fileID: 5890875350100257433}
   - component: {fileID: 3590135291163098861}
   - component: {fileID: 8139159437586986631}
+  - component: {fileID: 5027898982294084164}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1842,6 +1925,25 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5027898982294084164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7657579644787509592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa19b10593aa4254fbada5ce7cf5aa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translations:
+  - name: English
+    language: 10
+    text: Options
+  - name: English
+    language: 38
+    text: "\u041D\u0430\u043B\u0430\u0448\u0442\u0443\u0432\u0430\u043D\u043D\u044F"
 --- !u!1 &7985012704054186778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,6 +1955,7 @@ GameObject:
   - component: {fileID: 2814542251836862525}
   - component: {fileID: 8906037375572212964}
   - component: {fileID: 5916915349535131855}
+  - component: {fileID: 4235221506093942329}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1977,6 +2080,25 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4235221506093942329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7985012704054186778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa19b10593aa4254fbada5ce7cf5aa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translations:
+  - name: English
+    language: 10
+    text: Controls
+  - name: English
+    language: 38
+    text: "\u041A\u0435\u0440\u0443\u0432\u0430\u043D\u043D\u044F"
 --- !u!1001 &737123948157786439
 PrefabInstance:
   m_ObjectHideFlags: 0

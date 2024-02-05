@@ -42,7 +42,7 @@ public class AIDisable : MonoBehaviour
     IEnumerator DelayedDestroy(float time)
     {
         yield return new WaitForSeconds(time);
-        GameEvents.current.EnemyDied();
+        GameEvents.current.EnemyDestroyed();
         Destroy(this.gameObject);
     }
 

@@ -11,12 +11,19 @@ public class ManaPool : MonoBehaviour, IResatable
     public int MaxMp { get => maxMp; }
     public int CurrentMp { get => currentMp; }
 
+
     private void Start()
     {
         currentMp = maxMp;
         Consume(0);
         SceneManager.sceneLoaded += UpdateUI;
-        GameEvents.current.onEnemyDeath += GetMpFromEnemy;
+        SceneManager.sceneLoaded += SubscribeMpRestore;
+        // GameEvents.current.onEnemyKilled += GetMpFromEnemy;
+    }
+
+    private void SubscribeMpRestore(Scene scene, LoadSceneMode mode)
+    {
+        GameEvents.current.onEnemyKilled += GetMpFromEnemy;
     }
 
     public bool HaveEnaughtMp(int toConsume)
@@ -51,7 +58,7 @@ public class ManaPool : MonoBehaviour, IResatable
 
     private void OnDestroy()
     {
-        GameEvents.current.onEnemyDeath -= GetMpFromEnemy;
+        GameEvents.current.onEnemyKilled -= GetMpFromEnemy;
         SceneManager.sceneLoaded -= UpdateUI;
     }
 }

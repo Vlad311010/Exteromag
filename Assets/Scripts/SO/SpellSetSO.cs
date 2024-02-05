@@ -8,6 +8,7 @@ public class SpellSetSO : ScriptableObject, ISerializationCallbackReceiver
 {
     public class SpellUpgradeNode
     {
+        public Translator.Translation[] translation = new Translator.Translation[] { new Translator.Translation(SystemLanguage.English), new Translator.Translation(SystemLanguage.Ukrainian) };
         public string description = "";
         public SpellScriptableObject spell;
         public List<SpellUpgradeNode> children = new List<SpellUpgradeNode>();
@@ -16,6 +17,33 @@ public class SpellSetSO : ScriptableObject, ISerializationCallbackReceiver
         {
             children.Add(node);
         }
+
+        public int GetDescriptionTranslationIndex(SystemLanguage language)
+        {
+            for (int i = 0; i < translation.Length; i++)
+            {
+                if (translation[i].language == language)
+                {
+                    return i;
+                }
+            }
+
+            return 0;
+        }
+
+        public int GetDescriptionTranslationIndex(string translationName)
+        {
+            for (int i = 0; i < translation.Length; i++)
+            {
+                if (translation[i].name == translationName)
+                {
+                    return i;
+                }
+            }
+
+            return 0;
+        }
+
     }
 
     public SpellUpgradeNode root;
@@ -29,6 +57,7 @@ public class SpellSetSO : ScriptableObject, ISerializationCallbackReceiver
     [Serializable]
     public struct SerializableNode
     {
+        public Translator.Translation[] translation;
         public string description;
         public SpellScriptableObject spell;
         public int childCount;
@@ -47,10 +76,11 @@ public class SpellSetSO : ScriptableObject, ISerializationCallbackReceiver
         AddNodeToSerializedNodes(root);
     }
 
-    SerializableNode SerizlizeNode(SpellUpgradeNode node)
+    /*SerializableNode SerizlizeNode(SpellUpgradeNode node)
     {
         SerializableNode serializedNode = new SerializableNode()
         {
+            translation = node.translation,
             spell = node.spell,
             description = node.description,
             childCount = node.children.Count,
@@ -58,12 +88,13 @@ public class SpellSetSO : ScriptableObject, ISerializationCallbackReceiver
         };
         
         return serializedNode;
-    }
+    }*/
     
     void AddNodeToSerializedNodes(SpellUpgradeNode node)
     {
         SerializableNode serializedNode = new SerializableNode()
         {
+            translation = node.translation,
             spell = node.spell,
             description = node.description,
             childCount = node.children.Count,
@@ -94,6 +125,7 @@ public class SpellSetSO : ScriptableObject, ISerializationCallbackReceiver
 
         return new SpellUpgradeNode()
         {
+            translation = serializedNode.translation,
             spell = serializedNode.spell,
             description = serializedNode.description,
             children = children

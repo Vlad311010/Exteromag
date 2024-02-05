@@ -17,6 +17,15 @@ public class SpellSetSOEditor : Editor
     public override void OnInspectorGUI()
     {
         showDescription = GUILayout.Toggle(showDescription, "Show Description");
+        
+        if (GUILayout.Button(string.Format("Langage Switch ({0})", Translator.selectedLangage.ToString())))
+        {
+            if (Translator.selectedLangage == SystemLanguage.English)
+                Translator.selectedLangage = SystemLanguage.Ukrainian;
+            else
+                Translator.selectedLangage = SystemLanguage.English;
+        }
+
 
         SpellUpgradeNode root = _target.root;
         Display(root);
@@ -41,7 +50,14 @@ public class SpellSetSOEditor : Editor
 
         GUILayout.BeginHorizontal();
         if (showDescription)
-            node.description = EditorGUILayout.TextField(node.description);
+        {
+            // node.description = EditorGUILayout.TextField(node.description);
+            if (node.translation == null || node.translation.Length == 0)
+                node.translation = new Translator.Translation[] { new Translator.Translation(SystemLanguage.English), new Translator.Translation(SystemLanguage.Ukrainian) };
+
+            int translationIndex = node.GetDescriptionTranslationIndex(Translator.selectedLangage);             
+            node.translation[translationIndex].text = EditorGUILayout.TextField(node.translation[translationIndex].text);
+        }
         else
             node.spell = (SpellScriptableObject)EditorGUILayout.ObjectField(node.spell, typeof(SpellScriptableObject));
 
@@ -61,6 +77,12 @@ public class SpellSetSOEditor : Editor
         }
         GUILayout.EndVertical();
         GUILayout.EndHorizontal();
+
+        /*for (int i = 0; i < node.translation.Length; i++)
+        {
+            string translationText = EditorGUILayout.TextField(node.translation[i].text);
+            node.translation[i] = new Translator.Translation(node.translation[i], translationText);
+        }*/
 
         // horizontal view
         /*GUILayout.BeginHorizontal();

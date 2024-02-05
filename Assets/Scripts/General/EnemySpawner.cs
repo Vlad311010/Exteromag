@@ -31,13 +31,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        // GameEvents.current.onEnemyDeath += TriggerSpawn;
         GameEvents.current.onEnemiesCountChange += TriggerSpawn;
     }
 
     private void OnDisable()
     {
-        // GameEvents.current.onEnemyDeath -= TriggerSpawn;
         GameEvents.current.onEnemiesCountChange -= TriggerSpawn;
     }
 

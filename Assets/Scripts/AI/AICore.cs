@@ -88,6 +88,7 @@ public class AICore : MonoBehaviour, IDestroyable
     public void DestroyObject()
     {
         effects.OnDeath();
+        GameEvents.current.EnemyKilled();
         // GameEvents.current.EnemyDied();
         disable.Disable();
     }
@@ -95,6 +96,11 @@ public class AICore : MonoBehaviour, IDestroyable
     public void SetTarget()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    public void OnDamageRecive()
+    {
+        playerSpoted = true;
     }
 
     public void SetGoToPoint(Vector2 goToPoint)

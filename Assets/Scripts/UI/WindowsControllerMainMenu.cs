@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -23,6 +21,8 @@ public class WindowsControllerMainMenu : MonoBehaviour
         control.Enable();
 
         control.menu.Esc.performed += EscapePressed;
+
+        Cursor.visible = true;
     }
 
     private void OnDestroy()
@@ -63,6 +63,14 @@ public class WindowsControllerMainMenu : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+
+    public void LanguageSwitch()
+    {
+        if (Translator.selectedLangage == SystemLanguage.English)
+            Translator.selectedLangage = SystemLanguage.Ukrainian;
+        else
+            Translator.selectedLangage = SystemLanguage.English;
     }
 
     public void CloseWindow(WindowUI window)

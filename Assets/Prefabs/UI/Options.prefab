@@ -1661,6 +1661,7 @@ GameObject:
   - component: {fileID: 82227613697458320}
   - component: {fileID: 4043791998471694387}
   - component: {fileID: 7957958301549177719}
+  - component: {fileID: 3874898312900953768}
   m_Layer: 5
   m_Name: PauseText
   m_TagString: Untagged
@@ -1716,7 +1717,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Options
+  m_text: "\u041E\u043F\u0446\u0456\u0457"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 78de95e016ada5342997246fb783c818, type: 2}
   m_sharedMaterial: {fileID: 6671189706511021970, guid: 78de95e016ada5342997246fb783c818, type: 2}
@@ -1785,3 +1786,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3874898312900953768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6528941609865852997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa19b10593aa4254fbada5ce7cf5aa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translations:
+  - name: English
+    language: 10
+    text: Options
+  - name: English
+    language: 38
+    text: "\u041E\u043F\u0446\u0456\u0457"

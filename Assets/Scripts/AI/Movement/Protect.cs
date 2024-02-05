@@ -46,9 +46,9 @@ public class Protect : MonoBehaviour, IMoveAI
         directionFromProtectedToTarget = (core.target.transform.position - protectionTarget.position).normalized;
         seeTarget = AIGeneral.TargetIsVisible(transform.position, core.target, visionRadius, core.playerLayerMask | core.obstaclesLayerMask);
 
-        AIGeneral.LookAt(core.transform, protectionTarget, rotationSpeed, inverse: true);
         if (seeTarget)
         {
+            AIGeneral.LookAt(core.transform, protectionTarget, rotationSpeed, inverse: true);
             agent.destination = GetDesiredPositionProtecting();
             lastDirectionFromProtectedToTarget = directionFromProtectedToTarget;
         }

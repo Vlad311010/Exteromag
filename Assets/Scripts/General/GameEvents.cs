@@ -35,12 +35,21 @@ public class GameEvents : MonoBehaviour
         }
     }
 
-    public event Action onEnemyDeath;
-    public void EnemyDied()
+    public event Action onEnemyDestroy;
+    public void EnemyDestroyed()
     {
-        if (onEnemyDeath != null)
+        if (onEnemyDestroy != null)
         {
-            onEnemyDeath();
+            onEnemyDestroy();
+        }
+    }
+
+    public event Action onEnemyKilled;
+    public void EnemyKilled()
+    {
+        if (onEnemyKilled != null)
+        {
+            onEnemyKilled();
         }
     }
 

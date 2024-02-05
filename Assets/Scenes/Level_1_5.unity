@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2222075800012003276, guid: 83552bb4e55ac1149bedef2420329bca, type: 3}
       propertyPath: visionRange
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2444239403954090632, guid: 83552bb4e55ac1149bedef2420329bca, type: 3}
       propertyPath: m_RootOrder

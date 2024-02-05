@@ -13,22 +13,72 @@ MonoBehaviour:
   m_Name: First
   m_EditorClassIdentifier: 
   serializedNodes:
-  - description: Base
+  - translation:
+    - name: English
+      language: 10
+      text: Base
+    - name: Ukrainian
+      language: 38
+      text: "\u041F\u0456\u0434\u0441\u0442\u0430\u0432\u0430"
+    description: Base
     spell: {fileID: 11400000, guid: 9311cc8dede2d864481de1eec8d08650, type: 2}
     childCount: 2
-  - description: "ricochet of walls,accuracy\u2191,cast cost\u2193,-cooldown\u2193"
+  - translation:
+    - name: English
+      language: 10
+      text: "ricochet of walls,accuracy\u2191,cast cost\u2193,-cooldown\u2193"
+    - name: Ukrainian
+      language: 38
+      text: "\u0440\u0456\u043A\u043E\u0448\u0435\u0442\u0438\u0442\u044C \u0432\u0456\u0434
+        \u0441\u0442\u0456\u043D,\u0432\u043B\u0443\u0447\u043D\u0456\u0441\u0442\u044C\u2191,\u0432\u0430\u0440\u0442\u0456\u0441\u0442\u044C
+        \u0441\u0442\u0432\u043E\u0440\u0435\u043D\u043D\u044F\u2193,-\u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430\u2193"
+    description: "ricochet of walls,accuracy\u2191,cast cost\u2193,-cooldown\u2193"
     spell: {fileID: 11400000, guid: 1b7c0ebc9e863174eb7bdb6bbb0cc2a2, type: 2}
     childCount: 1
-  - description: One more projectile
+  - translation:
+    - name: English
+      language: 10
+      text: One more projectile,ricochet of walls and enemies
+    - name: Ukrainian
+      language: 38
+      text: "\u043E\u0434\u0438\u043D \u0434\u043E\u0434\u0430\u0442\u043A\u043E\u0432\u0438\u0439
+        \u0441\u043D\u0430\u0440\u044F\u0434,\u0440\u0456\u043A\u043E\u0448\u0435\u0442\u0438\u0442\u044C
+        \u0432\u0456\u0434 \u0441\u0442\u0456\u043D \u0442\u0430 \u0432\u043E\u0440\u043E\u0433\u0456\u0432"
+    description: One more projectile,ricochet of walls and enemies
     spell: {fileID: 11400000, guid: 2c081cb31b2e23b459688dfd03dd8592, type: 2}
     childCount: 0
-  - description: "-damage\u2193,cooldown\u2193\u2193,projectiles speed\u2191,cast
+  - translation:
+    - name: English
+      language: 10
+      text: "-damage\u2193,cooldown\u2193\u2193,projectile speed\u2191,cast cost\u2193,-accuracy\u2193"
+    - name: Ukrainian
+      language: 38
+      text: "-\u0448\u043A\u043E\u0434\u0430\u2193,\u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430\u2193\u2193,\u0448\u0432\u0438\u0434\u043A\u0456\u0441\u0442\u044C
+        \u0441\u043D\u0430\u0440\u044F\u0434\u0443\u2191,\u0432\u0430\u0440\u0442\u0456\u0441\u0442\u044C
+        \u0441\u0442\u0432\u043E\u0440\u0435\u043D\u043D\u044F\u2193,-\u0432\u043B\u0443\u0447\u043D\u0456\u0441\u0442\u044C\u2193"
+    description: "-damage\u2193,cooldown\u2193\u2193,projectiles speed\u2191,cast
       cost\u2193,-accuracy\u2193"
     spell: {fileID: 11400000, guid: ba2db51a74dd75b48831af4490aff88f, type: 2}
     childCount: 2
-  - description: "cooldown\u2193,projectiles faster\u2191,-accuracy\u2193"
+  - translation:
+    - name: English
+      language: 10
+      text: "cooldown\u2193,projectile speed\u2191,-accuracy\u2193"
+    - name: Ukrainian
+      language: 38
+      text: "\u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430\u2193,\u0448\u0432\u0438\u0434\u043A\u0456\u0441\u0442\u044C
+        \u0441\u043D\u0430\u0440\u044F\u0434\u0443\u2191,-\u0432\u043B\u0443\u0447\u043D\u0456\u0441\u0442\u044C\u2193"
+    description: "cooldown\u2193,projectiles faster\u2191,-accuracy\u2193"
     spell: {fileID: 11400000, guid: 0ea6301809ea5b546bb9159cc440a600, type: 2}
     childCount: 0
-  - description: "Triple projectile,-cooldown\u2191,projectiles speed\u2191,-accuracy\u2193"
+  - translation:
+    - name: English
+      language: 10
+      text: "Triple projectile,-cooldown\u2191,projectile speed\u2191,-accuracy\u2193"
+    - name: Ukrainian
+      language: 38
+      text: "\u043F\u043E\u0442\u0440\u0456\u0439\u043D\u0438\u0439 \u0441\u043D\u0430\u0440\u044F\u0434,-\u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430\u2191,\u0448\u0432\u0438\u0434\u043A\u0456\u0441\u0442\u044C
+        \u0441\u043D\u0430\u0440\u044F\u0434\u0443\u2191,-\u0432\u043B\u0443\u0447\u043D\u0456\u0441\u0442\u044C\u2193"
+    description: "Triple projectile,-cooldown\u2191,projectiles speed\u2191,-accuracy\u2193"
     spell: {fileID: 11400000, guid: d16ac6dfd1673c1469174bab8fb28e40, type: 2}
     childCount: 0

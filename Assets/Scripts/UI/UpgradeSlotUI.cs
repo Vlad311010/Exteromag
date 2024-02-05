@@ -71,8 +71,9 @@ public class UpgradeSlotUI : MonoBehaviour, IPointerEnterHandler
 
     public void ShowUpgradeDescription(int idx)
     {
-        List<string> bulletPoints = FormatDescription(spellSet.upgrades[idx].description);
-        description.text = "• " + string.Join("\n• ", bulletPoints);
+        int selectedTranslationIndex = spellSet.upgrades[idx].GetDescriptionTranslationIndex(Translator.selectedLangage);
+        List<string> bulletPoints = FormatDescription(spellSet.upgrades[idx].translation[selectedTranslationIndex].text);
+        description.text = "ï¿½ " + string.Join("\nï¿½ ", bulletPoints);
     }
 
     public void SetSelectedSpellUpgrade(int upgradeIdx)
@@ -91,7 +92,16 @@ public class UpgradeSlotUI : MonoBehaviour, IPointerEnterHandler
     {
         for (int i = 0; i < images.Length; i++)
         {
-            images[i].transform.parent.GetComponent<Image>().sprite = i == upgradeIdx ? selectedSprite : defaultSprite;
+            if (i == upgradeIdx)
+            {
+                images[i].transform.parent.GetComponent<Image>().sprite = selectedSprite;
+                images[i].GetComponent<Image>().color = Color.white;
+            }
+            else
+            {
+                images[i].transform.parent.GetComponent<Image>().sprite = defaultSprite;
+                images[i].GetComponent<Image>().color = Color.gray;
+            }
         }
     }
 

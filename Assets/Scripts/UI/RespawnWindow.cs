@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class RespawnWindow : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class RespawnWindow : MonoBehaviour
         control = new DefaultControls();
 
         control.menu.Respawn.performed += Respawn;
+        control.menu.Esc.performed += Exit;
     }
 
     private void OnEnable()
@@ -27,6 +29,14 @@ public class RespawnWindow : MonoBehaviour
         if (obj.performed)
         {
             SceneController.ReloadScene();
+        }
+    }
+
+    private void Exit(InputAction.CallbackContext obj)
+    {
+        if (obj.performed)
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 
